@@ -1,0 +1,857 @@
+fileFormatVersion: 2
+guid: 90efd3bb14005430985eda88348b153e
+timeCreated: 1480954151
+licenseType: Pro
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_0
+    21300002: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_1
+    21300004: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_2
+    21300006: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_3
+    21300008: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_4
+    21300010: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_5
+    21300012: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_6
+    21300014: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_7
+    21300016: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_8
+    21300018: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_9
+    21300020: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_10
+    21300022: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_11
+    21300024: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_12
+    21300026: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_13
+    21300028: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_14
+    21300030: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_15
+    21300032: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_16
+    21300034: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_17
+    21300036: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_18
+    21300038: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_19
+    21300040: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_20
+    21300042: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_21
+    21300044: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_22
+    21300046: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_23
+    21300048: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_24
+    21300050: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_25
+    21300052: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_26
+    21300054: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_27
+    21300056: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_28
+    21300058: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_29
+    21300060: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_30
+    21300062: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_31
+    21300064: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_32
+    21300066: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_33
+    21300068: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_34
+    21300070: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_35
+    21300072: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_36
+    21300074: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_37
+    21300076: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_38
+    21300078: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_39
+    21300080: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_40
+    21300082: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_41
+    21300084: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_42
+    21300086: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_43
+    21300088: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_44
+    21300090: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_45
+    21300092: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_46
+    21300094: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_47
+    21300096: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_48
+    21300098: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_49
+    21300100: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_50
+    21300102: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_51
+    21300104: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_52
+    21300106: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_53
+    21300108: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_54
+    21300110: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_55
+    21300112: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_56
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_0
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 416
+        width: 109
+        height: 92
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_1
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 451
+        width: 4
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 455
+        width: 4
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_3
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 448
+        width: 4
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_4
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 454
+        width: 92
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_5
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 95
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_6
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 448
+        width: 28
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_7
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 449
+        width: 60
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_8
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 368
+        width: 31
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_9
+      rect:
+        serializedVersion: 2
+        x: 412
+        y: 448
+        width: 8
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_10
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 365
+        width: 25
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_11
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 348
+        width: 65
+        height: 62
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_12
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 340
+        width: 53
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_13
+      rect:
+        serializedVersion: 2
+        x: 206
+        y: 356
+        width: 4
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_14
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 356
+        width: 128
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_15
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 378
+        width: 37
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_16
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 328
+        width: 31
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_17
+      rect:
+        serializedVersion: 2
+        x: 196
+        y: 322
+        width: 31
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_18
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 320
+        width: 25
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_19
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 32
+        height: 49
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_20
+      rect:
+        serializedVersion: 2
+        x: 422
+        y: 320
+        width: 26
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 34
+        height: 85
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_22
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 259
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_23
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 259
+        width: 30
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_24
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 268
+        width: 35
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_25
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 224
+        width: 86
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_26
+      rect:
+        serializedVersion: 2
+        x: 386
+        y: 254
+        width: 29
+        height: 63
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_27
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 256
+        width: 26
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_28
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 225
+        width: 28
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_29
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 223
+        width: 19
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_30
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 62
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_31
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 192
+        width: 60
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_32
+      rect:
+        serializedVersion: 2
+        x: 223
+        y: 192
+        width: 33
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_33
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 227
+        width: 21
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_34
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 226
+        width: 27
+        height: 20
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_35
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 194
+        width: 23
+        height: 23
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_36
+      rect:
+        serializedVersion: 2
+        x: 31
+        y: 192
+        width: 32
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_37
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 193
+        width: 19
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_38
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 196
+        width: 50
+        height: 26
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_39
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 127
+        width: 28
+        height: 61
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_40
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 108
+        width: 55
+        height: 84
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_41
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 108
+        width: 87
+        height: 80
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_42
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 71
+        width: 31
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_43
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 64
+        width: 123
+        height: 66
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_44
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 99
+        width: 28
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_45
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 35
+        width: 70
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_46
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 21
+        width: 25
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_47
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 33
+        width: 66
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_48
+      rect:
+        serializedVersion: 2
+        x: 197
+        y: 0
+        width: 24
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_49
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 0
+        width: 19
+        height: 52
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_50
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 0
+        width: 43
+        height: 96
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_51
+      rect:
+        serializedVersion: 2
+        x: 321
+        y: 37
+        width: 60
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_52
+      rect:
+        serializedVersion: 2
+        x: 380
+        y: 40
+        width: 4
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_53
+      rect:
+        serializedVersion: 2
+        x: 460
+        y: 35
+        width: 40
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_54
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 0
+        width: 69
+        height: 31
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_55
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 63
+        height: 24
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: gothic_tile_b_for_rpg_maker_vx_ace_by_ximenia-d740upk_56
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 3
+        width: 62
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
