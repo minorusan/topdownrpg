@@ -5,14 +5,14 @@ using Core.Characters.Player;
 
 namespace Core.Input
 {
-    [RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(PlayerBehaviour))]
     public class JoysticInput : MonoBehaviour
     {
-        private Player _player;
+        private PlayerBehaviour _player;
 
         private void Start()
         {
-            _player = GetComponent<Player>();
+            _player = GetComponent<PlayerBehaviour>();
         }
 
         private void Update()

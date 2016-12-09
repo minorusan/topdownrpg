@@ -1,14 +1,14 @@
 fileFormatVersion: 2
 guid: be552d444d5974c779ba9964d0d418e0
-timeCreated: 1481027688
-licenseType: Pro
+timeCreated: 1481098101
+licenseType: Free
 TrueTypeFontImporter:
   serializedVersion: 4
-  fontSize: 1
+  fontSize: 16
   forceTextureCase: -2
   characterSpacing: 0
   characterPadding: 1
-  includeFontData: 0
+  includeFontData: 1
   fontNames:
   - Comic Sans MS
   fallbackFontReferences: []

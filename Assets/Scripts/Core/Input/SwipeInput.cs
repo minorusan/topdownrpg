@@ -14,7 +14,7 @@ namespace Core.Input
         private Vector3 offset;
         private Vector3 direction;
         private Rigidbody2D targetRB;
-        private Player _player;
+        private PlayerBehaviour _player;
 
         #endregion
 
@@ -22,7 +22,7 @@ namespace Core.Input
 
         void Start()
         {
-            _player = FindObjectOfType<Player>();
+            _player = FindObjectOfType<PlayerBehaviour>();
             targetRB = _player.GetComponent<Rigidbody2D>();
         }
 

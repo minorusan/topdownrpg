@@ -13,7 +13,7 @@ namespace Utils
         private MapController[] _maps;
         private MapController _currentMap;
         private Vector3 _destination = new Vector3(0f, 0f, -10f);
-        private Player _player;
+        private PlayerBehaviour _player;
 
         #endregion
 
@@ -22,7 +22,7 @@ namespace Utils
         private void Start()
         {
             _maps = FindObjectsOfType<MapController>();
-            _player = FindObjectOfType<Player>();
+            _player = FindObjectOfType<PlayerBehaviour>();
         }
 
         private void Update()

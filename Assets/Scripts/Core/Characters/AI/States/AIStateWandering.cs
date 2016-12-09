@@ -16,14 +16,14 @@ namespace Core.Characters.AI
         private float _searchDistance;
         private float _suspention;
         private Image _suspentionBar;
-        private Core.Characters.Player.Player _player;
+        private Core.Characters.Player.PlayerBehaviour _player;
 
         public AIStateWandering(ArtificialIntelligence brains, float searchDistance, Image suspentionBar)
             : base(brains)
         {
             _searchDistance = searchDistance;
             State = EAIState.Wandering;
-            _player = GameObject.FindObjectOfType<Core.Characters.Player.Player>();
+            _player = GameObject.FindObjectOfType<Core.Characters.Player.PlayerBehaviour>();
             _suspentionBar = suspentionBar;
         }
 

@@ -16,7 +16,7 @@ namespace Core.Characters.AI
     {
         private Node _currentDestination;
         private Node _previousDestination;
-        private Core.Characters.Player.Player _player;
+        private Core.Characters.Player.PlayerBehaviour _player;
         private bool _attacks;
 
         public AIStateAttack(ArtificialIntelligence brains)
@@ -36,7 +36,7 @@ namespace Core.Characters.AI
             _masterBrain.StatusText.text = "Lemme get ya!1";
 
 
-            _player = GameObject.FindObjectOfType<Core.Characters.Player.Player>();
+            _player = GameObject.FindObjectOfType<Core.Characters.Player.PlayerBehaviour>();
             _player.GetComponent<StressAffector>().NervesTickTime *= 0.8f;
         }
 
