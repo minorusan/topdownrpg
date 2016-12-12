@@ -20,13 +20,8 @@ namespace Core.Characters.Player.Demand
 
 		#endregion
 
-		public int Hunger = 100;
-		public float HungerTickTime = 2f;
-		public Image HungerBar;
-
 		private void Start ()
 		{
-			Debug.Assert (HungerBar != null, "HungerAffector::HungerBar was not assigned.");
 			_player = GetComponent<PlayerBehaviour> ();
 			_stressAffector = GetComponent<StressAffector> ();
 			StartCoroutine (HungerTick ());
@@ -36,19 +31,19 @@ namespace Core.Characters.Player.Demand
 		{
 			while (true)
 			{
-				if (Hunger > 1)
+				if (DemandState > 1)
 				{
-					Hunger--;
-					UpdateBar ();
-					_player.MovementSpeed -= (float)Hunger / kSpeedCoeficient;
+					DemandState--;
+				
+					_player.MovementSpeed -= (float)DemandState / kSpeedCoeficient;
 
-					if (_stressAffector.NervesTickTime > kMinimumTickSpeed)
+					if (_stressAffector.DemandTickTime > kMinimumTickSpeed)
 					{
-						_stressAffector.NervesTickTime -= kNervesDecreaseCoef;
+						_stressAffector.DemandTickTime -= kNervesDecreaseCoef;
 					}
 				}
 
-				yield return new WaitForSeconds (HungerTickTime);
+				yield return new WaitForSeconds (DemandTickTime);
 			}
 		}
 

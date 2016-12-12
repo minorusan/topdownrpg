@@ -7,7 +7,7 @@ namespace Core.Characters.Player.Demand
 {
 	[RequireComponent (typeof(HungerAffector))]
 	[RequireComponent (typeof(PlayerBehaviour))]
-	public class StressAffector : MonoBehaviour
+	public class StressAffector : DemandAffector
 	{
 		#region PRIVATE
 
@@ -20,13 +20,8 @@ namespace Core.Characters.Player.Demand
 
 		#endregion
 
-		public int Stress = 100;
-		public float NervesTickTime = 2f;
-		public Image NervesBar;
-
 		private void Start ()
 		{
-			Debug.Assert (NervesBar != null, "HungerAffector::HungerBar was not assigned.");
 			_player = GetComponent<PlayerBehaviour> ();
 			_hungerAffector = GetComponent<HungerAffector> ();
 			StartCoroutine (StressTick ());
@@ -36,18 +31,16 @@ namespace Core.Characters.Player.Demand
 		{
 			while (true)
 			{
-				if (Stress < 100)
+				if (DemandState < 100)
 				{
-					Stress += 1;
-					float coef = (float)Stress / 100;
-					NervesBar.fillAmount = coef;
+					DemandState += 1;
 
-					if (_hungerAffector.HungerTickTime > kMinimumTickSpeed)
+					if (_hungerAffector.DemandTickTime > kMinimumTickSpeed)
 					{
-						_hungerAffector.HungerTickTime -= kDecreaseCoef;
+						_hungerAffector.DemandTickTime -= kDecreaseCoef;
 					}
 				}
-				yield return new WaitForSeconds (NervesTickTime);
+				yield return new WaitForSeconds (DemandTickTime);
 			}
 		}
 	}

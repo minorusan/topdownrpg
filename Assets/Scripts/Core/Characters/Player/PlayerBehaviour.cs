@@ -34,7 +34,7 @@ namespace Core.Characters.Player
 
 		public void Step ()
 		{
-			Noise += (float)_stress.Stress / 100;
+			Noise += (float)_stress.DemandState / 100;
 		}
 
 		private void Start ()
