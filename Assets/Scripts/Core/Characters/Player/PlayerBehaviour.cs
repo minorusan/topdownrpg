@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Core.Characters.Player.Demand;
+using Core.Inventory;
 
 
 namespace Core.Characters.Player

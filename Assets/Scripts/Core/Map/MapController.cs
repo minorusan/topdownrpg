@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using Core.Inventory;
+using Core.Characters.Player.Demand;
 
 
 #if UNITY_EDITOR
@@ -37,14 +39,16 @@ namespace Core.Map
 
 		public Transform StartPoint;
 
-		public Node[,] CurrrentMapAsMatrix {
+		public Node[,] CurrrentMapAsMatrix
+		{
 			get
 			{
 				return _currentNodeMatrix;
 			}
 		}
 
-		public Node CenterNode {
+		public Node CenterNode
+		{
 			get
 			{
 				return _currentNodeMatrix [MapDimentions.I / 2, MapDimentions.J / 2];
@@ -230,7 +234,6 @@ namespace Core.Map
 		public override void OnInspectorGUI ()
 		{
 			DrawDefaultInspector ();
-
 			var mapGenerator = (MapController)target;
 			if (GUILayout.Button ("Generate map"))
 			{

@@ -4,7 +4,7 @@ using Core.Characters.Player.Demand;
 using UnityEngine.UI;
 
 
-namespace Core.UI
+namespace Utilities.UI
 {
 	[RequireComponent (typeof(Image))]
 	public class DemandDisplayer : MonoBehaviour

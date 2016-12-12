@@ -20,6 +20,7 @@ namespace Core.Characters.Player.Demand
 
 		#endregion
 
+
 		private void Start ()
 		{
 			_player = GetComponent<PlayerBehaviour> ();
@@ -46,8 +47,6 @@ namespace Core.Characters.Player.Demand
 				yield return new WaitForSeconds (DemandTickTime);
 			}
 		}
-
-
 	}
 }
 
