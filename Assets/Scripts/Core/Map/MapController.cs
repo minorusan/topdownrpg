@@ -1,22 +1,16 @@
 ﻿using UnityEngine;
-using Core.Inventory;
-using Core.Characters.Player.Demand;
 
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 
 namespace Core.Map
 {
-    
-
 	public class MapController : MonoBehaviour
 	{
 		#region PRIVATE
@@ -36,8 +30,6 @@ namespace Core.Map
 
 		public IJ MapDimentions;
 		public Vector2 CellSize;
-
-		public Transform StartPoint;
 
 		public Node[,] CurrrentMapAsMatrix
 		{
@@ -66,7 +58,13 @@ namespace Core.Map
 		{
 			if (_currentCellsArray == null || !DrawDebug)
 			{
+				InstantiateCells ();
 				return;
+			}
+
+			if (_maps == null || _maps.Length <= 0)
+			{
+				GetMapsOnScene ();
 			}
 
 			foreach (var item in _currentCellsArray)
@@ -117,7 +115,7 @@ namespace Core.Map
 
 			_currentNodeMatrix = new Node[MapDimentions.I, MapDimentions.J];
 
-			var currentPosition = StartPoint.position;
+			var currentPosition = transform.position;
 			for (int i = 0; i < MapDimentions.I; i++)
 			{
 				for (int j = 0; j < MapDimentions.J; j++)
@@ -135,13 +133,12 @@ namespace Core.Map
 					_currentNodeMatrix [i, j] = instantiated;
 					_currentCellsArray.Add (instantiated);
 				}
-				currentPosition = new Vector3 (StartPoint.localPosition.x, currentPosition.y + CellSize.y, currentPosition.z);
+				currentPosition = new Vector3 (transform.localPosition.x, currentPosition.y + CellSize.y, currentPosition.z);
 			}
 
 			DefineInwalkables ();
 		}
 
-       
 		private void DefineInwalkables ()
 		{
 			_nonWalkables = GetComponentsInChildren<NonWalkable> ();
@@ -216,13 +213,50 @@ namespace Core.Map
 
 		public static MapController[] GetMapsOnScene ()
 		{
-			if (_maps == null || _maps.Length <= 0)
-			{
-				_maps = FindObjectsOfType<MapController> ();
-			}
+
+			_maps = FindObjectsOfType<MapController> ();
 			return _maps;
 		}
 
+		public static List<Node> TopEdgeNodesOfMap (MapController map)
+		{
+			if (map == null)
+			{
+				return new List<Node> ();
+			}
+			var list = map._currentCellsArray.Where (node => node.GridPosition.I == map.MapDimentions.I - 1).ToList ();
+			return list;
+		}
+
+		public static List<Node> BottomEdgeNodesOfMap (MapController map)
+		{
+			if (map == null)
+			{
+				return new List<Node> ();
+			}
+			var list = map._currentCellsArray.Where (node => node.GridPosition.I == 0).ToList ();
+			return list;
+		}
+
+		public static List<Node> LeftEdgeNodesOfMap (MapController map)
+		{
+			if (map == null)
+			{
+				return new List<Node> ();
+			}
+			var list = map._currentCellsArray.Where (node => node.GridPosition.J == 0).ToList ();
+			return list;
+		}
+
+		public static List<Node> RightEdgeNodesOfMap (MapController map)
+		{
+			if (map == null)
+			{
+				return new List<Node> ();
+			}
+			var list = map._currentCellsArray.Where (node => node.GridPosition.J == map.MapDimentions.J - 1).ToList ();
+			return list;
+		}
 
 		#endregion
 	}

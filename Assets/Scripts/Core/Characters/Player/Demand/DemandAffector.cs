@@ -1,7 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
-using UnityEngineInternal;
 
 
 namespace Core.Characters.Player.Demand

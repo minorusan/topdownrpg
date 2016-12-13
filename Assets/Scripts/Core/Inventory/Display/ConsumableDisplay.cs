@@ -51,7 +51,6 @@ namespace Core.Inventory.Display
 			if (consumables.Count > 0)
 			{
 				_selectedConsumable = consumables.First (c => c.ItemID == selectedItemId);
-				//Debug.Assert (_selectedConsumable. != null, "error for " + gameObject.name);
 				ApplyImage ();
 			}
 		}

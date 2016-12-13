@@ -1,77 +1,99 @@
 ﻿using UnityEngine;
-using System.Collections;
+
 using Core.Inventory;
 using Core.Inventory.Display;
+
 using System.Collections.Generic;
 
 
-public class Inventrory : MonoBehaviour
+namespace Utilities.UI
 {
-	private int maxItemsPerRow;
-	private Transform[] _rows;
-	private List<GameObject> _instantiatedObjects = new List<GameObject> ();
-
-	public GameObject ItemPrefab;
-
-	private void Start ()
+	public class Inventrory : MonoBehaviour
 	{
-		_rows = new RectTransform[transform.childCount];
-		for (int i = 0; i < transform.childCount; i++)
+		#region Private
+
+		private int maxItemsPerRow;
+		private Transform[] _rows;
+		private List<GameObject> _instantiatedObjects = new List<GameObject> ();
+
+		#endregion
+
+		public GameObject ItemPrefab;
+
+		#region Monobehaviour
+
+		private void Start ()
 		{
-			_rows [i] = transform.GetChild (i);
+			InitRows ();
+			OnPlayerInventoryChanged ();
 		}
-		maxItemsPerRow = PlayerInventory.kMaxInventoryCapacity / _rows.GetLength (0);
-		PlayerInventory.Instance.InventoryChanged += OnPlayerInventoryChanged;
-		transform.parent.gameObject.SetActive (false);
-	}
 
-	private void OnPlayerInventoryChanged ()
-	{
-		ClearInventorylist ();
-		var items = PlayerInventory.Instance.GetItems ();
-		var rowIndex = 0;
-
-		for (int i = 0; i < items.Length; i++)
+		private void OnDestroy ()
 		{
-			if (_rows [rowIndex].childCount < maxItemsPerRow)
+			PlayerInventory.Instance.InventoryChanged -= OnPlayerInventoryChanged;
+		}
+
+		#endregion
+
+		#region Internal
+
+		private void OnPlayerInventoryChanged ()
+		{
+			ClearInventorylist ();
+			var items = PlayerInventory.Instance.GetItems ();
+			var rowIndex = 0;
+
+			for (int i = 0; i < items.Length; i++)
 			{
-				InstantiateAtRowIndex (rowIndex, items [i]);
+				if (_rows [rowIndex].childCount < maxItemsPerRow)
+				{
+					InstantiateAtRowIndex (rowIndex, items [i]);
+				}
+				else
+				{
+					rowIndex++;
+					InstantiateAtRowIndex (rowIndex, items [i]);
+				}
 			}
-			else
+		}
+
+		private void ClearInventorylist ()
+		{
+			foreach (var prefab in _instantiatedObjects)
 			{
-				rowIndex++;
-				InstantiateAtRowIndex (rowIndex, items [i]);
+				Destroy (prefab);
 			}
-		}
-	}
+			for (int i = 0; i < _rows.Length; i++)
+			{
+				_rows [i].DetachChildren ();
+			}
 
-	private void ClearInventorylist ()
-	{
-		foreach (var prefab in _instantiatedObjects)
+			_instantiatedObjects.Clear ();
+		}
+
+		private void InstantiateAtRowIndex (int rowIndex, AItemBase item)
 		{
-			Destroy (prefab);
+			var prefab = Instantiate (ItemPrefab);
+			prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
+			prefab.transform.parent = _rows [rowIndex].transform;
+			prefab.transform.localPosition = Vector3.zero;
+			prefab.transform.localScale = Vector3.one;
+			_instantiatedObjects.Add (prefab);
 		}
-		for (int i = 0; i < _rows.Length; i++)
+
+		private void InitRows ()
 		{
-			_rows [i].DetachChildren ();
+			_rows = new RectTransform[transform.childCount];
+			for (int i = 0; i < transform.childCount; i++)
+			{
+				_rows [i] = transform.GetChild (i);
+			}
+			maxItemsPerRow = PlayerInventory.kMaxInventoryCapacity / _rows.GetLength (0);
+			PlayerInventory.Instance.InventoryChanged += OnPlayerInventoryChanged;
+			transform.parent.gameObject.SetActive (false);
 		}
 
-		_instantiatedObjects.Clear ();
+		#endregion
 	}
-
-	private void InstantiateAtRowIndex (int rowIndex, AItemBase item)
-	{
-		var prefab = Instantiate (ItemPrefab);
-		prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
-		prefab.transform.parent = _rows [rowIndex].transform;
-		prefab.transform.localPosition = Vector3.zero;
-		prefab.transform.localScale = Vector3.one;
-		_instantiatedObjects.Add (prefab);
-	}
-
-	private void OnDestroy ()
-	{
-		PlayerInventory.Instance.InventoryChanged -= OnPlayerInventoryChanged;
-	}
-		
 }
+

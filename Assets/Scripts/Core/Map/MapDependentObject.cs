@@ -10,14 +10,21 @@ namespace Core.Map
 		protected MapController _map;
 		protected Node _myPosition;
 
-		public MapController Map {
+		public MapController Map
+		{
 			get
 			{
+				if (_map == null)
+				{
+					GetOwnerMap ();
+				}
+
 				return _map;
 			}
 		}
 
-		public Node CurrentNode {
+		public Node CurrentNode
+		{
 			get
 			{
 				return _myPosition;

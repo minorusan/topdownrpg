@@ -23,26 +23,28 @@ namespace Core.Map
 		public Color DebugColor;
 		public float MovementSpeed;
 
-
 		#region Properties
 
 
 
-		public bool ReachedDestination {
+		public bool ReachedDestination
+		{
 			get
 			{
 				return _currentPath.Empty;
 			}
 		}
 
-		public Path CurrentPath {
+		public Path CurrentPath
+		{
 			get
 			{
 				return _currentPath;
 			}
 		}
 
-		public Animator SelfAnimator {
+		public Animator SelfAnimator
+		{
 			get
 			{
 				return _animator;
@@ -157,7 +159,6 @@ namespace Core.Map
 			default:
 				break;
 			}
-
 		}
 
 		#endregion
