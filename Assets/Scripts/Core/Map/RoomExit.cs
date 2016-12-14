@@ -55,7 +55,7 @@ namespace Core.Map
 				Init ();
 			}
 
-			Gizmos.color = Color.yellow;
+			Gizmos.color = ExitSide == EExitSide.None || LinksWithSide == EExitSide.None ? Color.red : Color.cyan;
 			Gizmos.DrawCube (_bounds.center, _bounds.size);
 		}
 
@@ -75,9 +75,13 @@ namespace Core.Map
 				{
 					return  EExitSide.Right;
 				}
-			default:
+			case EExitSide.Right:
 				{
 					return  EExitSide.Left;
+				}
+			default:
+				{
+					return  EExitSide.None;
 				}
 			}
 		}
@@ -100,7 +104,12 @@ namespace Core.Map
 				return EExitSide.Left; 
 			}
 
-			return EExitSide.Right; 
+			if (MapController.RightEdgeNodesOfMap (Map).Any (n => _bounds.Contains (n.Position)))
+			{
+				return EExitSide.Right; 
+			}
+
+			return EExitSide.None; 
 		}
 
 		#endregion
@@ -108,6 +117,7 @@ namespace Core.Map
 
 	public enum EExitSide
 	{
+		None,
 		Right,
 		Left,
 		Top,
