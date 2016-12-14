@@ -13,7 +13,7 @@ namespace Core.Map
 		private Room[] _rooms;
 		private List<Room> _generatedRoomsList = new List<Room> ();
 
-		public int RoomsCount;
+		public int MaxRoomsCouns;
 		public string ChunkName;
 
 		[ReadOnly]
@@ -47,7 +47,7 @@ namespace Core.Map
 
 			for (int i = 0; i < firstRoom.Exits.Length; i++)
 			{
-				if (_generatedRoomsList.Count <= RoomsCount)
+				if (_generatedRoomsList.Count <= MaxRoomsCouns)
 				{
 					GenerateRoomForAnExit (firstRoom.Exits [i]);
 				}
@@ -56,11 +56,6 @@ namespace Core.Map
 			foreach (var item in _generatedRoomsList)
 			{
 				item.Map.InstantiateCells ();
-			}
-			var nonWalkables = FindObjectsOfType <NonWalkable> ();
-			for (int i = 0; i < nonWalkables.Length; i++)
-			{
-				nonWalkables [i].Refresh ();
 			}
 		}
 
@@ -89,7 +84,7 @@ namespace Core.Map
 			var unCheckedExits = instantiatedNeighbour.Exits.Where (e => e.LinkedWith == null).ToArray ();
 			for (int i = 0; i < unCheckedExits.Length; i++)
 			{
-				if (_generatedRoomsList.Count < RoomsCount)
+				if (_generatedRoomsList.Count < MaxRoomsCouns)
 				{
 					GenerateRoomForAnExit (unCheckedExits [i]);
 				}
