@@ -48,5 +48,11 @@ namespace Core.Characters.Player
 		{
 			Noise = Mathf.MoveTowards (Noise, 0, 0.2f);
 		}
+
+		public static void SetPlayerPosition (Vector3 position)
+		{
+			var player = FindObjectOfType <PlayerBehaviour> ();
+			player.transform.position = position;
+		}
 	}
 }
