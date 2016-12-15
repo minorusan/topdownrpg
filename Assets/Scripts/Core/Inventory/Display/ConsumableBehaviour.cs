@@ -24,7 +24,7 @@ namespace Core.Inventory.Display
 		public override void ApplyImage ()
 		{
 			_renderer = GetComponent <SpriteRenderer> ();
-			_renderer.sprite = InventoryImagesLoader.GetConsumableSprite (_selectedConsumable.ItemID);
+			_renderer.sprite = InventoryImagesLoader.GetImageForItem (EItemType.Consumable, _selectedConsumable.ItemID);
 		}
 	}
 

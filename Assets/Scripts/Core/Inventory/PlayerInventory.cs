@@ -38,6 +38,7 @@ namespace Core.Inventory
 			if (_items.Count < kMaxInventoryCapacity)
 			{
 				_items.Add (item);
+				Debug.Log (item.ItemID + " was added to inventory.");
 				InventoryChanged ();
 				return true;
 			}

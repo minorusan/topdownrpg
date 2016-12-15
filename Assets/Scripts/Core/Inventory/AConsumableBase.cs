@@ -19,7 +19,7 @@ namespace Core.Inventory
 		private EDemand _selectedDemand;
 		private DemandAffector _affector;
 
-		public AConsumableBase (string itemId, EDemand affector, int effectValue) : base (itemId)
+		public AConsumableBase (string itemId, EDemand affector, int effectValue) : base (itemId, EItemType.Consumable)
 		{
 			_selectedDemand = affector;
 			SetAction (IncrementAffectorByValue (effectValue));

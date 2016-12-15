@@ -9,6 +9,8 @@ namespace Core.Characters.Player
 	[RequireComponent (typeof(Animator))]
 	public class PlayerBehaviour : MonoBehaviour
 	{
+		public static float BaseMovementSpeed;
+
 		private Animator _animator;
 		private StressAffector _stress;
 		private bool _moves;
@@ -42,6 +44,7 @@ namespace Core.Characters.Player
 		{
 			_stress = GetComponent<StressAffector> ();
 			_animator = GetComponent<Animator> ();
+			BaseMovementSpeed = MovementSpeed;
 		}
 
 		private void LateUpdate ()

@@ -18,7 +18,8 @@ namespace Utilities.UI
 
 		#endregion
 
-		public GameObject ItemPrefab;
+		public GameObject ConsumablePrefab;
+		public GameObject ReceiptPrefab;
 
 		#region Monobehaviour
 
@@ -73,12 +74,46 @@ namespace Utilities.UI
 
 		private void InstantiateAtRowIndex (int rowIndex, AItemBase item)
 		{
-			var prefab = Instantiate (ItemPrefab);
-			prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
+			GameObject prefab;
+			switch (item.EItemType)
+			{
+			case EItemType.Consumable:
+				{
+					prefab = InstantiateConsumable (item);
+					break;
+				}
+			case EItemType.Receipt:
+				{
+					prefab = InstantiateReceipt (item);
+					break;
+				}
+			default:
+				{
+					prefab = InstantiateConsumable (item);
+				}
+
+				break;
+			}
+
 			prefab.transform.parent = _rows [rowIndex].transform;
 			prefab.transform.localPosition = Vector3.zero;
 			prefab.transform.localScale = Vector3.one;
 			_instantiatedObjects.Add (prefab);
+		}
+
+		private GameObject InstantiateConsumable (AItemBase item)
+		{
+			var prefab = Instantiate (ConsumablePrefab);
+			prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
+			return prefab;
+		}
+
+		private GameObject InstantiateReceipt (AItemBase item)
+		{
+			var prefab = Instantiate (ReceiptPrefab);
+			prefab.GetComponent <ReceiptUI> ().ReceiptId = item.ItemID;
+
+			return prefab;
 		}
 
 		private void InitRows ()

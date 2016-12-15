@@ -24,6 +24,7 @@ namespace Core.Map
 
 		private void OnEnable ()
 		{
+			Camera.main.GetComponent <CameraViewChanger> ().enabled = false;
 			_rooms = Resources.LoadAll <Room> (string.Format (kPathToChunkRoomPrefabs, ChunkName));
 			_endRooms = Resources.LoadAll <Room> (string.Format (kPathToChunkEndRoomPrefabs, ChunkName));
 			GenerateChunk ();
@@ -59,10 +60,12 @@ namespace Core.Map
 
 			SetLastRoom ();
 			PlayerBehaviour.SetPlayerPosition (_generatedRoomsList [0].Map.CenterNode.Position);
+
 			foreach (var item in _generatedRoomsList)
 			{
 				item.Map.InstantiateCells ();
 			}
+			Camera.main.GetComponent <CameraViewChanger> ().enabled = true;
 		}
 
 		private void GenerateRoomForAnExit (RoomExit exit)
@@ -121,14 +124,17 @@ namespace Core.Map
 			if (exit != null)
 			{
 				var roomThatFit = prefabsList.First (r => r.Exits.Any (e => e.ExitSide == exit.LinksWithSide));
-				var instantiatedNeighbour = Instantiate (roomThatFit);
-				_generatedRoomsList.Add (instantiatedNeighbour);
-				instantiatedNeighbour.transform.parent = transform;
-				instantiatedNeighbour.transform.localPosition = Vector3.zero;
+				if (roomThatFit != null)
+				{
+					var instantiatedNeighbour = Instantiate (roomThatFit);
+					_generatedRoomsList.Add (instantiatedNeighbour);
+					instantiatedNeighbour.transform.parent = transform;
+					instantiatedNeighbour.transform.localPosition = Vector3.zero;
 
-				instantiatedNeighbour.gameObject.SetActive (true);
-				instantiatedNeighbour.Map.InstantiateCells ();
-				PairExitWithRoom (exit, roomThatFit);
+					instantiatedNeighbour.gameObject.SetActive (true);
+					instantiatedNeighbour.Map.InstantiateCells ();
+					PairExitWithRoom (exit, roomThatFit);
+				}
 			}
 		}
 	}

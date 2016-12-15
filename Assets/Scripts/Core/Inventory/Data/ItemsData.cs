@@ -11,11 +11,15 @@ namespace Core.Inventory
 {
 	public static class ItemsData
 	{
-		private static Dictionary<Type, List<AConsumableBase>> consumables = new Dictionary<Type, List<AConsumableBase>> ();
+		private static Dictionary<Type, List<AConsumableBase>> _consumables = new Dictionary<Type, List<AConsumableBase>> ();
+		private static List<AReceiptItemBase> _receipts = new List<AReceiptItemBase> ();
 
 		static ItemsData ()
 		{
-			
+
+			var items = new string[]{ "hungeritem.id.meat", "hungeritem.id.banana" };
+			_receipts.Add (new AReceiptItemBase ("receiptitem.testitem", items));
+
 			var hungerConsumablesList = new List<AConsumableBase> () { 
 				new HungerDecreaser ("hungeritem.id.meat", AConsumableBase.EDemand.Hunger, 20),
 				new HungerDecreaser ("hungeritem.id.banana", AConsumableBase.EDemand.Hunger, 20),
@@ -27,13 +31,18 @@ namespace Core.Inventory
 				new StressDecreaser ("stressitem.id.heroin", AConsumableBase.EDemand.Stress, -50),
 
 			};
-			consumables.Add (typeof(HungerDecreaser), hungerConsumablesList);
-			consumables.Add (typeof(StressDecreaser), stressConsumablesList);
+			_consumables.Add (typeof(HungerDecreaser), hungerConsumablesList);
+			_consumables.Add (typeof(StressDecreaser), stressConsumablesList);
 		}
 
 		public static List<AConsumableBase> GetConsumablesOfType<T> () where T : AConsumableBase
 		{
-			return consumables [typeof(T)];
+			return _consumables [typeof(T)];
+		}
+
+		public static AReceiptItemBase GetReceiptById (string receiptID)
+		{
+			return _receipts.Find (r => r.ItemID == receiptID);
 		}
 	}
 

@@ -213,7 +213,6 @@ namespace Core.Map
 
 		public static MapController[] GetMapsOnScene ()
 		{
-
 			_maps = FindObjectsOfType<MapController> ();
 			return _maps;
 		}
