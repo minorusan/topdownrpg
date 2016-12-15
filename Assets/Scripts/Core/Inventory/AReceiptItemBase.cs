@@ -9,6 +9,24 @@ namespace Core.Inventory
 	public class AReceiptItemBase : AItemBase
 	{
 		private readonly string[] _requiredItemsIdentifiers;
+		private readonly float _requiredTime;
+		public readonly string _resultItemId;
+
+		public float RequiredTime
+		{
+			get
+			{
+				return _requiredTime;
+			}
+		}
+
+		public string ResultingItemId
+		{
+			get
+			{
+				return _resultItemId;
+			}
+		}
 
 		public string[] RequiredItems
 		{
@@ -18,9 +36,11 @@ namespace Core.Inventory
 			}
 		}
 
-		public AReceiptItemBase (string itemId, string[] requiredItemsIdentifiers) : base (itemId, EItemType.Receipt)
+		public AReceiptItemBase (string itemId, string resultItemId, float requiredTime, string[] requiredItemsIdentifiers) : base (itemId, EItemType.Receipt)
 		{
 			_requiredItemsIdentifiers = requiredItemsIdentifiers;
+			_resultItemId = resultItemId;
+			_requiredTime = requiredTime;
 			SetAction (DisplayReceipt ());
 		}
 

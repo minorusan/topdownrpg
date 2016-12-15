@@ -7,9 +7,26 @@ using UnityEngine.UI;
 namespace  Core.Inventory.Display
 {
 	[RequireComponent (typeof(Image))]
-	public class ConsumableUI : ConsumableDisplay, IPointerClickHandler
+	public class ConsumableUI : ConsumableDisplay, IPointerClickHandler, IInventoryUIItem
 	{
 		private Image _image;
+
+		#region IInventoryUIItem implementation
+
+		public string ItemID
+		{
+			get
+			{
+				return _selectedConsumable.ItemID;
+			}
+		}
+
+		public void ToggleOutline (bool active)
+		{
+			_image.color = active ? Color.green : Color.white;
+		}
+
+		#endregion
 
 		public override void ApplyImage ()
 		{
@@ -28,7 +45,7 @@ namespace  Core.Inventory.Display
 		public void OnPointerClick (PointerEventData eventData)
 		{
 			_selectedConsumable.PerformAction ();
-			PlayerInventory.Instance.RemoveItemFromInventory (_selectedConsumable);
+			PlayerInventory.Instance.RemoveItemFromInventory (_selectedConsumable.ItemID);
 		}
 
 		#endregion

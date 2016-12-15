@@ -45,9 +45,11 @@ namespace Core.Inventory
 			return false;
 		}
 
-		public void RemoveItemFromInventory (AItemBase item)
+		public void RemoveItemFromInventory (string item)
 		{
-			_items.Remove (item);
+			var index = _items.FindIndex (i => i.ItemID == item);
+			_items.RemoveAt (index);
+			Debug.Log (item + " was removed from inventory.");
 			InventoryChanged ();
 		}
 

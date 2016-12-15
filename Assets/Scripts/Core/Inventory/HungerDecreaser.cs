@@ -8,7 +8,8 @@ namespace Core.Inventory
 	public enum HungerDecreasers
 	{
 		Meat,
-		Banana
+		Banana,
+		IceCream
 	}
 
 	public enum StressDecreasers

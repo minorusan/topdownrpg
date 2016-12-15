@@ -14,6 +14,7 @@ namespace Utilities.UI
 
 		private int maxItemsPerRow;
 		private Transform[] _rows;
+		private static List<IInventoryUIItem> _uiitems = new List<IInventoryUIItem> ();
 		private List<GameObject> _instantiatedObjects = new List<GameObject> ();
 
 		#endregion
@@ -60,10 +61,12 @@ namespace Utilities.UI
 
 		private void ClearInventorylist ()
 		{
+			_uiitems.Clear ();
 			foreach (var prefab in _instantiatedObjects)
 			{
 				Destroy (prefab);
 			}
+
 			for (int i = 0; i < _rows.Length; i++)
 			{
 				_rows [i].DetachChildren ();
@@ -99,12 +102,14 @@ namespace Utilities.UI
 			prefab.transform.localPosition = Vector3.zero;
 			prefab.transform.localScale = Vector3.one;
 			_instantiatedObjects.Add (prefab);
+
 		}
 
 		private GameObject InstantiateConsumable (AItemBase item)
 		{
 			var prefab = Instantiate (ConsumablePrefab);
 			prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
+			_uiitems.Add (prefab.GetComponent <ConsumableUI> ());
 			return prefab;
 		}
 
@@ -112,7 +117,7 @@ namespace Utilities.UI
 		{
 			var prefab = Instantiate (ReceiptPrefab);
 			prefab.GetComponent <ReceiptUI> ().ReceiptId = item.ItemID;
-
+			_uiitems.Add (prefab.GetComponent <ReceiptUI> ());
 			return prefab;
 		}
 
@@ -126,6 +131,11 @@ namespace Utilities.UI
 			maxItemsPerRow = PlayerInventory.kMaxInventoryCapacity / _rows.GetLength (0);
 			PlayerInventory.Instance.InventoryChanged += OnPlayerInventoryChanged;
 			transform.parent.gameObject.SetActive (false);
+		}
+
+		public static List<IInventoryUIItem> GetInventoryItems ()
+		{
+			return _uiitems;
 		}
 
 		#endregion
