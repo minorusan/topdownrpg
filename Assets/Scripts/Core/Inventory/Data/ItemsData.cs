@@ -55,7 +55,7 @@ namespace Core.Inventory
 			_allItems.Add (new AItemBase ("genericitem.id.toybear", EItemType.Generic));
 			_allItems.Add (new AItemBase ("genericitem.id.nails", EItemType.Generic));
 			_allItems.Add (new AItemBase ("genericitem.id.chain", EItemType.Generic));
-
+			InitialiseTraps ();
 		}
 
 		public static List<AItemBase> GetItems ()
@@ -76,6 +76,11 @@ namespace Core.Inventory
 		public static AItemBase GetItemById (string itemID)
 		{
 			return _allItems.Find (r => r.ItemID == itemID);
+		}
+
+		public static TrapItemBase GetTrapById (string itemID)
+		{
+			return (TrapItemBase)_allItems.Find (r => r.EItemType == EItemType.Trap && r.ItemID == itemID);
 		}
 
 		private static void InitialiseTraps ()
@@ -104,6 +109,7 @@ namespace Core.Inventory
 			_descriptionaries.Add ("genericitem.id.book", "Old book, filled with knowledge and rat poops.");
 			_descriptionaries.Add ("receiptitem.testitem", "Looks like it teaches how to do an icecream..from heroin and bananas..");
 			_descriptionaries.Add ("receiptitem.id.diary", "Old diary left by some hunter.");
+			_descriptionaries.Add ("trapitem.id.basictrap", "Oh boy! That thing can byte-off your whole leg!");
 
 			hungerConsumablesIDs.Add (HungerDecreasers.Meat, "hungeritem.id.meat");
 			hungerConsumablesIDs.Add (HungerDecreasers.Banana, "hungeritem.id.banana");

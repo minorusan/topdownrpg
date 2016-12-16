@@ -55,12 +55,12 @@ namespace Core.Utilities
 
 		#endregion
 
-		public static void StartProcessWithCompletion (float time, Sprite icon, Action completion)
+		public static void StartProcessWithCompletion (float time, Sprite icon, Action completion, Color color)
 		{
 			if (_instance != null)
 			{
 				_instance.gameObject.SetActive (true);
-				_instance.InitProcessWithCompletion (time, icon, completion);
+				_instance.InitProcessWithCompletion (time, icon, completion, color);
 			}
 			else
 			{
@@ -68,11 +68,12 @@ namespace Core.Utilities
 			}
 		}
 
-		private void InitProcessWithCompletion (float time, Sprite icon, Action completion)
+		private void InitProcessWithCompletion (float time, Sprite icon, Action completion, Color color)
 		{
 			_requiredTime = time;
 			_timePassed = 0f;
 			_progressBar.fillAmount = 0f;
+			_progressBar.color = color;
 			_completion = completion;
 			_currentState = EProcessControllerState.Process;
 			ProcessIconImage.sprite = icon;

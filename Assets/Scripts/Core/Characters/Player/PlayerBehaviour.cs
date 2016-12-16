@@ -12,12 +12,25 @@ namespace Core.Characters.Player
 		public static float BaseMovementSpeed = 10f;
 
 		private Animator _animator;
+		private static PlayerBehaviour _player;
 		private StressAffector _stress;
 		private bool _moves;
 
 		[Header ("Movement")]
 		public float MovementSpeed;
 		public float Noise;
+
+		public static PlayerBehaviour CurrentPlayer
+		{
+			get
+			{
+				if (_player == null)
+				{
+					_player = FindObjectOfType <PlayerBehaviour> ();
+				}
+				return _player;
+			}
+		}
 
 		public bool Moves
 		{

@@ -34,7 +34,7 @@ namespace Core.Characters.AI
 		{
 			base.OnEnter ();
 			_masterBrain.StatusText.text = "Lemme get ya!1";
-			_player = GameObject.FindObjectOfType<PlayerBehaviour> ();
+			_player = PlayerBehaviour.CurrentPlayer;
 			_player.GetComponent<StressAffector> ().DemandTickTime *= 0.8f;
 		}
 

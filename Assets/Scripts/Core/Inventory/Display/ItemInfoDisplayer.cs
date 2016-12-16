@@ -6,6 +6,7 @@ using Utilities.UI;
 using Core.Inventory;
 using System.Linq;
 using Core.Utilities;
+using Core.Characters.Player;
 
 
 namespace Utils.UI
@@ -24,6 +25,7 @@ namespace Utils.UI
 
 		public Button CreateButton;
 		public Button DeleteButton;
+		public Button SetATrapButton;
 
 		#region Monobehaviour
 
@@ -33,8 +35,11 @@ namespace Utils.UI
 			CreateButton = GetComponentInChildren <Button> ();
 			_descriptionText = GetComponentInChildren <Text> ();
 			_descriptionText.gameObject.SetActive (false);
+
 			CreateButton.gameObject.SetActive (false);
 			DeleteButton.gameObject.SetActive (false);
+			SetATrapButton.gameObject.SetActive (false);
+
 			_displayImage.gameObject.SetActive (false);
 		}
 
@@ -53,35 +58,63 @@ namespace Utils.UI
 
 		public void DisplayReceiptForItem (string itemId)
 		{
-			
 			var image = Resources.Load <Sprite> (string.Format (kItemDisplaySpritesPath + itemId));
 			_currentItem = ItemsData.GetItemById (itemId);
+
 			_displayImage.gameObject.SetActive (true);
 			_displayImage.sprite = image;
+
 			_descriptionText.gameObject.SetActive (true);
 			_descriptionText.text = ItemIDStorage.GetDescriptionForItem (itemId);
-			var requiredItemsCount = 0;
+
+
 			DeleteButton.gameObject.SetActive (true);
 			DehighlightAllItems ();
-			if (_currentItem.EItemType == EItemType.Receipt)
+
+			var requiredItemsCount = 0;
+
+			switch (_currentItem.EItemType)
 			{
-				var receipt = ItemsData.GetReceiptById (itemId);
-				CreateButton.gameObject.SetActive (true);
-				HighlightItems (receipt);
-				for (int i = 0; i < receipt.RequiredItems.Length; i++)
+			case EItemType.Receipt:
 				{
-					if (Inventrory.GetInventoryItems ().Any (item => item.ItemID == receipt.RequiredItems [i]))
+					var receipt = ItemsData.GetReceiptById (itemId);
+					CreateButton.gameObject.SetActive (true);
+					HighlightItems (receipt);
+					for (int i = 0; i < receipt.RequiredItems.Length; i++)
 					{
-						requiredItemsCount++;
+						if (Inventrory.GetInventoryItems ().Any (item => item.ItemID == receipt.RequiredItems [i]))
+						{
+							requiredItemsCount++;
+						}
 					}
+
+					CreateButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
+					break;
+				}
+			case EItemType.Trap:
+				{
+					SetATrapButton.gameObject.SetActive (true);
+					break;
 				}
 
-				CreateButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
+			default:
+				{
+					CreateButton.gameObject.SetActive (false);
+					break;
+				}
 			}
-			else
-			{
-				CreateButton.gameObject.SetActive (false);
-			}
+		}
+
+		public void SetATrap ()
+		{
+			var trap = ItemsData.GetTrapById (_currentItem.ItemID);
+			PlayerInventory.Instance.RemoveItemFromInventory (trap.ItemID);
+
+			BeginSettingTrapWithCallback ();
+			_displayImage.gameObject.SetActive (false);
+			_descriptionText.gameObject.SetActive (false);
+			DeleteButton.gameObject.SetActive (false);
+			SetATrapButton.gameObject.SetActive (false);
 		}
 
 		public void CraftItem ()
@@ -114,6 +147,18 @@ namespace Utils.UI
 			}
 		}
 
+		private void BeginSettingTrapWithCallback ()
+		{
+			
+			var trap = ItemsData.GetTrapById (_currentItem.ItemID);
+			var sprite = InventoryImagesLoader.GetImageForItem (trap.EItemType, trap.ItemID);
+			ProcessBarController.StartProcessWithCompletion (trap.RequiredTime, sprite, () =>
+			{
+				var instantiatedTrap = Instantiate (trap.TrapPrefab);
+				instantiatedTrap.transform.position = PlayerBehaviour.CurrentPlayer.transform.position;
+			}, Color.red);
+		}
+
 		private void BeginCraftingWithCallback ()
 		{
 			var receipt = ItemsData.GetReceiptById (_currentItem.ItemID);
@@ -122,7 +167,7 @@ namespace Utils.UI
 			ProcessBarController.StartProcessWithCompletion (receipt.RequiredTime, sprite, () =>
 			{
 				PlayerInventory.Instance.TryAddItemToInventory (item);
-			});
+			}, Color.cyan);
 		}
 
 		#region IPointerClickHandler implementation
