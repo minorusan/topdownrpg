@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using UnityEngine.UI;
 using System.Collections.Generic;
 
 
@@ -9,7 +7,9 @@ namespace Core.Inventory
 	public enum EItemType
 	{
 		Consumable,
-		Receipt
+		Receipt,
+		Generic,
+		Trap
 	}
 
 	public static class InventoryImagesLoader
@@ -17,7 +17,7 @@ namespace Core.Inventory
 		#region Private
 
 		private const string kConsumablesPath = "Sprites/Items/Consumables/";
-		private const string kReceiptPath = "Sprites/Items/Receipts/";
+		private const string kGenericPath = "Sprites/Items/Generic/";
 		private static Dictionary<string, Sprite> _cachedImages = new Dictionary<string, Sprite> ();
 
 		#endregion
@@ -35,9 +35,11 @@ namespace Core.Inventory
 					rescourcePath = kConsumablesPath;
 					break;
 				}
+			case EItemType.Trap:
 			case EItemType.Receipt:
+			case EItemType.Generic:
 				{
-					rescourcePath = kReceiptPath;
+					rescourcePath = kGenericPath;
 					break;
 				}
 			}
@@ -45,8 +47,8 @@ namespace Core.Inventory
 			if (cashedSprite == null)
 			{
 				var sprite = Resources.Load<Sprite> (rescourcePath + spriteId);
-				_cachedImages.Add (spriteId, sprite);
 				return sprite;
+				_cachedImages.Add (spriteId, sprite);
 			}
 			return cashedSprite;
 		}

@@ -9,7 +9,7 @@ namespace Core.Characters.Player
 	[RequireComponent (typeof(Animator))]
 	public class PlayerBehaviour : MonoBehaviour
 	{
-		public static float BaseMovementSpeed;
+		public static float BaseMovementSpeed = 10f;
 
 		private Animator _animator;
 		private StressAffector _stress;

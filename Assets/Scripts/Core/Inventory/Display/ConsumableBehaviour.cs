@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
-using UnityEditor;
 using System;
 using System.Linq;
+
+
+#if UNITY_EDITOR
+using UnityEditor;
+
+#endif
 
 
 namespace Core.Inventory.Display

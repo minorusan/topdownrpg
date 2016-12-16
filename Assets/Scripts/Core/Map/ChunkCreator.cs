@@ -19,7 +19,9 @@ namespace Core.Map
 		public int MaxRoomsCouns;
 		public string ChunkName;
 
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
 		public Room[] GeneratedRooms;
 
 		private void OnEnable ()

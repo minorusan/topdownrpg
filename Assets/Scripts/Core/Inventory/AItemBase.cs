@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Utils.UI;
 
 
 namespace Core.Inventory
@@ -35,6 +36,7 @@ namespace Core.Inventory
 		public AItemBase (string itemId, EItemType itemType)
 		{
 			Debug.Assert (!string.IsNullOrEmpty (itemId), GetType ().ToString () + ":: no item ID was assigned");
+			SetAction (DisplayItem ());
 			_itemType = itemType;
 			_itemID = itemId;
 		}
@@ -48,6 +50,22 @@ namespace Core.Inventory
 		protected void SetAction (Action action)
 		{
 			_itemAction = action;
+		}
+
+		private Action DisplayItem ()
+		{
+			return () =>
+			{
+				var displayer = FindObjectOfType<ItemInfoDisplayer> ();
+				if (displayer != null)
+				{
+					displayer.DisplayReceiptForItem (ItemID);
+				}
+				else
+				{
+					Debug.LogError ("ReceiptDisplayer was not found.");
+				}
+			};
 		}
 	}
 }

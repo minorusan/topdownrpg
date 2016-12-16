@@ -10,9 +10,14 @@ namespace Core.Map
 	{
 		private MapController _map;
 
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
+
 		public RoomExit[] Exits;
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
 		public Room[] LinkedRooms;
 
 		public MapController Map

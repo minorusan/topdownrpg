@@ -21,6 +21,7 @@ namespace Utilities.UI
 
 		public GameObject ConsumablePrefab;
 		public GameObject ReceiptPrefab;
+		public GameObject GenericPrefab;
 
 		#region Monobehaviour
 
@@ -92,17 +93,16 @@ namespace Utilities.UI
 				}
 			default:
 				{
-					prefab = InstantiateConsumable (item);
+					prefab = InstantiateGeneric (item);
 				}
 
 				break;
 			}
 
-			prefab.transform.parent = _rows [rowIndex].transform;
+			prefab.transform.SetParent (_rows [rowIndex].transform);
 			prefab.transform.localPosition = Vector3.zero;
 			prefab.transform.localScale = Vector3.one;
 			_instantiatedObjects.Add (prefab);
-
 		}
 
 		private GameObject InstantiateConsumable (AItemBase item)
@@ -110,6 +110,14 @@ namespace Utilities.UI
 			var prefab = Instantiate (ConsumablePrefab);
 			prefab.GetComponent <ConsumableUI> ().SetItem ((AConsumableBase)item);
 			_uiitems.Add (prefab.GetComponent <ConsumableUI> ());
+			return prefab;
+		}
+
+		private GameObject InstantiateGeneric (AItemBase item)
+		{
+			var prefab = Instantiate (GenericPrefab);
+			prefab.GetComponent <GenericUI> ().GenericItemID = item.ItemID;
+			_uiitems.Add (prefab.GetComponent <GenericUI> ());
 			return prefab;
 		}
 

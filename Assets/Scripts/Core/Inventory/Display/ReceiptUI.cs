@@ -36,6 +36,7 @@ namespace Core.Inventory.Display
 
 		public void ToggleOutline (bool active)
 		{
+			_selfRenderer = GetComponent <Image> ();
 			_selfRenderer.color = active ? Color.green : Color.white;
 		}
 
@@ -52,6 +53,7 @@ namespace Core.Inventory.Display
 		public void OnPointerClick (PointerEventData eventData)
 		{
 			var item = ItemsData.GetReceiptById (ReceiptId);
+			_selfRenderer.color = Color.grey;
 			item.PerformAction ();
 		}
 

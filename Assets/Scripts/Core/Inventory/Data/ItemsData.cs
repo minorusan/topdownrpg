@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel.Design;
-using UnityEngine.Networking.NetworkSystem;
-using Core.Characters.Player.Demand;
+
 using System;
 
 
@@ -11,15 +8,20 @@ namespace Core.Inventory
 {
 	public static class ItemsData
 	{
+		#region Private
+
 		private static Dictionary<Type, List<AConsumableBase>> _consumables = new Dictionary<Type, List<AConsumableBase>> ();
 		private static List<AReceiptItemBase> _receipts = new List<AReceiptItemBase> ();
 		private static List<AItemBase> _allItems = new List<AItemBase> ();
 
+		#endregion
 
 		static ItemsData ()
 		{
 			var items = new string[]{ "stressitem.id.heroin", "hungeritem.id.banana" };
+			var items2 = new string[]{ "genericitem.id.nails", "genericitem.id.chain" };
 			_receipts.Add (new AReceiptItemBase ("receiptitem.testitem", "hungeritem.id.icecream", 3f, items));
+			_receipts.Add (new AReceiptItemBase ("receiptitem.id.diary", "trapitem.id.basictrap", 5f, items2));
 
 			var hungerConsumablesList = new List<AConsumableBase> () { 
 				new HungerDecreaser ("hungeritem.id.meat", AConsumableBase.EDemand.Hunger, 20),
@@ -31,6 +33,7 @@ namespace Core.Inventory
 				new StressDecreaser ("stressitem.id.vodka", AConsumableBase.EDemand.Stress, -20),
 				new StressDecreaser ("stressitem.id.heroin", AConsumableBase.EDemand.Stress, -50),
 			};
+
 			_consumables.Add (typeof(HungerDecreaser), hungerConsumablesList);
 			_consumables.Add (typeof(StressDecreaser), stressConsumablesList);
 
@@ -46,6 +49,13 @@ namespace Core.Inventory
 			{
 				_allItems.Add (item);
 			}
+
+			_allItems.Add (new AItemBase ("genericitem.id.rope", EItemType.Generic));
+			_allItems.Add (new AItemBase ("genericitem.id.book", EItemType.Generic));
+			_allItems.Add (new AItemBase ("genericitem.id.toybear", EItemType.Generic));
+			_allItems.Add (new AItemBase ("genericitem.id.nails", EItemType.Generic));
+			_allItems.Add (new AItemBase ("genericitem.id.chain", EItemType.Generic));
+
 		}
 
 		public static List<AItemBase> GetItems ()
@@ -62,22 +72,52 @@ namespace Core.Inventory
 		{
 			return _receipts.Find (r => r.ItemID == receiptID);
 		}
+
+		public static AItemBase GetItemById (string itemID)
+		{
+			return _allItems.Find (r => r.ItemID == itemID);
+		}
+
+		private static void InitialiseTraps ()
+		{
+			TrapAction action = (GameObject obj) =>
+			{
+				obj.SetActive (false);
+			};
+
+			_allItems.Add (new TrapItemBase ("trapitem.id.basictrap", 3f, action));
+		}
 	}
 
 	public static class ItemIDStorage
 	{
 		private static Dictionary<HungerDecreasers, string> hungerConsumablesIDs = new Dictionary<HungerDecreasers, string> ();
 		private static Dictionary<StressDecreasers, string> stressConsumablesIDs = new Dictionary<StressDecreasers, string> ();
-
+		private static Dictionary<string, string> _descriptionaries = new Dictionary<string, string> ();
 
 		static ItemIDStorage ()
 		{
+			_descriptionaries.Add ("genericitem.id.rope", "Just a plane rope left by somebody.");
+			_descriptionaries.Add ("genericitem.id.nails", "Pile of rusty nails.");
+			_descriptionaries.Add ("genericitem.id.chain", "Guess, that was left by a policeman.");
+			_descriptionaries.Add ("genericitem.id.toybear", "Guess someone was in such a rush, that forget his or her Teddy-bear...");
+			_descriptionaries.Add ("genericitem.id.book", "Old book, filled with knowledge and rat poops.");
+			_descriptionaries.Add ("receiptitem.testitem", "Looks like it teaches how to do an icecream..from heroin and bananas..");
+			_descriptionaries.Add ("receiptitem.id.diary", "Old diary left by some hunter.");
+
 			hungerConsumablesIDs.Add (HungerDecreasers.Meat, "hungeritem.id.meat");
 			hungerConsumablesIDs.Add (HungerDecreasers.Banana, "hungeritem.id.banana");
 			hungerConsumablesIDs.Add (HungerDecreasers.IceCream, "hungeritem.id.icecream");
 
 			stressConsumablesIDs.Add (StressDecreasers.Heroin, "stressitem.id.heroin");
 			stressConsumablesIDs.Add (StressDecreasers.Vodka, "stressitem.id.vodka");
+		}
+
+		public static string GetDescriptionForItem (string itemId)
+		{
+			string description = "";
+			_descriptionaries.TryGetValue (itemId, out description);
+			return string.IsNullOrEmpty (description) ? "Nothing to say about that" : description;
 		}
 
 		public static string GetHungerDecreaserID (HungerDecreasers decreaserType)

@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Linq;
-using UnityEditor;
+
 using Utils;
 
 
 namespace Core.Map
 {
-	[InitializeOnLoadAttribute]
 	[RequireComponent (typeof(BoxCollider2D))]
 	public class RoomExit : MapDependentObject
 	{
@@ -26,12 +25,18 @@ namespace Core.Map
 			}
 		}
 
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
 		public EExitSide ExitSide;
 
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
 		public EExitSide LinksWithSide;
+		#if UNITY_EDITOR
 		[ReadOnly]
+		#endif
 		public RoomExit LinkedWith;
 
 		#region Monobehaviour
