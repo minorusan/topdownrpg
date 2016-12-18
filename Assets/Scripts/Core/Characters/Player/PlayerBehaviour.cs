@@ -9,7 +9,9 @@ namespace Core.Characters.Player
 	[RequireComponent (typeof(Animator))]
 	public class PlayerBehaviour : MonoBehaviour
 	{
+		public static string kPlayerTag = "Player";
 		public static float BaseMovementSpeed = 10f;
+		public AudioClip StepSound;
 
 		private Animator _animator;
 		private static PlayerBehaviour _player;
@@ -51,6 +53,7 @@ namespace Core.Characters.Player
 		public void Step ()
 		{
 			Noise += (float)_stress.DemandState / 100;
+			AudioSource.PlayClipAtPoint (StepSound, transform.position, Noise);
 		}
 
 		private void Start ()

@@ -10,10 +10,13 @@ namespace Core.Map
 {
 	public class ChunkCreator : MonoBehaviour
 	{
+		
 		private const string kPathToChunkRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/";
 		private const string kPathToChunkEndRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/End/";
+		private const string kPathToStartRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/Start/";
 		private Room[] _rooms;
 		private Room[] _endRooms;
+		private Room[] _startRooms;
 		private List<Room> _generatedRoomsList = new List<Room> ();
 
 		public int MaxRoomsCouns;
@@ -29,6 +32,7 @@ namespace Core.Map
 			Camera.main.GetComponent <CameraViewChanger> ().enabled = false;
 			_rooms = Resources.LoadAll <Room> (string.Format (kPathToChunkRoomPrefabs, ChunkName));
 			_endRooms = Resources.LoadAll <Room> (string.Format (kPathToChunkEndRoomPrefabs, ChunkName));
+			_startRooms = Resources.LoadAll <Room> (string.Format (kPathToStartRoomPrefabs, ChunkName));
 			GenerateChunk ();
 		}
 
@@ -43,7 +47,7 @@ namespace Core.Map
 
 		private void GenerateChunk ()
 		{
-			var firstRoom = Instantiate (_rooms [Random.Range (0, _rooms.Length)]);
+			var firstRoom = Instantiate (_startRooms [Random.Range (0, _startRooms.Length)]);
 			firstRoom.transform.parent = transform;
 			firstRoom.transform.localPosition = Vector3.zero;
 
@@ -56,7 +60,7 @@ namespace Core.Map
 			{
 				if (_generatedRoomsList.Count <= MaxRoomsCouns)
 				{
-					GenerateRoomForAnExit (firstRoom.Exits [i]);
+					GenerateRoomForAnExitOfRoom (firstRoom.Exits [i], firstRoom.gameObject);
 				}
 			}
 
@@ -70,10 +74,12 @@ namespace Core.Map
 			Camera.main.GetComponent <CameraViewChanger> ().enabled = true;
 		}
 
-		private void GenerateRoomForAnExit (RoomExit exit)
+		private void GenerateRoomForAnExitOfRoom (RoomExit exit, GameObject owner)
 		{
 			var prefabsList = new List<Room> (_rooms);
-			var roomsThatFit = prefabsList.Where (r => r.Exits.Any (e => e.ExitSide == exit.LinksWithSide)).ToList ();
+			var ownerName = owner.name.Replace ("(Clone)", "");
+			var roomsThatFit = prefabsList.Where (r => r.Exits.Any (e => e.ExitSide == exit.LinksWithSide
+			                   ) && !r.name.Contains (ownerName)).ToList ();
 
 			if (roomsThatFit.Count < 1)
 			{
@@ -97,7 +103,7 @@ namespace Core.Map
 			{
 				if (_generatedRoomsList.Count < MaxRoomsCouns)
 				{
-					GenerateRoomForAnExit (unCheckedExits [i]);
+					GenerateRoomForAnExitOfRoom (unCheckedExits [i], instantiatedNeighbour.gameObject);
 				}
 			}
 		}
@@ -139,6 +145,8 @@ namespace Core.Map
 				}
 			}
 		}
+
+
 	}
 }
 

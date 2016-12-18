@@ -22,6 +22,7 @@ namespace Core.Inventory.Display
 
 		private void OnTriggerEnter2D (Collider2D col)
 		{
+			AudioSource.PlayClipAtPoint (_pickup, transform.position);
 			PlayerInventory.Instance.TryAddItemToInventory (_selectedConsumable);
 			gameObject.SetActive (false);
 		}

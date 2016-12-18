@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using UnityEngine.UI;
+using CnControls;
 
 
 namespace Core.Utilities
@@ -81,6 +82,12 @@ namespace Core.Utilities
 
 		private void UpdateProcess ()
 		{
+			if (CnInputManager.GetAxis ("Vertical") != 0f || CnInputManager.GetAxis ("Horizontal") != 0f)
+			{
+				_currentState = EProcessControllerState.Idle;
+				gameObject.SetActive (false);
+			}
+
 			if (_timePassed < _requiredTime)
 			{
 				_timePassed += Time.deltaTime;

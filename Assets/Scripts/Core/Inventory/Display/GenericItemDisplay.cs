@@ -7,18 +7,22 @@ namespace Core.Inventory.Display
 	public class GenericItemDisplay : MonoBehaviour
 	{
 		private SpriteRenderer _selfRenderer;
+		private AudioClip _pickup;
 
 		public string ItemID;
 
 		void Start ()
 		{
+			_pickup = Resources.Load <AudioClip> ("Sounds/pickup");
 			_selfRenderer = GetComponent <SpriteRenderer> ();
 			_selfRenderer.sprite = InventoryImagesLoader.GetImageForItem (EItemType.Generic, ItemID);
 		}
 
 		private void OnTriggerEnter2D (Collider2D col)
 		{
+			AudioSource.PlayClipAtPoint (_pickup, transform.position, 1f);
 			PlayerInventory.Instance.TryAddItemToInventory (ItemsData.GetItemById (ItemID));
+
 			gameObject.SetActive (false);
 		}
 

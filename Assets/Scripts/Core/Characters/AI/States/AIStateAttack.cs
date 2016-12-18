@@ -19,10 +19,12 @@ namespace Core.Characters.AI
 		private Node _previousDestination;
 		private Core.Characters.Player.PlayerBehaviour _player;
 		private bool _attacks;
+		private AudioClip _sound;
 
 		public AIStateAttack (ArtificialIntelligence brains) : base (brains)
 		{
 			State = EAIState.Attack;
+			_sound = Resources.Load <AudioClip> ("Sounds/hey");
 		}
 
 		public override void OnLeave ()
@@ -33,7 +35,8 @@ namespace Core.Characters.AI
 		public override void OnEnter ()
 		{
 			base.OnEnter ();
-			_masterBrain.StatusText.text = "Lemme get ya!1";
+			_masterBrain.StatusText.text = "Hey you!";
+			AudioSource.PlayClipAtPoint (_sound, _masterBrain.transform.position);
 			_player = PlayerBehaviour.CurrentPlayer;
 			_player.GetComponent<StressAffector> ().DemandTickTime *= 0.8f;
 		}

@@ -18,10 +18,12 @@ namespace Core.Inventory.Display
 		public AConsumableBase.EDemand AffectsDemand;
 		public HungerDecreasers HungerDecreaserType;
 		public StressDecreasers StressDecreaserType;
+		protected AudioClip _pickup;
 
 		private void Start ()
 		{
 			InitConsumable ();
+			_pickup = Resources.Load <AudioClip> ("Sounds/pickup");
 		}
 
 		public void InitConsumable ()

@@ -129,7 +129,15 @@ namespace Core.Map
 
 					var flooredKey = new IJ (Mathf.RoundToInt (currentPosition.x), Mathf.RoundToInt (currentPosition.y));
 
-					_nodesMap.Add (flooredKey, instantiated);
+					if (!_nodesMap.ContainsKey (flooredKey))
+					{
+						_nodesMap.Add (flooredKey, instantiated);
+					}
+					else
+					{
+						
+					}
+
 					_currentNodeMatrix [i, j] = instantiated;
 					_currentCellsArray.Add (instantiated);
 				}

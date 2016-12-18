@@ -36,7 +36,8 @@ namespace Core.Characters.Player.Demand
 				{
 					DemandState--;
 				
-					_player.MovementSpeed = PlayerBehaviour.BaseMovementSpeed * (float)DemandState / 100;
+					var newMovementSpeed = PlayerBehaviour.BaseMovementSpeed * (float)DemandState / 100;
+					_player.MovementSpeed = newMovementSpeed <= PlayerBehaviour.BaseMovementSpeed ? newMovementSpeed : PlayerBehaviour.BaseMovementSpeed;
 
 					if (_stressAffector.DemandTickTime > kMinimumTickSpeed)
 					{

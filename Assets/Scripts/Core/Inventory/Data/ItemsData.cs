@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using System;
+using Core.Map;
 
 
 namespace Core.Inventory
@@ -55,6 +56,7 @@ namespace Core.Inventory
 			_allItems.Add (new AItemBase ("genericitem.id.toybear", EItemType.Generic));
 			_allItems.Add (new AItemBase ("genericitem.id.nails", EItemType.Generic));
 			_allItems.Add (new AItemBase ("genericitem.id.chain", EItemType.Generic));
+			_allItems.Add (new AItemBase ("genericitem.id.nippers", EItemType.Generic));
 			InitialiseTraps ();
 		}
 
@@ -87,7 +89,10 @@ namespace Core.Inventory
 		{
 			TrapAction action = (GameObject obj) =>
 			{
-				obj.SetActive (false);
+				var blood = Resources.Load <GameObject> ("Prefabs/Decorations/Blood");
+				var instantiatedBlood = (GameObject)GameObject.Instantiate (blood, obj.transform);
+				instantiatedBlood.transform.localPosition = Vector3.zero;
+				obj.GetComponent <MovableObject> ().enabled = false;
 			};
 
 			_allItems.Add (new TrapItemBase ("trapitem.id.basictrap", 3f, action));
@@ -110,6 +115,8 @@ namespace Core.Inventory
 			_descriptionaries.Add ("receiptitem.testitem", "Looks like it teaches how to do an icecream..from heroin and bananas..");
 			_descriptionaries.Add ("receiptitem.id.diary", "Old diary left by some hunter.");
 			_descriptionaries.Add ("trapitem.id.basictrap", "Oh boy! That thing can byte-off your whole leg!");
+			_descriptionaries.Add ("genericitem.id.nippers", "Still sharp");
+
 
 			hungerConsumablesIDs.Add (HungerDecreasers.Meat, "hungeritem.id.meat");
 			hungerConsumablesIDs.Add (HungerDecreasers.Banana, "hungeritem.id.banana");
