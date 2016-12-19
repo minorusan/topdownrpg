@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using System;
 using Core.Map;
+using Core.Characters.AI;
 
 
 namespace Core.Inventory
@@ -89,10 +90,11 @@ namespace Core.Inventory
 		{
 			TrapAction action = (GameObject obj) =>
 			{
-				var blood = Resources.Load <GameObject> ("Prefabs/Decorations/Blood");
+				var blood = Resources.Load <GameObject> ("Prefabs/Decorations/blood");
 				var instantiatedBlood = (GameObject)GameObject.Instantiate (blood, obj.transform);
 				instantiatedBlood.transform.localPosition = Vector3.zero;
 				obj.GetComponent <MovableObject> ().enabled = false;
+				obj.GetComponent <ArtificialIntelligence> ().enabled = false;
 			};
 
 			_allItems.Add (new TrapItemBase ("trapitem.id.basictrap", 3f, action));
@@ -113,7 +115,7 @@ namespace Core.Inventory
 			_descriptionaries.Add ("genericitem.id.toybear", "Guess someone was in such a rush, that forget his or her Teddy-bear...");
 			_descriptionaries.Add ("genericitem.id.book", "Old book, filled with knowledge and rat poops.");
 			_descriptionaries.Add ("receiptitem.testitem", "Looks like it teaches how to do an icecream..from heroin and bananas..");
-			_descriptionaries.Add ("receiptitem.id.diary", "Old diary left by some hunter.");
+			_descriptionaries.Add ("receiptitem.id.diary", "Old diary left by some hunter. Teaches how to create a trap from chain and nails.");
 			_descriptionaries.Add ("trapitem.id.basictrap", "Oh boy! That thing can byte-off your whole leg!");
 			_descriptionaries.Add ("genericitem.id.nippers", "Still sharp");
 

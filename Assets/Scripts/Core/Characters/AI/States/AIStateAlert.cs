@@ -33,7 +33,7 @@ namespace Core.Characters.AI
 			_previousMoveSpeed = _masterBrain.MovableObject.MovementSpeed;
 			_masterBrain.MovableObject.MovementSpeed *= 1.2f;
 			_timeInState = _alertTime;
-			_masterBrain.StatusText.text = "Wha..what was that?!";
+			_masterBrain.StatusText.text = "Whheeaaarrr";
 
 			_masterBrain.MovableObject.DebugColor = Color.green;
 		}
@@ -46,7 +46,8 @@ namespace Core.Characters.AI
 		public override void UpdateState ()
 		{
 			base.UpdateState ();
-			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance)
+			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
+			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance && playerNode != null)
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Attack;

@@ -11,78 +11,86 @@ using Core.Map;
 
 namespace Core.Characters.AI
 {
-    [RequireComponent(typeof(MovableObject))]
-    public abstract class ArtificialIntelligence : MonoBehaviour
-    {
-        #region Protected
+	[RequireComponent (typeof(MovableObject))]
+	public abstract class ArtificialIntelligence : MonoBehaviour
+	{
+		#region Protected
 
-        public EAIState BaseState;
-        protected AIStateBase _currentState;
-        protected Dictionary<EAIState, AIStateBase> _availiableStates = new Dictionary<EAIState, AIStateBase>();
-        protected MovableObject _movableObject;
+		public EAIState BaseState;
+		protected AIStateBase _currentState;
+		protected Dictionary<EAIState, AIStateBase> _availiableStates = new Dictionary<EAIState, AIStateBase> ();
+		protected MovableObject _movableObject;
 
-        #endregion
+		#endregion
 
-        public MovableObject MovableObject
-        {
-            get
-            {
-                return _movableObject;
-            }
-        }
+		public MovableObject MovableObject
+		{
+			get
+			{
+				return _movableObject;
+			}
+		}
 
-        public Text StatusText;
+		public Text StatusText;
 
-        #region Monobehaviour
+		#region Monobehaviour
 
-        private void Awake()
-        {
-            _movableObject = GetComponent <MovableObject>();
-            InitStates();
-        }
+		private void Awake ()
+		{
+			_movableObject = GetComponent <MovableObject> ();
+			InitStates ();
+		}
 
-        protected virtual void Start()
-        {
-        }
+		private void OnDisable ()
+		{
+			_currentState = _availiableStates [_availiableStates.Keys.First ()];
+			_currentState.OnEnter ();
+		}
 
-        protected virtual void OnEnable()
-        {
-            Debug.Assert(BaseState >= 0, this.name + " did not have a base state ID. CRASH LOUDLY");
+		protected virtual void Start ()
+		{
+		}
+
+		protected virtual void OnEnable ()
+		{
+			Debug.Assert (BaseState >= 0, this.name + " did not have a base state ID. CRASH LOUDLY");
            
-            _currentState = _availiableStates.Count >= 1 ? _availiableStates[BaseState] : _availiableStates[_availiableStates.Keys.First()];
-            _currentState.OnEnter();
-        }
+			_currentState = _availiableStates.Count >= 1 ? _availiableStates [BaseState] : _availiableStates [_availiableStates.Keys.First ()];
+			_currentState.OnEnter ();
+		}
 
-        private void Update()
-        {
-            if (_currentState == null)
-            {
-                return;
-            }
+		private void Update ()
+		{
+			if (_currentState == null)
+			{
+				return;
+			}
 
-            if (_currentState.CurrentStateCondition == AIStateCondition.Done)
-            {
-                MoveToState(_currentState.PendingState);
-            }
-            else
-            {
-                _currentState.UpdateState();
-            }
-        }
+			if (_currentState.CurrentStateCondition == AIStateCondition.Done)
+			{
+				MoveToState (_currentState.PendingState);
+			}
+			else
+			{
+				_currentState.UpdateState ();
+			}
+		}
 
-        #endregion
+		#endregion
 
-        protected abstract void InitStates();
+		protected abstract void InitStates ();
 
-        public void MoveToState(EAIState pendingState)
-        {
-            if (_availiableStates[pendingState] != null)
-            {
-                _currentState.OnLeave();
-                _currentState = _availiableStates[pendingState];
-                _currentState.OnEnter();
-            }
-        }
-    }
+		public void MoveToState (EAIState pendingState)
+		{
+			if (_availiableStates [pendingState] != null)
+			{
+				_currentState.OnLeave ();
+				_currentState = _availiableStates [pendingState];
+				_currentState.OnEnter ();
+			}
+		}
+
+
+	}
 }
 

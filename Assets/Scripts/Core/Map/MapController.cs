@@ -133,15 +133,12 @@ namespace Core.Map
 					{
 						_nodesMap.Add (flooredKey, instantiated);
 					}
-					else
-					{
-						
-					}
+
 
 					_currentNodeMatrix [i, j] = instantiated;
 					_currentCellsArray.Add (instantiated);
 				}
-				currentPosition = new Vector3 (transform.localPosition.x, currentPosition.y + CellSize.y, currentPosition.z);
+				currentPosition = new Vector3 (transform.position.x, currentPosition.y + CellSize.y, currentPosition.z);
 			}
 
 			DefineInwalkables ();
