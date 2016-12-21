@@ -30,12 +30,16 @@ namespace Core.Characters.AI
 
 		public override void OnLeave ()
 		{
-            
+			if (PlayerBehaviour.CurrentPlayer != null)
+			{
+				PlayerBehaviour.CurrentPlayer.Attacked = false;
+			}
 		}
 
 		public override void OnEnter ()
 		{
 			base.OnEnter ();
+			PlayerBehaviour.CurrentPlayer.Attacked = true;
 			_masterBrain.StatusText.text = "Hrrr..";
 			AudioSource.PlayClipAtPoint (_sound, _masterBrain.transform.position, 1f);
 			_player = PlayerBehaviour.CurrentPlayer;

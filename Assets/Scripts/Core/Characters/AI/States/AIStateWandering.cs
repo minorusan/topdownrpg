@@ -13,20 +13,26 @@ namespace Core.Characters.AI
 	public class AIStateWandering:AIStateBase
 	{
 		private float _previousMoveSpeed;
-		private float _timeIdle = 3f;
 		private float _searchDistance;
 		private float _suspention;
 		private Image _suspentionBar;
 		private Core.Characters.Player.PlayerBehaviour _player;
 		private NoiseEffect _effect;
+		private AudioClip _whispering;
 		private AudioClip _bellCreepy;
+		private SequentialMovement _movementController;
 
 
-		public AIStateWandering (ArtificialIntelligence brains, float searchDistance, Image suspentionBar) : base (brains)
+		public AIStateWandering (ArtificialIntelligence brains, float searchDistance, Transform pathRoot, Image suspentionBar) : base (brains)
 		{
 			_searchDistance = searchDistance;
 			State = EAIState.Wandering;
+
+			_movementController = new SequentialMovement (pathRoot.GetComponentsInChildren <Transform> (),
+			                                              _masterBrain.MovableObject,
+			                                              true);
 			_bellCreepy = Resources.Load <AudioClip> ("Sounds/bellCreepy");
+			_whispering = Resources.Load <AudioClip> ("Sounds/whisper");
 			_effect = GameObject.FindObjectOfType<NoiseEffect> ();
 			_player = GameObject.FindObjectOfType<PlayerBehaviour> ();
 			_suspentionBar = suspentionBar;
@@ -35,25 +41,53 @@ namespace Core.Characters.AI
 		public override void OnEnter ()
 		{
 			base.OnEnter ();
-			_suspention = _suspention > 0f ? 0.9f : 0f;
-			_masterBrain.StatusText.text = "ZZZZzz....";
-			_previousMoveSpeed = _masterBrain.MovableObject.MovementSpeed;
-			_masterBrain.MovableObject.MovementSpeed *= 0.4f;
+			if (_player != null && _player.isActiveAndEnabled)
+			{
+				var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
+				_suspention = _suspention > 0f && playerNode != null ? 0.9f : 0f;
+				if (_effect != null)
+				{
+					_effect.ChangeOpacity (_suspention);
+				}
 
-			_masterBrain.MovableObject.DebugColor = Color.green;
+				_masterBrain.StatusText.text = "Set a trap on my path, please. I wonna die ^^";
+				_previousMoveSpeed = _masterBrain.MovableObject.MovementSpeed;
+				_masterBrain.MovableObject.MovementSpeed *= 0.4f;
+
+				_masterBrain.MovableObject.DebugColor = Color.green;
+			}
 		}
 
 		public override void OnLeave ()
 		{
 			AudioSource.PlayClipAtPoint (_bellCreepy, Vector3.zero, 0.5f);
+			AudioSource.PlayClipAtPoint (_whispering, Vector3.zero, 0.5f);
 			_masterBrain.MovableObject.MovementSpeed = _previousMoveSpeed;
 		}
 
 		public override void UpdateState ()
 		{
 			base.UpdateState ();
+			CheckLeaveStateConditions ();
+
+			_movementController.UpdateMovement ();
+			_suspention -= _suspention > 0f ? 0.01f : 0f;
+		}
+
+		private void CheckNoise ()
+		{
+			var noise = _player.Noise;
+
+			_suspention += noise;
+			_effect.ChangeOpacity (_suspention);
+			_suspentionBar.fillAmount = _suspention;
+		}
+
+		private void CheckLeaveStateConditions ()
+		{
 			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
-			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance && playerNode != null)
+			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance
+			    && playerNode != null && !PlayerBehaviour.CurrentPlayer.Hidden)
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Attack;
@@ -65,43 +99,18 @@ namespace Core.Characters.AI
 				_pendingState = EAIState.Alert;
 			}
 
-			if (_timeIdle <= 0)
+			if (playerNode != null)
 			{
-				FindNewpath ();
-				_timeIdle = 3f;
-
+				CheckNoise ();
 			}
 			else
 			{
-				CheckNoise ();
-				_timeIdle -= Time.deltaTime;
-				_suspention -= _suspention > 0f ? 0.01f : 0f;
-			}
-		}
-
-		private void CheckNoise ()
-		{
-			var noise = _player.Noise;
-			_suspention += noise;
-			_effect.ChangeOpacity (_suspention);
-			_suspentionBar.fillAmount = _suspention;
-		}
-
-		private void FindNewpath ()
-		{
-			var possibleLocations = _map.GetNeighbours (_masterBrain.MovableObject.CurrentNode);
-			if (possibleLocations != null && possibleLocations.Length > 1)
-			{
-				var destination = possibleLocations [Random.Range (0, possibleLocations.Length - 1)];
-				if (destination != null)
+				if (_suspention > 0f)
 				{
-					_masterBrain.MovableObject.BeginMovementByPath (Pathfinder.FindPathToDestination (
-						_map,
-						_masterBrain.MovableObject.CurrentNode.GridPosition,
-						destination.GridPosition));
-                    
+					_effect.ChangeOpacity (0f);
 				}
 			}
+
 		}
 	}
 }

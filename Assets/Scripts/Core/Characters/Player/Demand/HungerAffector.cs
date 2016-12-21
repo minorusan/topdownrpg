@@ -11,7 +11,6 @@ namespace Core.Characters.Player.Demand
 	{
 		#region PRIVATE
 
-		private int kSpeedCoeficient = 700;
 		private float kMinimumTickSpeed = 0.2f;
 		private float kNervesDecreaseCoef = 0.1f;
 

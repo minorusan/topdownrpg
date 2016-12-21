@@ -10,7 +10,8 @@ namespace Core.Map
 {
 	public class ChunkCreator : MonoBehaviour
 	{
-		
+		#region Private
+
 		private const string kPathToChunkRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/";
 		private const string kPathToChunkEndRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/End/";
 		private const string kPathToStartRoomPrefabs = "Prefabs/Decorations/Chunks/{0}/Rooms/Start/";
@@ -18,6 +19,8 @@ namespace Core.Map
 		private Room[] _endRooms;
 		private Room[] _startRooms;
 		private List<Room> _generatedRoomsList = new List<Room> ();
+
+		#endregion
 
 		public int MaxRoomsCouns;
 		public string ChunkName;

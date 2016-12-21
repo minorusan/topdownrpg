@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using Core.Inventory;
 using Core.Utilities;
+using Core.Characters.Player;
+using Core.Utilities.UI;
 
 
 namespace Core.Gameplay.Interactivity
@@ -26,6 +28,49 @@ namespace Core.Gameplay.Interactivity
 		private static void InitialiseActions ()
 		{
 			InitOpenDoorAction ();
+			InitHideAction ();
+			InitDialogueAction ();
+		}
+
+		private static void InitDialogueAction ()
+		{
+			ActionRequirement openActionRequirement = (GameObject owner) =>
+			{
+				return true;
+			};
+
+			InteractiveAction action = (GameObject obj) =>
+			{
+				var trigger = obj.GetComponent <DialogTrigger> ();
+
+				var dialogue = DialogueStorage.GetDialogueByID (trigger.DialogueID);
+				DialogueDisplayer.ShowDialogue (dialogue);
+			};
+
+			var dialogueAction = new ActionBase ("action.id.dialogue", openActionRequirement, action);
+			_actions.Add ("action.id.dialogue", dialogueAction);
+		}
+
+		private static void InitHideAction ()
+		{
+			ActionRequirement openActionRequirement = (GameObject owner) =>
+			{
+				return !PlayerBehaviour.CurrentPlayer.Attacked;
+			};
+
+			InteractiveAction action = (GameObject obj) =>
+			{
+				var doorway = obj.GetComponent <Hideout> ();
+
+				ProcessBarController.StartProcessWithCompletion (1f, doorway.Action.ActionImage, () =>
+				{
+					PlayerBehaviour.CurrentPlayer.Renderer.enabled = false;
+					PlayerBehaviour.CurrentPlayer.Hidden = true;
+				}, Color.grey);
+			};
+
+			var openDoorAction = new ActionBase (Hideout.kHideAction, openActionRequirement, action);
+			_actions.Add (Hideout.kHideAction, openDoorAction);
 		}
 
 		private static void InitOpenDoorAction ()

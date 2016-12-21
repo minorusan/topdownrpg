@@ -47,8 +47,9 @@ namespace Core.Inventory
 			if (cashedSprite == null)
 			{
 				var sprite = Resources.Load<Sprite> (rescourcePath + spriteId);
-				return sprite;
 				_cachedImages.Add (spriteId, sprite);
+				return sprite;
+			
 			}
 			return cashedSprite;
 		}

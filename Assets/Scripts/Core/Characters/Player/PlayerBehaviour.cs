@@ -7,6 +7,7 @@ namespace Core.Characters.Player
 {
 	[RequireComponent (typeof(StressAffector))]
 	[RequireComponent (typeof(Animator))]
+	[RequireComponent (typeof(SpriteRenderer))]
 	public class PlayerBehaviour : MonoBehaviour
 	{
 		public static string kPlayerTag = "Player";
@@ -14,13 +15,38 @@ namespace Core.Characters.Player
 		public AudioClip StepSound;
 
 		private Animator _animator;
+		private SpriteRenderer _renderer;
 		private static PlayerBehaviour _player;
 		private StressAffector _stress;
 		private bool _moves;
 
+		public bool Attacked
+		{
+			get;
+			set;
+		}
+
+		public bool Hidden
+		{
+			get;
+			set;
+		}
+
 		[Header ("Movement")]
 		public float MovementSpeed;
 		public float Noise;
+
+		public SpriteRenderer Renderer
+		{
+			get
+			{
+				if (_renderer == null)
+				{
+					_renderer = GetComponent<SpriteRenderer> ();
+				}
+				return _renderer;
+			}
+		}
 
 		public static PlayerBehaviour CurrentPlayer
 		{

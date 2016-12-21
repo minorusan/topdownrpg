@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Core.Map;
+using Utils;
 
 
 namespace Core.Characters.AI
@@ -43,7 +44,14 @@ namespace Core.Characters.AI
 
 		private void OnDisable ()
 		{
+			_currentState.OnLeave ();
+		
 			_currentState = _availiableStates [_availiableStates.Keys.First ()];
+			var effect = GameObject.FindObjectOfType<NoiseEffect> ();
+			if (effect != null)
+			{
+				effect.ChangeOpacity (0f);
+			}
 			_currentState.OnEnter ();
 		}
 
@@ -59,7 +67,7 @@ namespace Core.Characters.AI
 			_currentState.OnEnter ();
 		}
 
-		private void Update ()
+		protected virtual void Update ()
 		{
 			if (_currentState == null)
 			{

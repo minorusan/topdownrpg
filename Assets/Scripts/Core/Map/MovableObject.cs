@@ -15,7 +15,7 @@ namespace Core.Map
 
 		private Path _currentPath = new Path ();
 		private EMovableObjectState _currentState = EMovableObjectState.Standing;
-
+	
 		private Animator _animator;
 
 		#endregion
@@ -60,6 +60,7 @@ namespace Core.Map
 			_animator = GetComponent<Animator> ();
 		}
 
+	
 		private void Update ()
 		{
 			if (!_currentPath.Empty)
@@ -88,6 +89,7 @@ namespace Core.Map
 		private void OnDisable ()
 		{
 			_currentPath.Nodes.Clear ();
+			_animator.enabled = false;
 		}
 
 		#endregion

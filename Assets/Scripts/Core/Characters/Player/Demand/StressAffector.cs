@@ -14,7 +14,6 @@ namespace Core.Characters.Player.Demand
 		private PlayerBehaviour _player;
 		private HungerAffector _hungerAffector;
 
-		private int kSpeedCoeficient = 700;
 		private float kMinimumTickSpeed = 0.2f;
 		private float kDecreaseCoef = 0.1f;
 

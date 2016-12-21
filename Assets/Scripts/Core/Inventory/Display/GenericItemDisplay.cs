@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Core.Characters.Player;
 
 
 namespace Core.Inventory.Display

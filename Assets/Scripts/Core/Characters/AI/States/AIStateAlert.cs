@@ -11,7 +11,6 @@ namespace Core.Characters.AI
 {
 	public class AIStateAlert:AIStateBase
 	{
-		private float _timeIdle = 1f;
 		private float _searchDistance;
 		private float _previousMoveSpeed;
 		private float _alertTime;
@@ -47,7 +46,8 @@ namespace Core.Characters.AI
 		{
 			base.UpdateState ();
 			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
-			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance && playerNode != null)
+			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance
+			    && playerNode != null && !PlayerBehaviour.CurrentPlayer.Hidden)
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Attack;

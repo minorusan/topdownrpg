@@ -145,6 +145,5 @@ namespace Core.Inventory
 			return stressConsumablesIDs [decreaserType];
 		}
 	}
-
 }
 
