@@ -150,6 +150,7 @@ namespace Core.Map
 
 			for (int i = 0; i < _nonWalkables.Length; i++)
 			{
+                _nonWalkables[i].Disabled += MapController_Disabled;
 				foreach (var item in _currentCellsArray)
 				{
 					if (_nonWalkables [i].Bounds.Contains (item.Position))
@@ -160,11 +161,24 @@ namespace Core.Map
 			}
 		}
 
-		#endregion
+        private void OnDisable()
+        {
+            for (int i = 0; i < _nonWalkables.Length; i++)
+            {
+                _nonWalkables[i].Disabled -= MapController_Disabled;
+            }
+        }
 
-		#region MapGeneratorUtils
+        private void MapController_Disabled()
+        {
+            InstantiateCells();
+        }
 
-		IJ el = new IJ (0, 0);
+        #endregion
+
+        #region MapGeneratorUtils
+
+        IJ el = new IJ (0, 0);
 
 		public Node GetNodeByPosition (Vector3 position)
 		{

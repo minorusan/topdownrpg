@@ -20,7 +20,7 @@ namespace Core.Characters.Player
 		private StressAffector _stress;
 		private bool _moves;
 
-		public bool Attacked
+        public bool Attacked
 		{
 			get;
 			set;
