@@ -3,6 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Core.Inventory;
 using System;
+using Utilities.UI;
+using Core.Utilities.UI;
+using Core.Gameplay.Interactivity;
+using Core.Interactivity;
 
 
 namespace Core.Inventory
@@ -20,49 +24,85 @@ namespace Core.Inventory
 		{
 			get
 			{
-				if (_instance == null)
+				if(_instance == null)
 				{
-					_instance = new PlayerInventory ();
+					_instance = new PlayerInventory();
 				}
 				return _instance;
 			}
 		}
 
-		private PlayerInventory ()
+		private PlayerInventory()
 		{
-			_items = new List<AItemBase> ();
+			_items = new List<AItemBase>();
 		}
 
-		public bool TryAddItemToInventory (AItemBase item)
+		public bool TryAddItemToInventory(AItemBase item)
 		{
-			if (_items.Count < kMaxInventoryCapacity)
+			if(_items.Count < kMaxInventoryCapacity)
 			{
-				_items.Add (item);
-				Debug.Log (item.ItemID + " was added to inventory.");
-				InventoryChanged ();
+				_items.Add(item);
+
+				ShowDialogueForItem(item);
+
+				FanfareMessage.ShowWithText(string.Format("{0} added to inventory.", item.Name));
+				Debug.Log(item.ItemID + " was added to inventory.");
+				InventoryChanged();
 				return true;
 			}
 			return false;
 		}
 
-		public void RemoveItemFromInventory (string item)
+		public void RemoveItemFromInventory(string item)
 		{
-			var index = _items.FindIndex (i => i.ItemID == item);
-			_items.RemoveAt (index);
-			Debug.Log (item + " was removed from inventory.");
-			InventoryChanged ();
+			var index = _items.FindIndex(i => i.ItemID == item);
+			_items.RemoveAt(index);
+			Debug.Log(item + " was removed from inventory.");
+			InventoryChanged();
 		}
 
-		public AItemBase[] GetItems ()
+		public AItemBase[] GetItems()
 		{
-			return _items.ToArray ();
+			return _items.ToArray();
 		}
 
-		public AItemBase TryGetItemAtIndex (int index)
+		static void ShowDialogueForItem(AItemBase item)
 		{
-			if (index < _items.Count)
+			switch(item.EItemType)
 			{
-				return _items [index];
+			case EItemType.Generic:
+				{
+					Tutorial.ShowForIDIfNeeded(ETutorialId.GenericItemPicked);
+					break;
+				}
+			case EItemType.Consumable:
+				{
+					if(item is HungerDecreaser)
+					{
+						Tutorial.ShowForIDIfNeeded(ETutorialId.HungerItemPicked);
+					}
+					else
+					if(item is StressDecreaser)
+					{
+						Tutorial.ShowForIDIfNeeded(ETutorialId.StressItemPicked);
+					}
+					break;
+				}
+			case EItemType.Receipt:
+				{
+					Tutorial.ShowForIDIfNeeded(ETutorialId.CraftItemPicked);
+					break;
+				}
+			default:
+				break;
+			}
+		}
+
+		public AItemBase TryGetItemAtIndex(int index)
+		{
+			if(index < _items.Count)
+			{
+				return _items[index];
 			}
 			return null;
 		}

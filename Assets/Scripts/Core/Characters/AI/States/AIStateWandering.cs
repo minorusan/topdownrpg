@@ -23,31 +23,31 @@ namespace Core.Characters.AI
 		private SequentialMovement _movementController;
 
 
-		public AIStateWandering (ArtificialIntelligence brains, float searchDistance, Transform pathRoot, Image suspentionBar) : base (brains)
+		public AIStateWandering(ArtificialIntelligence brains, float searchDistance, Transform pathRoot, Image suspentionBar) : base(brains)
 		{
 			_searchDistance = searchDistance;
 			State = EAIState.Wandering;
 
-			_movementController = new SequentialMovement (pathRoot.GetComponentsInChildren <Transform> (),
-			                                              _masterBrain.MovableObject,
-			                                              true);
-			_bellCreepy = Resources.Load <AudioClip> ("Sounds/bellCreepy");
-			_whispering = Resources.Load <AudioClip> ("Sounds/whisper");
-			_effect = GameObject.FindObjectOfType<NoiseEffect> ();
-			_player = GameObject.FindObjectOfType<PlayerBehaviour> ();
+			_movementController = new SequentialMovement(pathRoot.GetComponentsInChildren <Transform>(),
+			                                             _masterBrain.MovableObject,
+			                                             true);
+			_bellCreepy = Resources.Load <AudioClip>("Sounds/bellCreepy");
+			_whispering = Resources.Load <AudioClip>("Sounds/whisper");
+			_effect = GameObject.FindObjectOfType<NoiseEffect>();
+			_player = GameObject.FindObjectOfType<PlayerBehaviour>();
 			_suspentionBar = suspentionBar;
 		}
 
-		public override void OnEnter ()
+		public override void OnEnter()
 		{
-			base.OnEnter ();
-			if (_player != null && _player.isActiveAndEnabled)
+			base.OnEnter();
+			if(_player != null && _player.isActiveAndEnabled)
 			{
-				var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
+				var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition(_player.transform.position);
 				_suspention = _suspention > 0f && playerNode != null ? 0.9f : 0f;
-				if (_effect != null)
+				if(_effect != null)
 				{
-					_effect.ChangeOpacity (_suspention);
+					_effect.ChangeOpacity(_suspention);
 				}
 
 				_masterBrain.StatusText.text = "Set a trap on my path, please. I wonna die ^^";
@@ -58,56 +58,56 @@ namespace Core.Characters.AI
 			}
 		}
 
-		public override void OnLeave ()
+		public override void OnLeave()
 		{
-			AudioSource.PlayClipAtPoint (_bellCreepy, Vector3.zero, 0.5f);
-			AudioSource.PlayClipAtPoint (_whispering, Vector3.zero, 0.5f);
+			AudioSource.PlayClipAtPoint(_bellCreepy, Vector3.zero, 0.5f);
+			AudioSource.PlayClipAtPoint(_whispering, Vector3.zero, 0.5f);
 			_masterBrain.MovableObject.MovementSpeed = _previousMoveSpeed;
 		}
 
-		public override void UpdateState ()
+		public override void UpdateState()
 		{
-			base.UpdateState ();
-			CheckLeaveStateConditions ();
+			base.UpdateState();
+			CheckLeaveStateConditions();
 
-			_movementController.UpdateMovement ();
+			_movementController.UpdateMovement();
 			_suspention -= _suspention > 0f ? 0.01f : 0f;
 		}
 
-		private void CheckNoise ()
+		private void CheckNoise()
 		{
 			var noise = _player.Noise;
 
 			_suspention += noise;
-			_effect.ChangeOpacity (_suspention);
+			_effect.ChangeOpacity(_suspention);
 			_suspentionBar.fillAmount = _suspention;
 		}
 
-		private void CheckLeaveStateConditions ()
+		private void CheckLeaveStateConditions()
 		{
-			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition (_player.transform.position);
-			if (Vector3.Distance (_masterBrain.transform.position, _player.transform.position) < _searchDistance
-			    && playerNode != null && !PlayerBehaviour.CurrentPlayer.Hidden)
+			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition(_player.transform.position);
+			if(Vector3.Distance(_masterBrain.transform.position, _player.transform.position) < _searchDistance
+			   && playerNode != null && !PlayerQuirks.Hidden)
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Attack;
 			}
 
-			if (_suspention > 1f)
+			if(_suspention > 1f)
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Alert;
 			}
 
-			if (playerNode != null)
+			if(playerNode != null)
 			{
-				CheckNoise ();
+				CheckNoise();
 			}
 			else
 			{
-				if (_suspention > 0f)
+				if(_suspention > 0f)
 				{
-					_effect.ChangeOpacity (0f);
+					_effect.ChangeOpacity(0f);
 				}
 			}
 

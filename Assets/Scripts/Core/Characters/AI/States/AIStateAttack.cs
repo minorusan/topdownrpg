@@ -9,6 +9,7 @@ using Core.Map;
 using Core.Characters.Player;
 using Core.Map.Pathfinding;
 using Core.Characters.Player.Demand;
+using Core.Interactivity.AI;
 
 
 namespace Core.Characters.AI
@@ -22,36 +23,37 @@ namespace Core.Characters.AI
 		private AudioClip _sound;
 
 
-		public AIStateAttack (ArtificialIntelligence brains) : base (brains)
+		public AIStateAttack(ArtificialIntelligence brains) : base(brains)
 		{
 			State = EAIState.Attack;
-			_sound = Resources.Load <AudioClip> ("Sounds/moan");
+
 		}
 
-		public override void OnLeave ()
+		public override void OnLeave()
 		{
-			if (PlayerBehaviour.CurrentPlayer != null)
+			if(PlayerBehaviour.CurrentPlayer != null)
 			{
-				PlayerBehaviour.CurrentPlayer.Attacked = false;
+				PlayerQuirks.Attacked = false;
 			}
 		}
 
-		public override void OnEnter ()
+		public override void OnEnter()
 		{
-			base.OnEnter ();
-			PlayerBehaviour.CurrentPlayer.Attacked = true;
+			base.OnEnter();
+			PlayerQuirks.Attacked = true;
 			_masterBrain.StatusText.text = "Hrrr..";
-			AudioSource.PlayClipAtPoint (_sound, _masterBrain.transform.position, 1f);
+			_sound = ((GuardBrains)_masterBrain).AngerSound;
+			AudioSource.PlayClipAtPoint(_sound, _masterBrain.transform.position, 1f);
 			_player = PlayerBehaviour.CurrentPlayer;
-			_player.GetComponent<StressAffector> ().DemandTickTime *= 0.8f;
+			_player.GetComponent<StressAffector>().DemandTickTime *= 0.8f;
 		}
 
-		public override void UpdateState ()
+		public override void UpdateState()
 		{
-			base.UpdateState ();
-			if (IsPlayerReachable ())
+			base.UpdateState();
+			if(IsPlayerReachable())
 			{
-				MoveToPlayer ();
+				MoveToPlayer();
 			}
 			else
 			{
@@ -62,18 +64,18 @@ namespace Core.Characters.AI
 
 		#region PRIVATE
 
-		private void MoveToPlayer ()
+		private void MoveToPlayer()
 		{
-			var suitableAttackPosition = _map.GetNodeByPosition (_player.transform.position); 
-			_masterBrain.MovableObject.BeginMovementByPath (Pathfinder.FindPathToDestination (
+			var suitableAttackPosition = _map.GetNodeByPosition(_player.transform.position); 
+			_masterBrain.MovableObject.BeginMovementByPath(Pathfinder.FindPathToDestination(
 				_map,
 				_masterBrain.MovableObject.CurrentNode.GridPosition,
 				suitableAttackPosition.GridPosition));
 		}
 
-		private bool IsPlayerReachable ()
+		private bool IsPlayerReachable()
 		{
-			return _map.GetNodeByPosition (_player.transform.position) != null;
+			return _map.GetNodeByPosition(_player.transform.position) != null;
 		}
 
 		#endregion

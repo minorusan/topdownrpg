@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 namespace Core.Characters.Player.Demand
 {
-	[RequireComponent (typeof(PlayerBehaviour))]
-	[RequireComponent (typeof(StressAffector))]
+	[RequireComponent(typeof(PlayerBehaviour))]
+	[RequireComponent(typeof(StressAffector))]
 	public class HungerAffector : DemandAffector
 	{
 		#region PRIVATE
@@ -19,32 +19,31 @@ namespace Core.Characters.Player.Demand
 
 		#endregion
 
-
-		private void Start ()
+		private void Start()
 		{
-			_player = GetComponent<PlayerBehaviour> ();
-			_stressAffector = GetComponent<StressAffector> ();
-			StartCoroutine (HungerTick ());
+			_player = GetComponent<PlayerBehaviour>();
+			_stressAffector = GetComponent<StressAffector>();
+			StartCoroutine(HungerTick());
 		}
 
-		private IEnumerator HungerTick ()
+		private IEnumerator HungerTick()
 		{
-			while (true)
+			while(true)
 			{
-				if (DemandState > 1)
+				if(DemandState > 1)
 				{
 					DemandState--;
 				
 					var newMovementSpeed = PlayerBehaviour.BaseMovementSpeed * (float)DemandState / 100;
-					_player.MovementSpeed = newMovementSpeed <= PlayerBehaviour.BaseMovementSpeed ? newMovementSpeed : PlayerBehaviour.BaseMovementSpeed;
+					_player.MovementSpeed = newMovementSpeed < PlayerBehaviour.BaseMovementSpeed ? newMovementSpeed : PlayerBehaviour.BaseMovementSpeed;
 
-					if (_stressAffector.DemandTickTime > kMinimumTickSpeed)
+					if(_stressAffector.DemandTickTime > kMinimumTickSpeed)
 					{
 						_stressAffector.DemandTickTime -= kNervesDecreaseCoef;
 					}
 				}
 
-				yield return new WaitForSeconds (DemandTickTime);
+				yield return new WaitForSeconds(DemandTickTime);
 			}
 		}
 	}

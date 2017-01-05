@@ -8,13 +8,14 @@ using Core.Characters.Player;
 
 namespace Core.Interactivity.AI
 {
-	[RequireComponent (typeof(SpriteRenderer))]
+	[RequireComponent(typeof(SpriteRenderer))]
 	public class GuardBrains:ArtificialIntelligence
 	{
 		public float SearchDistance = 6f;
 		public float AlertTime = 5f;
 		public Image SuspentionBar;
 		public Transform WanderingPointsRoot;
+		public AudioClip AngerSound;
 
 		private SpriteRenderer _renderer;
 
@@ -22,15 +23,15 @@ namespace Core.Interactivity.AI
 		{
 			get
 			{
-				if (_renderer == null)
+				if(_renderer == null)
 				{
-					_renderer = GetComponent<SpriteRenderer> ();
+					_renderer = GetComponent<SpriteRenderer>();
 				}
 				return _renderer;
 			}
 		}
 
-		private void OnDrawGizmos ()
+		private void OnDrawGizmos()
 		{
 			var color = Color.white;
 			var radius = SearchDistance;
@@ -48,36 +49,33 @@ namespace Core.Interactivity.AI
 
 
 			Gizmos.color = color;
-			Gizmos.DrawWireSphere (transform.position, radius);
+			Gizmos.DrawWireSphere(transform.position, radius);
 		}
 
 		#region ArtificialIntelligence
 
-		protected override void InitStates ()
+		protected override void InitStates()
 		{
-			_availiableStates.Add (EAIState.Wandering, new AIStateWandering (this, SearchDistance, WanderingPointsRoot, SuspentionBar));
-			_availiableStates.Add (EAIState.Alert, new AIStateAlert (this, SearchDistance * 2, AlertTime));
-			_availiableStates.Add (EAIState.Attack, new AIStateAttack (this));
+			_availiableStates.Add(EAIState.Wandering, new AIStateWandering(this, SearchDistance, WanderingPointsRoot, SuspentionBar));
+			_availiableStates.Add(EAIState.Alert, new AIStateAlert(this, SearchDistance * 2, AlertTime));
+			_availiableStates.Add(EAIState.Attack, new AIStateAttack(this));
 			BaseState = EAIState.Wandering;
 		}
 
-		protected override void Start ()
+		protected override void Start()
 		{
-			base.Start ();
-			_renderer = GetComponent <SpriteRenderer> ();
+			base.Start();
+			_renderer = GetComponent <SpriteRenderer>();
+			if(AngerSound == null)
+			{
+				AngerSound = Resources.Load<AudioClip>("Sounds/moan");
+			}
 		}
 
-		protected override void Update ()
+		protected override void Update()
 		{
-			base.Update ();
-			if (transform.position.y > PlayerBehaviour.CurrentPlayer.transform.position.y)
-			{
-				_renderer.sortingOrder = PlayerBehaviour.CurrentPlayer.Renderer.sortingOrder - 1;
-			}
-			else
-			{
-				_renderer.sortingOrder = PlayerBehaviour.CurrentPlayer.Renderer.sortingOrder + 1;
-			}
+			base.Update();
+		
 		}
 
 		#endregion

@@ -22,43 +22,45 @@ namespace Core.Utilities.UI
 		public DialogueBubble Bubble;
 
 		// Use this for initialization
-		private void Start ()
+		private void Start()
 		{
-			_current = FindObjectOfType<DialogueDisplayer> ();
+			_current = FindObjectOfType<DialogueDisplayer>();
 		}
 
 		// Update is called once per frame
-		private void Update ()
+		private void Update()
 		{
-			if (_state == EDialogueDisplayerState.Showing)
+			if(_state == EDialogueDisplayerState.Showing)
 			{
-				if (_currentMessage >= _dialogue.Statements.Length)
+				if(_currentMessage >= _dialogue.Statements.Length)
 				{
 					_state = EDialogueDisplayerState.Idle;
 					Bubble.BubbleCompleted += EndDialog;
 				}
 
-				if (Bubble.Ready)
+				if(Bubble.Ready)
 				{
-					Bubble.ShowMessage (_dialogue.Statements [_currentMessage].Sentence, _dialogue.Statements [_currentMessage].SpeakerGOName);
+					Bubble.ShowMessage(_dialogue.Statements[_currentMessage].Sentence,
+					                    _dialogue.Statements[_currentMessage].SpeakerGOName,
+					                    _dialogue.Statements[_currentMessage].Thought);
 					_currentMessage++;
 				}
 			}
 		}
 
-		private void EndDialog ()
+		private void EndDialog()
 		{
 			Bubble.BubbleCompleted -= EndDialog;
-			if (_dialogue.Completion != null)
+			if(_dialogue.Completion != null)
 			{
-				_dialogue.Completion ();
+				_dialogue.Completion();
 			}
 			_dialogue = null;
 		}
 
-		public static void ShowDialogue (Dialogue dialogue)
+		public static void ShowDialogue(Dialogue dialogue)
 		{
-			if (dialogue != _current._dialogue)
+			if(dialogue != _current._dialogue)
 			{
 				_current._currentMessage = 0;
 				_current._dialogue = dialogue;

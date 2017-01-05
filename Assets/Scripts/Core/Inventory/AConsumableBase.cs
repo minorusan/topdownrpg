@@ -19,37 +19,37 @@ namespace Core.Inventory
 		private EDemand _selectedDemand;
 		private DemandAffector _affector;
 
-		public AConsumableBase (string itemId, EDemand affector, int effectValue) : base (itemId, EItemType.Consumable)
+		public AConsumableBase(string itemId, string name, EDemand affector, int effectValue) : base(itemId, name, EItemType.Consumable)
 		{
 			_selectedDemand = affector;
-			SetAction (IncrementAffectorByValue (effectValue));
+			SetAction(IncrementAffectorByValue(effectValue));
 		}
 
-		private Action IncrementAffectorByValue (int value)
+		private Action IncrementAffectorByValue(int value)
 		{
 			return () =>
 			{
-				if (_affector == null)
+				if(_affector == null)
 				{
-					InitAffector ();
+					InitAffector();
 				}
 				_affector.DemandState += value;
 				_affector.DemandTickTime = DemandAffector.DefaultTickTime;
 			};
 		}
 
-		private void InitAffector ()
+		private void InitAffector()
 		{
-			switch (_selectedDemand)
+			switch(_selectedDemand)
 			{
 			case EDemand.Hunger:
 				{
-					_affector = GameObject.FindObjectOfType <HungerAffector> ();
+					_affector = GameObject.FindObjectOfType <HungerAffector>();
 					break;
 				}
 			case EDemand.Stress:
 				{
-					_affector = GameObject.FindObjectOfType <StressAffector> ();
+					_affector = GameObject.FindObjectOfType <StressAffector>();
 					break;
 				}
 			}

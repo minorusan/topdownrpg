@@ -32,30 +32,30 @@ namespace Core.Inventory
 		{
 			get
 			{
-				return (string[])_requiredItemsIdentifiers.Clone ();
+				return (string[])_requiredItemsIdentifiers.Clone();
 			}
 		}
 
-		public AReceiptItemBase (string itemId, string resultItemId, float requiredTime, string[] requiredItemsIdentifiers) : base (itemId, EItemType.Receipt)
+		public AReceiptItemBase(string itemId, string name, string resultItemId, float requiredTime, string[] requiredItemsIdentifiers) : base(itemId, name, EItemType.Receipt)
 		{
 			_requiredItemsIdentifiers = requiredItemsIdentifiers;
 			_resultItemId = resultItemId;
 			_requiredTime = requiredTime;
-			SetAction (DisplayReceipt ());
+			SetAction(DisplayReceipt());
 		}
 
-		private Action DisplayReceipt ()
+		private Action DisplayReceipt()
 		{
 			return () =>
 			{
-				var receiptDisplayer = FindObjectOfType<ItemInfoDisplayer> ();
-				if (receiptDisplayer != null)
+				var receiptDisplayer = FindObjectOfType<ItemInfoDisplayer>();
+				if(receiptDisplayer != null)
 				{
-					receiptDisplayer.DisplayReceiptForItem (ItemID);
+					receiptDisplayer.DisplayReceiptForItem(ItemID);
 				}
 				else
 				{
-					Debug.LogError ("ReceiptDisplayer was not found.");
+					Debug.LogError("ReceiptDisplayer was not found.");
 				}
 			};
 		}

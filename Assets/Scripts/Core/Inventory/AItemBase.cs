@@ -12,6 +12,7 @@ namespace Core.Inventory
 		#region Private
 
 		private readonly string _itemID;
+		private readonly string _name;
 		private readonly EItemType _itemType;
 		private  Action _itemAction;
 
@@ -25,6 +26,14 @@ namespace Core.Inventory
 			}
 		}
 
+		public string Name
+		{
+			get
+			{
+				return _name;
+			}
+		}
+
 		public EItemType EItemType
 		{
 			get
@@ -33,37 +42,38 @@ namespace Core.Inventory
 			}
 		}
 
-		public AItemBase (string itemId, EItemType itemType)
+		public AItemBase(string itemId, string itemName, EItemType itemType)
 		{
-			Debug.Assert (!string.IsNullOrEmpty (itemId), GetType ().ToString () + ":: no item ID was assigned");
-			SetAction (DisplayItem ());
+			Debug.Assert(!string.IsNullOrEmpty(itemId), GetType().ToString() + ":: no item ID was assigned");
+			SetAction(DisplayItem());
+			_name = itemName;
 			_itemType = itemType;
 			_itemID = itemId;
 		}
 
-		public void PerformAction ()
+		public void PerformAction()
 		{
-			Debug.Assert (_itemAction != null, GetType ().ToString () + ":: no item action was assigned");
-			_itemAction ();
+			Debug.Assert(_itemAction != null, GetType().ToString() + ":: no item action was assigned");
+			_itemAction();
 		}
 
-		protected void SetAction (Action action)
+		protected void SetAction(Action action)
 		{
 			_itemAction = action;
 		}
 
-		private Action DisplayItem ()
+		private Action DisplayItem()
 		{
 			return () =>
 			{
-				var displayer = FindObjectOfType<ItemInfoDisplayer> ();
-				if (displayer != null)
+				var displayer = FindObjectOfType<ItemInfoDisplayer>();
+				if(displayer != null)
 				{
-					displayer.DisplayReceiptForItem (ItemID);
+					displayer.DisplayReceiptForItem(ItemID);
 				}
 				else
 				{
-					Debug.LogError ("ReceiptDisplayer was not found.");
+					Debug.LogError("ReceiptDisplayer was not found.");
 				}
 			};
 		}

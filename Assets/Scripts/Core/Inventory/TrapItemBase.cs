@@ -5,7 +5,7 @@ using System;
 
 namespace Core.Inventory
 {
-	public delegate void TrapAction (GameObject obj);
+	public delegate void TrapAction(GameObject obj);
 	public class TrapItemBase : AItemBase
 	{
 		private const string kTrapsPath = "Prefabs/Traps/";
@@ -37,11 +37,11 @@ namespace Core.Inventory
 			}
 		}
 
-		public TrapItemBase (string itemId, float requiredTime, TrapAction trapAction) : base (itemId, EItemType.Trap)
+		public TrapItemBase(string itemId, string name, float requiredTime, TrapAction trapAction) : base(itemId, name, EItemType.Trap)
 		{
 			_requiredTime = requiredTime;
 			_trapAction = trapAction;
-			_trapPrefab = Resources.Load <GameObject> (kTrapsPath + itemId);
+			_trapPrefab = Resources.Load <GameObject>(kTrapsPath + itemId);
 		}
 	}
 }

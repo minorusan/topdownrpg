@@ -8,106 +8,111 @@ using UnityEngine;
 
 namespace Core.Pathfinding.Algorithms
 {
-    public class AStar:IPathFinder
-    {
-        private List<ECellType> _ignoredNodeTypes;
+	public class AStar:IPathFinder
+	{
+		private List<ECellType> _ignoredNodeTypes;
 
-        #region IPathFinder implementation
+		#region IPathFinder implementation
 
-        public EPathfindingAlgorithm Algorithm
-        {
-            get
-            {
-                return EPathfindingAlgorithm.AStar;
-            }
-        }
+		public EPathfindingAlgorithm Algorithm
+		{
+			get
+			{
+				return EPathfindingAlgorithm.AStar;
+			}
+		}
 
-        public AStar()
-        {
-            _ignoredNodeTypes = new List<ECellType>{ ECellType.Blocked, ECellType.Busy };
-        }
+		public AStar()
+		{
+			_ignoredNodeTypes = new List<ECellType>{ ECellType.Blocked, ECellType.Busy };
+		}
 
-        public Path FindPathToDestination(IJ currentNodeIndex, IJ targetNodeIndex, MapController mapGenerator)
-        {
+		public Path FindPathToDestination(IJ currentNodeIndex, IJ targetNodeIndex, MapController mapGenerator)
+		{
    
-            var map = mapGenerator.CurrrentMapAsMatrix;
-            Node startNode = map[currentNodeIndex.I, currentNodeIndex.J];
-            Node targetNode = map[targetNodeIndex.I, targetNodeIndex.J];
+			var map = mapGenerator.CurrrentMapAsMatrix;
+			Node startNode = map[currentNodeIndex.I, currentNodeIndex.J];
+			Node targetNode = map[targetNodeIndex.I, targetNodeIndex.J];
 
-            List<Node> openSet = new List<Node>();
-            HashSet<Node> closedSet = new HashSet<Node>();
+			List<Node> openSet = new List<Node>();
+			HashSet<Node> closedSet = new HashSet<Node>();
      
-            openSet.Add(startNode);
-            var iterator = 0;
-            while (openSet.Count > 0)
-            {
-                Node node = openSet[0];
-                for (int i = 1; i < openSet.Count; i++)
-                {
-                    if (openSet[i].FCost < node.FCost || openSet[i].FCost == node.FCost)
-                    {
-                        if (openSet[i].HCost < node.HCost)
-                            node = openSet[i];
-                    }
-                }
+			openSet.Add(startNode);
+			var iterator = 0;
+			while(openSet.Count > 0)
+			{
+				if(iterator > 30)
+				{
+					return FindPathToDestination(currentNodeIndex, closedSet.Last().GridPosition, mapGenerator);
+				}
 
-                openSet.Remove(node);
-                closedSet.Add(node);
+				Node node = openSet[0];
+				for(int i = 1; i < openSet.Count; i++)
+				{
+					if(openSet[i].FCost < node.FCost || openSet[i].FCost == node.FCost)
+					{
+						if(openSet[i].HCost < node.HCost)
+							node = openSet[i];
+					}
+				}
 
-                if (node == targetNode)
-                {
-                    var t = RetracePath(startNode, targetNode);
-                    return t;
-                }
-                var neighbours = mapGenerator.GetNeighbours(node);
+				openSet.Remove(node);
+				closedSet.Add(node);
+
+				if(node == targetNode)
+				{
+					var t = RetracePath(startNode, targetNode);
+					return t;
+				}
+				var neighbours = mapGenerator.GetNeighbours(node);
            
-                for (int i = 0; i < neighbours.Length; i++)
-                {
-                    if (neighbours[i] == null)
-                    {
-                        continue;
-                    }
-                    var ignored = _ignoredNodeTypes.Any(p => p == neighbours[i].CurrentCellType);
-                    if (ignored || closedSet.Contains(neighbours[i]))
-                    {
-                        continue;
-                    }
+				for(int i = 0; i < neighbours.Length; i++)
+				{
+					if(neighbours[i] == null)
+					{
+						continue;
+					}
+					var ignored = _ignoredNodeTypes.Any(p => p == neighbours[i].CurrentCellType);
+					if(ignored || closedSet.Contains(neighbours[i]))
+					{
+						continue;
+					}
 
-                    int newCostToNeighbour = node.GCost + mapGenerator.GetDistance(node, neighbours[i]);
-                    if (newCostToNeighbour < neighbours[i].GCost || !openSet.Contains(neighbours[i]))
-                    {
-                        neighbours[i].GCost = newCostToNeighbour;
-                        neighbours[i].HCost = mapGenerator.GetDistance(neighbours[i], targetNode);
-                        neighbours[i].Parent = node;
-                        iterator++;
-                        if (!openSet.Contains(neighbours[i]))
-                            openSet.Add(neighbours[i]);
-                    }
-                }
+					int newCostToNeighbour = node.GCost + mapGenerator.GetDistance(node, neighbours[i]);
+					if(newCostToNeighbour < neighbours[i].GCost || !openSet.Contains(neighbours[i]))
+					{
+						neighbours[i].GCost = newCostToNeighbour;
+						neighbours[i].HCost = mapGenerator.GetDistance(neighbours[i], targetNode);
+						neighbours[i].Parent = node;
+						iterator++;
+						if(!openSet.Contains(neighbours[i]))
+							openSet.Add(neighbours[i]);
+					}
+				}
 
 
-            }
+			}
            
-            return new Path();
-        }
+			return new Path();
+		}
 
-        #endregion
+		#endregion
 
-        private Path RetracePath(Node startNode, Node endNode)
-        {
-            List<Node> path = new List<Node>();
-            Node currentNode = endNode;
+		private Path RetracePath(Node startNode, Node endNode)
+		{
+			List<Node> path = new List<Node>();
+			Node currentNode = endNode;
               
-            while (currentNode != startNode)
-            {
-                path.Add(currentNode);
-                currentNode = currentNode.Parent;
+			while(currentNode != startNode)
+			{
+				path.Add(currentNode);
+				currentNode = currentNode.Parent;
               
-            }
-            path.Reverse();
+			}
+			path.Reverse();
 
-            return new Path(path);
-        }
-    }
+			return new Path(path);
+		}
+	}
 }
 

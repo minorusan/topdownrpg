@@ -5,9 +5,9 @@ using Core.Inventory;
 
 namespace Core.Characters.Player
 {
-	[RequireComponent (typeof(StressAffector))]
-	[RequireComponent (typeof(Animator))]
-	[RequireComponent (typeof(SpriteRenderer))]
+	[RequireComponent(typeof(StressAffector))]
+	[RequireComponent(typeof(Animator))]
+	[RequireComponent(typeof(SpriteRenderer))]
 	public class PlayerBehaviour : MonoBehaviour
 	{
 		public static string kPlayerTag = "Player";
@@ -20,19 +20,7 @@ namespace Core.Characters.Player
 		private StressAffector _stress;
 		private bool _moves;
 
-        public bool Attacked
-		{
-			get;
-			set;
-		}
-
-		public bool Hidden
-		{
-			get;
-			set;
-		}
-
-		[Header ("Movement")]
+		[Header("Movement")]
 		public float MovementSpeed;
 		public float Noise;
 
@@ -40,9 +28,9 @@ namespace Core.Characters.Player
 		{
 			get
 			{
-				if (_renderer == null)
+				if(_renderer == null)
 				{
-					_renderer = GetComponent<SpriteRenderer> ();
+					_renderer = GetComponent<SpriteRenderer>();
 				}
 				return _renderer;
 			}
@@ -52,9 +40,9 @@ namespace Core.Characters.Player
 		{
 			get
 			{
-				if (_player == null)
+				if(_player == null)
 				{
-					_player = FindObjectOfType <PlayerBehaviour> ();
+					_player = FindObjectOfType <PlayerBehaviour>();
 				}
 				return _player;
 			}
@@ -68,35 +56,41 @@ namespace Core.Characters.Player
 			}
 			set
 			{
-				if (_moves != value)
+				if(_moves != value)
 				{
 					_moves = value;
-					_animator.SetBool ("Walk", _moves);
+					_animator.SetBool("Walk", _moves);
 				}
 			}
 		}
 
-		public void Step ()
+		public void Step()
 		{
 			Noise += (float)_stress.DemandState / 100;
-			AudioSource.PlayClipAtPoint (StepSound, transform.position, Noise);
+			AudioSource.PlayClipAtPoint(StepSound, transform.position, Noise);
 		}
 
-		private void Start ()
+		private void Awake()
 		{
-			_stress = GetComponent<StressAffector> ();
-			_animator = GetComponent<Animator> ();
 			BaseMovementSpeed = MovementSpeed;
+			Debug.LogWarning("Tutorial::Removing player prefs!");
+			PlayerPrefs.DeleteAll();
 		}
 
-		private void LateUpdate ()
+		private void Start()
 		{
-			Noise = Mathf.MoveTowards (Noise, 0, 0.2f);
+			_stress = GetComponent<StressAffector>();
+			_animator = GetComponent<Animator>();
 		}
 
-		public static void SetPlayerPosition (Vector3 position)
+		private void LateUpdate()
 		{
-			var player = FindObjectOfType <PlayerBehaviour> ();
+			Noise = Mathf.MoveTowards(Noise, 0, 0.2f);
+		}
+
+		public static void SetPlayerPosition(Vector3 position)
+		{
+			var player = FindObjectOfType <PlayerBehaviour>();
 			player.transform.position = position;
 		}
 	}

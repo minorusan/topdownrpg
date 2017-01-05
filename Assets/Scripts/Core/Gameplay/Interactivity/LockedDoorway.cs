@@ -2,11 +2,13 @@
 using System.Collections;
 using System;
 using Core.Characters.Player;
+using Core.Utilities.UI;
+using Core.Interactivity;
 
 
 namespace Core.Gameplay.Interactivity
 {
-	[RequireComponent (typeof(BoxCollider2D))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class LockedDoorway : MonoBehaviour
 	{
 		public const string kOpenDoorActionId = "action.id.opendoor";
@@ -22,33 +24,38 @@ namespace Core.Gameplay.Interactivity
 		}
 
 		// Use this for initialization
-		void Start ()
+		void Start()
 		{
-			_action = ActionsInitialiser.GetActionByID (kOpenDoorActionId);
+			_action = ActionsInitialiser.GetActionByID(kOpenDoorActionId);
 		}
 
-		private void OnTriggerEnter2D (Collider2D trigger)
+		private void OnTriggerEnter2D(Collider2D trigger)
 		{
-			if (trigger.tag == PlayerBehaviour.kPlayerTag)
+			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				ActionPerformer.Instance.SetAction (_action, gameObject);
+				ActionPerformer.Instance.SetAction(_action, gameObject);
+			}
+
+			if(!_action.IsRequirementSatisfied(gameObject))
+			{
+				Tutorial.ShowForIDIfNeeded(ETutorialId.LockedDoor);
 			}
 		}
 
-		private void OnDisable ()
+		private void OnDisable()
 		{
 			var performer = ActionPerformer.Instance;
-			if (performer != null)//To avoid error on level init or chunk regeneration
+			if(performer != null)//To avoid error on level init or chunk regeneration
 			{
-				ActionPerformer.Instance.SetAction (null);
+				ActionPerformer.Instance.SetAction(null);
 			}
 		}
 
-		private void OnTriggerExit2D (Collider2D trigger)
+		private void OnTriggerExit2D(Collider2D trigger)
 		{
-			if (trigger.tag == PlayerBehaviour.kPlayerTag)
+			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				ActionPerformer.Instance.SetAction (null);
+				ActionPerformer.Instance.SetAction(null);
 			}
 		}
 	}

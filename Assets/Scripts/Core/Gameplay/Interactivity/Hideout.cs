@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Characters.Player;
+using Core.Interactivity;
 
 
 namespace Core.Gameplay.Interactivity
 {
-	[RequireComponent (typeof(BoxCollider2D))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class Hideout : MonoBehaviour
 	{
 		public const string kHideAction = "action.id.hide";
@@ -20,32 +21,28 @@ namespace Core.Gameplay.Interactivity
 			}
 		}
 		// Use this for initialization
-		void Start ()
+		void Start()
 		{
-			_action = ActionsInitialiser.GetActionByID (kHideAction);
-		}
-
-		// Update is called once per frame
-		void Update ()
-		{
+			_action = ActionsInitialiser.GetActionByID(kHideAction);
 
 		}
 
-		private void OnTriggerEnter2D (Collider2D trigger)
+		private void OnTriggerEnter2D(Collider2D trigger)
 		{
-			if (trigger.tag == PlayerBehaviour.kPlayerTag)
+			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				ActionPerformer.Instance.SetAction (_action, gameObject);
+				Tutorial.ShowForIDIfNeeded(ETutorialId.CanHide);
+				ActionPerformer.Instance.SetAction(_action, gameObject);
 			}
 		}
 
-		private void OnTriggerExit2D (Collider2D trigger)
+		private void OnTriggerExit2D(Collider2D trigger)
 		{
-			if (trigger.tag == PlayerBehaviour.kPlayerTag)
+			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				ActionPerformer.Instance.SetAction (null);
+				ActionPerformer.Instance.SetAction(null);
 				PlayerBehaviour.CurrentPlayer.Renderer.enabled = true;
-				PlayerBehaviour.CurrentPlayer.Hidden = false;
+				PlayerQuirks.Hidden = false;
 			}
 		}
 	}

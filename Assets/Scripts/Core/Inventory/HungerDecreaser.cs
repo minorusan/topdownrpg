@@ -20,14 +20,14 @@ namespace Core.Inventory
 
 	public class HungerDecreaser : AConsumableBase
 	{
-		public HungerDecreaser (string itemId, EDemand affector, int effectValue) : base (itemId, affector, effectValue)
+		public HungerDecreaser(string itemId, string name, EDemand affector, int effectValue) : base(itemId, name, affector, effectValue)
 		{
 		}
 	}
 
 	public class StressDecreaser : AConsumableBase
 	{
-		public StressDecreaser (string itemId, EDemand affector, int effectValue) : base (itemId, affector, effectValue)
+		public StressDecreaser(string itemId, string name, EDemand affector, int effectValue) : base(itemId, name, affector, effectValue)
 		{
 		}
 	}

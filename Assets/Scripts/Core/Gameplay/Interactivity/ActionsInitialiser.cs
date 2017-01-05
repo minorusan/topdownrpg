@@ -11,28 +11,28 @@ namespace Core.Gameplay.Interactivity
 {
 	public static class ActionsInitialiser
 	{
-		private static Dictionary<string, ActionBase> _actions = new Dictionary<string, ActionBase> ();
+		private static Dictionary<string, ActionBase> _actions = new Dictionary<string, ActionBase>();
 
-		public static ActionBase GetActionByID (string actionID)
+		public static ActionBase GetActionByID(string actionID)
 		{
-			return _actions [actionID];
+			return _actions[actionID];
 		}
 
 		#region Configuration
 
-		static ActionsInitialiser ()
+		static ActionsInitialiser()
 		{
-			InitialiseActions ();
+			InitialiseActions();
 		}
 
-		private static void InitialiseActions ()
+		private static void InitialiseActions()
 		{
-			InitOpenDoorAction ();
-			InitHideAction ();
-			InitDialogueAction ();
+			InitOpenDoorAction();
+			InitHideAction();
+			InitDialogueAction();
 		}
 
-		private static void InitDialogueAction ()
+		private static void InitDialogueAction()
 		{
 			ActionRequirement openActionRequirement = (GameObject owner) =>
 			{
@@ -41,45 +41,45 @@ namespace Core.Gameplay.Interactivity
 
 			InteractiveAction action = (GameObject obj) =>
 			{
-				var trigger = obj.GetComponent <DialogTrigger> ();
+				var trigger = obj.GetComponent <DialogTrigger>();
 
-				var dialogue = DialogueStorage.GetDialogueByID (trigger.DialogueID);
-				DialogueDisplayer.ShowDialogue (dialogue);
+				var dialogue = DialogueStorage.GetDialogueByID(trigger.DialogueID);
+				DialogueDisplayer.ShowDialogue(dialogue);
 			};
 
-			var dialogueAction = new ActionBase ("action.id.dialogue", openActionRequirement, action);
-			_actions.Add ("action.id.dialogue", dialogueAction);
+			var dialogueAction = new ActionBase("action.id.dialogue", openActionRequirement, action);
+			_actions.Add("action.id.dialogue", dialogueAction);
 		}
 
-		private static void InitHideAction ()
+		private static void InitHideAction()
 		{
 			ActionRequirement openActionRequirement = (GameObject owner) =>
 			{
-				return !PlayerBehaviour.CurrentPlayer.Attacked;
+				return !PlayerQuirks.Attacked;
 			};
 
 			InteractiveAction action = (GameObject obj) =>
 			{
-				var doorway = obj.GetComponent <Hideout> ();
+				var doorway = obj.GetComponent <Hideout>();
 
-				ProcessBarController.StartProcessWithCompletion (1f, doorway.Action.ActionImage, () =>
+				ProcessBarController.StartProcessWithCompletion(1f, doorway.Action.ActionImage, () =>
 				{
 					PlayerBehaviour.CurrentPlayer.Renderer.enabled = false;
-					PlayerBehaviour.CurrentPlayer.Hidden = true;
+					PlayerQuirks.Hidden = true;
 				}, Color.grey);
 			};
 
-			var openDoorAction = new ActionBase (Hideout.kHideAction, openActionRequirement, action);
-			_actions.Add (Hideout.kHideAction, openDoorAction);
+			var openDoorAction = new ActionBase(Hideout.kHideAction, openActionRequirement, action);
+			_actions.Add(Hideout.kHideAction, openDoorAction);
 		}
 
-		private static void InitOpenDoorAction ()
+		private static void InitOpenDoorAction()
 		{
 			ActionRequirement openActionRequirement = (GameObject owner) =>
 			{
-				var doorway = owner.GetComponent <LockedDoorway> ();
+				var doorway = owner.GetComponent <LockedDoorway>();
 
-				if (PlayerInventory.Instance.GetItems ().Any (item => item.ItemID == doorway.ItemToUnlock))
+				if(PlayerInventory.Instance.GetItems().Any(item => item.ItemID == doorway.ItemToUnlock))
 				{
 					return true;
 				}
@@ -88,14 +88,14 @@ namespace Core.Gameplay.Interactivity
 
 			InteractiveAction action = (GameObject obj) =>
 			{
-				var doorway = obj.GetComponent <LockedDoorway> ();
-				PlayerInventory.Instance.RemoveItemFromInventory (doorway.ItemToUnlock);
-				ProcessBarController.StartProcessWithCompletion (3f, doorway.Action.ActionImage, () =>
-				                                                 doorway.gameObject.SetActive (false), Color.yellow);
+				var doorway = obj.GetComponent <LockedDoorway>();
+				PlayerInventory.Instance.RemoveItemFromInventory(doorway.ItemToUnlock);
+				ProcessBarController.StartProcessWithCompletion(3f, doorway.Action.ActionImage, () =>
+				                                                 doorway.gameObject.SetActive(false), Color.yellow);
 			};
 
-			var openDoorAction = new ActionBase (LockedDoorway.kOpenDoorActionId, openActionRequirement, action);
-			_actions.Add (LockedDoorway.kOpenDoorActionId, openDoorAction);
+			var openDoorAction = new ActionBase(LockedDoorway.kOpenDoorActionId, openActionRequirement, action);
+			_actions.Add(LockedDoorway.kOpenDoorActionId, openDoorAction);
 		}
 
 		#endregion

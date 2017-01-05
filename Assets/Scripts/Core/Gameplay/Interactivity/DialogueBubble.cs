@@ -9,12 +9,15 @@ namespace Core.Gameplay.Interactivity
 {
 	public class DialogueBubble : MonoBehaviour
 	{
-		private Dictionary<string, GameObject> _cachedSpeakers = new Dictionary<string, GameObject> ();
+		private Dictionary<string, GameObject> _cachedSpeakers = new Dictionary<string, GameObject>();
 		private GameObject _currentSpeaker;
 
 		public event Action BubbleCompleted;
 
 		public Text Text;
+		public Image BubbleImage;
+		public Sprite ThoughtBubble;
+		public Sprite PlainBubble;
 		public float TextSpeed;
 
 		public bool Ready
@@ -23,56 +26,57 @@ namespace Core.Gameplay.Interactivity
 			private set;
 		}
 
-		private void Start ()
+		private void Start()
 		{
 			Ready = true;
-			gameObject.SetActive (false);
+			gameObject.SetActive(false);
 		}
 
-		private void Update ()
+		private void Update()
 		{
-			if (!Ready)
+			if(!Ready)
 			{
-				transform.position = new Vector2 (_currentSpeaker.transform.position.x + 2f, 
-				                                  _currentSpeaker.transform.position.y + 2f);
+				transform.position = new Vector2(_currentSpeaker.transform.position.x + 2f, 
+				                                 _currentSpeaker.transform.position.y + 2f);
 			}
 		}
 
-		public void ShowMessage (string message, string GOName)
+		public void ShowMessage(string message, string GOName, bool thought)
 		{
 			Ready = false;
+			BubbleImage.sprite = thought ? ThoughtBubble : PlainBubble;
 			_currentSpeaker = null;
-			gameObject.SetActive (true);
-			StartCoroutine (DisplayMessage (message));
-		
-			_cachedSpeakers.TryGetValue (GOName, out _currentSpeaker);
-			if (_currentSpeaker == null)
+			gameObject.SetActive(true);
+			StartCoroutine(DisplayMessage(message));
+
+			_cachedSpeakers.TryGetValue(GOName, out _currentSpeaker);
+			if(_currentSpeaker == null)
 			{
-				_currentSpeaker = GameObject.Find (GOName);
-				_cachedSpeakers.Add (GOName, _currentSpeaker);
+				_currentSpeaker = GameObject.Find(GOName);
+				_cachedSpeakers.Add(GOName, _currentSpeaker);
 			}
 				
 			transform.localScale = Vector2.one;
 		}
 
-		private IEnumerator DisplayMessage (string message)
+		private IEnumerator DisplayMessage(string message)
 		{
-			for (int i = 0; i <= message.Length; i++)
+			for(int i = 0; i <= message.Length; i++)
 			{
-				Text.text = message.Substring (0, i);
-				yield return new WaitForSeconds (TextSpeed);
+				Text.text = message.Substring(0, i);
+				yield return new WaitForSeconds(TextSpeed);
 			}
-			Invoke ("ResetBubble", 2f);
+			Invoke("ResetBubble", 2f);
 		}
 
-		private void ResetBubble ()
+		private void ResetBubble()
 		{
 			Ready = true;
-			if (BubbleCompleted != null)
+			if(BubbleCompleted != null)
 			{
-				BubbleCompleted ();
+				BubbleCompleted();
 			}
-			gameObject.SetActive (false);
+			gameObject.SetActive(false);
 		}
 	}
 }

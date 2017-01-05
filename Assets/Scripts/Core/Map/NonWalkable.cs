@@ -5,24 +5,29 @@ using System;
 
 namespace Core.Map
 {
-	[RequireComponent (typeof(BoxCollider2D))]
+	[RequireComponent(typeof(BoxCollider2D))]
 	public class NonWalkable : MonoBehaviour
 	{
-        public bool Active = true;
-        public event Action Disabled;
+		public bool Active = true;
+
+		public event Action Disabled;
+
 		public Bounds Bounds
 		{
 			get
 			{
-				return GetComponent<BoxCollider2D> ().bounds;
+				return GetComponent<BoxCollider2D>().bounds;
 			}
 		}
 
-        private void OnDisable()
-        {
-            //if (Active && Disabled != null)
-               //Disabled();
-        }
-    }
+		public void ClearObject()
+		{
+			gameObject.SetActive(false);
+			if(Disabled != null)
+			{
+				Disabled();
+			}
+		}
+	}
 }
 
