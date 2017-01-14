@@ -22,10 +22,9 @@ namespace Core.Map
 
 		public Color DebugColor;
 		public float MovementSpeed;
+	    public AudioClip StepSound;
 
 		#region Properties
-
-
 
 		public bool ReachedDestination
 		{
@@ -97,9 +96,15 @@ namespace Core.Map
 		public void BeginMovementByPath (Path path)
 		{
 			_currentPath.Nodes.Clear ();
+            SelfAnimator.SetFloat("AnimSpeed", MovementSpeed * 100);
 			_currentPath = path;
 			ToggleAnimationState (EMovableObjectState.Walking);
 		}
+
+	    public void Step()
+	    {
+            AudioSource.PlayClipAtPoint(StepSound, transform.position, 0.6f);
+        }
 
 		#region Internal
 

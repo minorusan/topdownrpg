@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
-using Core.Pathfinding;
-using System.Linq;
-
-using System.Collections.Generic;
 using Core.Map;
 using Core.Characters.Player;
 using Core.Map.Pathfinding;
@@ -41,8 +36,9 @@ namespace Core.Characters.AI
 		{
 			base.OnEnter();
 			PlayerQuirks.Attacked = true;
-			_masterBrain.StatusText.text = "Hrrr..";
-			_sound = ((GuardBrains)_masterBrain).AngerSound;
+            var _guardBrains = (GuardBrains)_masterBrain;
+            _masterBrain.StatusText.text = _guardBrains.AttackStrings[Random.Range(0, _guardBrains.WanderingStrings.Length)];
+            _sound = ((GuardBrains)_masterBrain).AngerSound;
 			AudioSource.PlayClipAtPoint(_sound, _masterBrain.transform.position, 1f);
 			_player = PlayerBehaviour.CurrentPlayer;
 			_player.GetComponent<StressAffector>().DemandTickTime *= 0.8f;
@@ -75,8 +71,8 @@ namespace Core.Characters.AI
 
 		private bool IsPlayerReachable()
 		{
-			return _map.GetNodeByPosition(_player.transform.position) != null;
-		}
+			return _map.GetNodeByPosition(_player.transform.position) != null && Vector3.Distance(_masterBrain.transform.position, _player.transform.position) < 20f;
+		} 
 
 		#endregion
 	}

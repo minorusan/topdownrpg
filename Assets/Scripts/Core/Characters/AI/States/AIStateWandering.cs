@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-
-using Core.Pathfinding;
-using Core.Map;
-using Core.Map.Pathfinding;
-using Core.Characters.Player;
 using UnityEngine.UI;
+
+using Core.Map;
+using Core.Characters.Player;
+using Core.Interactivity.AI;
 using Utils;
 
 
@@ -12,6 +11,7 @@ namespace Core.Characters.AI
 {
 	public class AIStateWandering:AIStateBase
 	{
+	    private GuardBrains _guardBrains;
 		private float _previousMoveSpeed;
 		private float _searchDistance;
 		private float _suspention;
@@ -36,6 +36,7 @@ namespace Core.Characters.AI
 			_effect = GameObject.FindObjectOfType<NoiseEffect>();
 			_player = GameObject.FindObjectOfType<PlayerBehaviour>();
 			_suspentionBar = suspentionBar;
+		    _guardBrains = (GuardBrains) brains;
 		}
 
 		public override void OnEnter()
@@ -50,7 +51,7 @@ namespace Core.Characters.AI
 					_effect.ChangeOpacity(_suspention);
 				}
 
-				_masterBrain.StatusText.text = "Set a trap on my path, please. I wonna die ^^";
+				_masterBrain.StatusText.text = _guardBrains.WanderingStrings[Random.Range(0, _guardBrains.WanderingStrings.Length)];
 				_previousMoveSpeed = _masterBrain.MovableObject.MovementSpeed;
 				_masterBrain.MovableObject.MovementSpeed *= 0.4f;
 
@@ -86,8 +87,7 @@ namespace Core.Characters.AI
 		private void CheckLeaveStateConditions()
 		{
 			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition(_player.transform.position);
-			if(Vector3.Distance(_masterBrain.transform.position, _player.transform.position) < _searchDistance
-			   && playerNode != null && !PlayerQuirks.Hidden)
+			if(CanAttackPlayer(playerNode))
 			{
 				_currentCondition = AIStateCondition.Done;
 				_pendingState = EAIState.Attack;
@@ -112,6 +112,13 @@ namespace Core.Characters.AI
 			}
 
 		}
+
+	    private bool CanAttackPlayer(Node playerNode)
+	    {
+	        return Vector3.Distance(_masterBrain.transform.position, _player.transform.position) < _searchDistance
+	               && playerNode != null && !PlayerQuirks.Hidden;
+
+	    }
 	}
 }
 

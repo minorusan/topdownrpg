@@ -4,6 +4,7 @@ using Core.Pathfinding;
 using Core.Map;
 using Core.Map.Pathfinding;
 using Core.Characters.Player;
+using Core.Interactivity.AI;
 using UnityEngine.UI;
 
 
@@ -32,9 +33,10 @@ namespace Core.Characters.AI
 			_previousMoveSpeed = _masterBrain.MovableObject.MovementSpeed;
 			_masterBrain.MovableObject.MovementSpeed *= 1.2f;
 			_timeInState = _alertTime;
-			_masterBrain.StatusText.text = "Whheeaaarrr";
+		    var _guardBrains = (GuardBrains) _masterBrain;
+            _masterBrain.StatusText.text = _guardBrains.AlertStrings[Random.Range(0, _guardBrains.WanderingStrings.Length)];
 
-			_masterBrain.MovableObject.DebugColor = Color.green;
+            _masterBrain.MovableObject.DebugColor = Color.green;
 		}
 
 		public override void OnLeave()

@@ -11,13 +11,12 @@ namespace Utils
 	{
 		private Image _image;
 
-		private void Awake ()
-		{
-			_image = GetComponent <Image> ();
-		}
-
 		public void ChangeOpacity (float opacity)
 		{
+		    if (_image == null)
+		    {
+                _image = GetComponent<Image>();
+            }
 			_image.color = new Color (1f, 1f, 1f, opacity);
 		}
 	}

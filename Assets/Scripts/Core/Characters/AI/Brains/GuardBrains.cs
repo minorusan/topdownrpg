@@ -11,13 +11,19 @@ namespace Core.Interactivity.AI
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class GuardBrains:ArtificialIntelligence
 	{
+        
 		public float SearchDistance = 6f;
 		public float AlertTime = 5f;
 		public Image SuspentionBar;
 		public Transform WanderingPointsRoot;
 		public AudioClip AngerSound;
 
-		private SpriteRenderer _renderer;
+	    [Header("Dialogue strings")]
+        public string[] WanderingStrings;
+        public string[] AlertStrings;
+        public string[] AttackStrings;
+
+        private SpriteRenderer _renderer;
 
 		public SpriteRenderer Renderer
 		{

@@ -1,97 +1,88 @@
 ﻿using UnityEngine;
 using Core.Characters.Player.Demand;
-using Core.Inventory;
 
 
 namespace Core.Characters.Player
 {
-	[RequireComponent(typeof(StressAffector))]
-	[RequireComponent(typeof(Animator))]
-	[RequireComponent(typeof(SpriteRenderer))]
-	public class PlayerBehaviour : MonoBehaviour
-	{
-		public static string kPlayerTag = "Player";
-		public static float BaseMovementSpeed = 10f;
-		public AudioClip StepSound;
+    [RequireComponent(typeof(StressAffector))]
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class PlayerBehaviour : MonoBehaviour
+    {
+        public static string kPlayerTag = "Player";
+        public static float BaseMovementSpeed = 10f;
+        public AudioClip StepSound;
 
-		private Animator _animator;
-		private SpriteRenderer _renderer;
-		private static PlayerBehaviour _player;
-		private StressAffector _stress;
-		private bool _moves;
+        #region Private
 
-		[Header("Movement")]
-		public float MovementSpeed;
-		public float Noise;
+        private Animator _animator;
+        private SpriteRenderer _renderer;
+        private static PlayerBehaviour _player;
+        private StressAffector _stress;
+        private bool _moves;
+        #endregion
 
-		public SpriteRenderer Renderer
-		{
-			get
-			{
-				if(_renderer == null)
-				{
-					_renderer = GetComponent<SpriteRenderer>();
-				}
-				return _renderer;
-			}
-		}
+        [Header("Movement")]
+        public float MovementSpeed;
+        public float Noise;
 
-		public static PlayerBehaviour CurrentPlayer
-		{
-			get
-			{
-				if(_player == null)
-				{
-					_player = FindObjectOfType <PlayerBehaviour>();
-				}
-				return _player;
-			}
-		}
+        public SpriteRenderer Renderer
+        {
+            get { return _renderer ?? (_renderer = GetComponent<SpriteRenderer>()); }
+        }
 
-		public bool Moves
-		{
-			get
-			{
-				return _moves;
-			}
-			set
-			{
-				if(_moves != value)
-				{
-					_moves = value;
-					_animator.SetBool("Walk", _moves);
-				}
-			}
-		}
+        public static PlayerBehaviour CurrentPlayer
+        {
+            get { return _player; }
+        }
 
-		public void Step()
-		{
-			Noise += (float)_stress.DemandState / 100;
-			AudioSource.PlayClipAtPoint(StepSound, transform.position, Noise);
-		}
+        public bool Moves
+        {
+            get
+            {
+                return _moves;
+            }
+            set
+            {
+                if (_moves == value) return;
+                _moves = value;
+                _animator.SetBool("Walk", _moves);
+            }
+        }
 
-		private void Awake()
-		{
-			BaseMovementSpeed = MovementSpeed;
-			Debug.LogWarning("Tutorial::Removing player prefs!");
-			PlayerPrefs.DeleteAll();
-		}
+        public void Step()
+        {
+            Noise += (float)_stress.DemandState / 100;
+            AudioSource.PlayClipAtPoint(StepSound, transform.position, Noise);
+        }
 
-		private void Start()
-		{
-			_stress = GetComponent<StressAffector>();
-			_animator = GetComponent<Animator>();
-		}
+        private void Awake()
+        {
+            BaseMovementSpeed = MovementSpeed;
+            Debug.LogWarning("Tutorial::Removing player prefs!");
+            PlayerPrefs.DeleteAll();
+        }
 
-		private void LateUpdate()
-		{
-			Noise = Mathf.MoveTowards(Noise, 0, 0.2f);
-		}
+        private void Start()
+        {
+            _stress = GetComponent<StressAffector>();
+            _animator = GetComponent<Animator>();
+        }
 
-		public static void SetPlayerPosition(Vector3 position)
-		{
-			var player = FindObjectOfType <PlayerBehaviour>();
-			player.transform.position = position;
-		}
-	}
+        private void OnEnable()
+        {
+           _player = this;
+        }
+
+        private void LateUpdate()
+        {
+            Noise = Mathf.MoveTowards(Noise, 0, 0.2f);
+        }
+
+        public static void SetPlayerPosition(Vector3 position)
+        {
+            var player = FindObjectOfType<PlayerBehaviour>();
+            player.transform.position = position;
+        }
+    }
 }

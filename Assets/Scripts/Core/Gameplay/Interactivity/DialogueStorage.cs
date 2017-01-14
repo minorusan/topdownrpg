@@ -123,45 +123,63 @@ namespace Core.Gameplay.Interactivity
 			var dialogueStatementsOne = new DialogueStatement [] { 
 				new DialogueStatement {
 					SpeakerGOName = "Joe",
-					Sentence = "So hi, this is test polilogue"
+					Sentence = "Gosh, I'm so hungry.."
 				},
 				new DialogueStatement {
-					SpeakerGOName = "Betsie",
-					Sentence = "We are introducing some concept here."
+					SpeakerGOName = "Joe",
+					Sentence = "Something to eat? Anyone?"
 				},
 				new DialogueStatement {
-					SpeakerGOName = "Crunchie",
-					Sentence = "After it ends, doggy will be released.."
+					SpeakerGOName = "Tim",
+					Sentence = "Nope"
 				},
 				new DialogueStatement {
-					SpeakerGOName = "Bob",
-					Sentence = "And player gonna deal with it."
+					SpeakerGOName = "Genny",
+					Sentence = "David had something, but he wont share."
 				},
-				new DialogueStatement {
-					SpeakerGOName = "Betsie",
-					Sentence = "Releasing doggy in 3.."
+                new DialogueStatement {
+                    SpeakerGOName = "Genny",
+                    Sentence = "'cause he is a.."
+                },
+                new DialogueStatement {
+                    SpeakerGOName = "Tim",
+                    Sentence = "Jerk! Haha."
+                },
+                new DialogueStatement {
+                    SpeakerGOName = "Joe",
+                    Sentence = "Does not help my hunger thou. Hey, maybe you gat something?"
+                },
+                new DialogueStatement {
+					SpeakerGOName = "Player",
+					Sentence = "Me?"
 				},
-				new DialogueStatement {
-					SpeakerGOName = "Bob",
-					Sentence = "2.."
-				},
-				new DialogueStatement {
-					SpeakerGOName = "Crunchie",
-					Sentence = "1.."
-				},
-				new DialogueStatement {
-					SpeakerGOName = "Bob",
-					Sentence = "WHO LET THE DOGS OUT!"
-				},
-			};
+                 new DialogueStatement {
+                    SpeakerGOName = "Tim",
+                    Sentence = "Yup. Where've you been lately? Maybe you found something?"
+                },
+                   new DialogueStatement {
+                    SpeakerGOName = "Genny",
+                    Sentence = "Ah, she wouldn't share. She's much like David.."
+                },
+                new DialogueStatement {
+                    SpeakerGOName = "Player",
+                    Sentence = "No, I'm not!"
+                },
+                   new DialogueStatement {
+                    SpeakerGOName = "Genny",
+                    Sentence = "Yes you do, yes you do, yes you do ahahah.."
+                },
+                   new DialogueStatement {
+                    SpeakerGOName = "Player",
+                    Sentence = "Imbicils.."
+                },
+            };
 
-			_dialogs.Add("dialogue.id.polilogue", new Dialogue(dialogueStatementsOne, 
+			_dialogs.Add("dialogue.id.firstdialogue", new Dialogue(dialogueStatementsOne, 
 			                                                   () =>
-			{
-				var testChain = GameObject.Find("testChain");
-				GameObject.Find("testPolilogueTrigger").SetActive(false);
-				testChain.GetComponent<NonWalkable>().ClearObject();
-			}));
+			                                                   {
+			                                                       QuestController.StartQuest("quest.id.getmybear");
+			                                                   }));
 		}
 
 		private static void InitTutorialDialogues()

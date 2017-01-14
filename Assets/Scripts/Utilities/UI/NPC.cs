@@ -19,7 +19,7 @@ namespace Utilities.UI
 		// Update is called once per frame
 		void Update()
 		{
-			if(transform.position.y > PlayerBehaviour.CurrentPlayer.transform.position.y)
+			if(PlayerBehaviour.CurrentPlayer.isActiveAndEnabled && transform.position.y > PlayerBehaviour.CurrentPlayer.transform.position.y)
 			{
 				_renderer.sortingOrder = PlayerBehaviour.CurrentPlayer.Renderer.sortingOrder - 1;
 			}
