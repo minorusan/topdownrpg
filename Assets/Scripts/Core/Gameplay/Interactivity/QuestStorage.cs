@@ -98,8 +98,8 @@ namespace Core.Gameplay.Interactivity
 				DialogueDisplayer.ShowDialogue (dialogue);
 			};
 
-			var newQuest = new Quest ("quest.id.getmybear", "Принеси медвежонка солдату", req, action);
-			_quests.Add (newQuest.ID, newQuest);
+			var newQuest = new Quest ("quest.id.gettovault", "Find your way to vault", req, action);
+            _quests.Add (newQuest.ID, newQuest);
 		}
 
 		public static Quest GetQuestById (string questID)

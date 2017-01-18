@@ -1,0 +1,117 @@
+{
+	"dialogues":[{
+			"id":"dialogue.id.childgroup_one",
+			"statements":[
+				{
+					"speakerName":"Joe",
+					"sentence":"Gosh, I'm so hungry"
+				},
+				{
+					"speakerName":"Joe",
+					"sentence":"Something to eat? Anyone?"
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Nope"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"David had something, but he wont share."
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"'cause he is a.."
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Jerk! Haha."
+				},
+				{
+					"speakerName":"Joe",
+					"sentence":"Does not help my hunger thou. Hey, maybe you gat something?"
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"Me?"
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Yup. Where've you been lately? Maybe you found something?"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"Ah, she wouldn't share. She's much like David.."
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"No, I'm not!"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"Yes you do, yes you do, yes you do ahahah.."
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"Imbicils.."
+				}
+			]
+		},
+		{
+			"id":"dialogue.id.childgroup_two",
+			"statements":[
+				{
+					"speakerName":"Joe",
+					"sentence":"Gosh, I'm so hungry"
+				},
+				{
+					"speakerName":"Joe",
+					"sentence":"Something to eat? Anyone?"
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Nope"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"David had something, but he wont share."
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"'cause he is a.."
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Jerk! Haha."
+				},
+				{
+					"speakerName":"Joe",
+					"sentence":"Does not help my hunger thou. Hey, maybe you gat something?"
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"Me?"
+				},
+				{
+					"speakerName":"Tim",
+					"sentence":"Yup. Where've you been lately? Maybe you found something?"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"Ah, she wouldn't share. She's much like David.."
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"No, I'm not!"
+				},
+				{
+					"speakerName":"Genny",
+					"sentence":"Yes you do, yes you do, yes you do ahahah.."
+				},
+				{
+					"speakerName":"Player",
+					"sentence":"Imbicils.."
+				}
+			]
+		}
+	]
+}
