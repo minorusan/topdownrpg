@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using Core.Utilities.UI;
 using Core.Inventory;
-using Utilities.UI;
 
 
 namespace Core.Gameplay.Interactivity
@@ -92,15 +90,19 @@ namespace Core.Gameplay.Interactivity
 
 			InteractiveAction action = (GameObject obj) =>
 			{
-				var dialogue = DialogueStorage.GetDialogueByID ("dialogue.id.littleboyquestdone");
+				var dialogue = DialogueStorage.GetDialogueByID ("dialogue.id.kidend");
 				PlayerInventory.Instance.RemoveItemFromInventory ("genericitem.id.toybear");
 
 				DialogueDisplayer.ShowDialogue (dialogue);
 			};
 
-			var newQuest = new Quest ("quest.id.findtoy", "Find something that kid can play with", req, action);
-			_quests.Add (newQuest.ID, newQuest);
-		}
+			var gettovault = new Quest ("quest.id.gettovault", "Find your way to vault", null, null);
+            var getbear = new Quest("quest.id.getbear", "Find some toy for a kid", req, action);
+            var getNails = new Quest("quest.id.getnails", "Find some toy for a kid", req, action);
+
+            _quests.Add (gettovault.ID, gettovault);
+            _quests.Add(getbear.ID, getbear);
+        }
 
 		public static Quest GetQuestById (string questID)
 		{

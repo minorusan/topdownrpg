@@ -34,7 +34,7 @@ namespace Core.Gameplay.Interactivity
 
 		private void Update()
 		{
-			if(!Ready)
+            if (!Ready)
 			{
 				transform.position = new Vector2(_currentSpeaker.transform.position.x + 2f, 
 				                                 _currentSpeaker.transform.position.y + 2f);

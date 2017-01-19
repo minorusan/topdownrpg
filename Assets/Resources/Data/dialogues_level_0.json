@@ -1,0 +1,252 @@
+{
+	"dialogues": [
+		{
+			"id": "dialogue.id.childgroup_one",
+			"statements": [
+				{
+					"speakerName": "Joe",
+					"sentence": "Gosh, I'm so hungry"
+				},
+				{
+					"speakerName": "Joe",
+					"sentence": "Something to eat? Anyone?"
+				},
+				{
+					"speakerName": "Tim",
+					"sentence": "Nope"
+				},
+				{
+					"speakerName": "Genny",
+					"sentence": "David had something, but he wont share."
+				},
+				{
+					"speakerName": "Genny",
+					"sentence": "'cause he is a.."
+				},
+				{
+					"speakerName": "Tim",
+					"sentence": "Jerk! Haha."
+				},
+				{
+					"speakerName": "Joe",
+					"sentence": "Does not help my hunger thou. Hey, maybe you gat something?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Me?"
+				},
+				{
+					"speakerName": "Tim",
+					"sentence": "Yup. Where've you been lately? Maybe you found something?"
+				},
+				{
+					"speakerName": "Genny",
+					"sentence": "Ah, she wouldn't share. She's much like David.."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "No, I'm not!"
+				},
+				{
+					"speakerName": "Genny",
+					"sentence": "Yes you do, yes you do, yes you do ahahah.."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Imbicils..",
+					"isthought": true
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.madscholar",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "*coughs"
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": "Wha..who..who are you?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Ehm, hi, I was just wondering if.."
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": "Well I don't care! None of you, brat, are worth of attention"
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": "*spits"
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": "Get outta here. Stay away from me and  that kid"
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": "*shows north"
+				},
+				{
+					"speakerName": "ScholarMad",
+					"sentence": " or I'll make your life even worse."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Oh, ehmm..okay, sorry.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.scholar",
+			"statements": [
+				{
+					"speakerName": "Scholar",
+					"sentence": "So, looks like you have some light within."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "*sigh"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "So, what's all the fuss about?" 
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "I was wondering if you can help me to get to the vault"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "*spits"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Not an easy thing to do..as well as not safe."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Entrance is secured by lock and I don't have anything to remove it."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "I can make a lockpick for you, if that's the case"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Just get me some nails and I'll do the trick"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Ok, thanks, I'try to find some."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Should not take long in such a garbige place.."
+				},
+			]
+		},
+		{
+			"id": "dialogue.id.kidstart",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Still playing?"
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Yup. There are plenty of places to hide around here."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "That friend of yours.. He's kinda..angry?"
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Nah. He just lost everyone in that war. Then he found me"
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Now he has someone to care about."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "I want to be friends with him. Can you help me with that."
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Weeeell, I could do that. By whom I gonna play with then?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "I will try to figure it out."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Maybe I can find some toys around here..",
+					"isthought": true
+				}
+			]
+		},
+				{
+					"id": "dialogue.id.kidbusy",
+					"statements": [
+						{
+							"speakerName": "Player",
+							"sentence": "Hey there. What are you doing here?"
+						},
+						{
+							"speakerName": "KidBusy",
+							"sentence": "Shhh! I'm playing hide and seek with my friend."
+						},
+						{
+							"speakerName": "KidBusy",
+							"sentence": "He's there, you see him?"
+						},
+						{
+							"speakerName": "KidBusy",
+							"sentence": "*points south"
+						},
+						{
+							"speakerName": "Player",
+							"sentence": "Hmm..yeh.."
+						},
+						{
+							"speakerName": "KidBusy",
+							"sentence": "Oh! He looks here! Get out until he saw me!"
+						},
+						{
+							"speakerName": "Player",
+							"sentence": "Okay, okay.."
+						}
+					]
+				},
+				{
+					"id": "dialogue.id.kidend",
+					"statements": [
+						{
+							"speakerName": "Player",
+							"sentence": "Here you are. Hope you like it."
+						},
+						{
+							"speakerName": "Kid",
+							"sentence": "Oh heall yeah! Just look at him! He is almost like new!"
+						},
+						{
+							"speakerName": "Kid",
+							"sentence": "Thanks! I'll tell my friend, that you are not like others."
+						},
+						{
+							"speakerName": "Player",
+							"sentence": "*smiles"
+						},
+						{
+							"speakerName": "Player",
+							"sentence": "Take care."
+						}
+					]
+				}
+			]
+		}

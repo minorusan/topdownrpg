@@ -11,7 +11,6 @@ namespace Core.Interactivity.AI
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class GuardBrains:ArtificialIntelligence
 	{
-        
 		public float SearchDistance = 6f;
 		public float AlertTime = 5f;
 		public Image SuspentionBar;
@@ -52,8 +51,7 @@ namespace Core.Interactivity.AI
             radius = SearchDistance * 2f;
             }
 			#endif
-
-
+            
 			Gizmos.color = color;
 			Gizmos.DrawWireSphere(transform.position, radius);
 		}
@@ -81,10 +79,17 @@ namespace Core.Interactivity.AI
 		protected override void Update()
 		{
 			base.Update();
-		
 		}
 
-		#endregion
-	}
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Player")
+            {
+                PlayerBehaviour.CurrentPlayer.Kill();
+            }
+        }
+
+        #endregion
+    }
 }
 

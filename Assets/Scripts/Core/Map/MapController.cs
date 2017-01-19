@@ -7,7 +7,7 @@ using UnityEditor;
 
 using System.Collections.Generic;
 using System.Linq;
-
+using System;
 
 namespace Core.Map
 {
@@ -47,9 +47,11 @@ namespace Core.Map
 			}
 		}
 
-		#region Monobehaviour
+      
 
-		void Awake ()
+        #region Monobehaviour
+
+        void Awake ()
 		{
 			InstantiateCells ();
 		}
