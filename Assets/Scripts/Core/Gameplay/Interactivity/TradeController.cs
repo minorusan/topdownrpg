@@ -12,6 +12,8 @@ namespace Core.Gameplay.Interactivity
 {
     public class TradeController : MonoBehaviour
     {
+        private Vendor _currentVendor;
+
         private GameObject[] _playerItemBars;
         private GameObject[] _vendorItemBars;
 
@@ -95,7 +97,8 @@ namespace Core.Gameplay.Interactivity
             }
 
             _instantiatedVendorItems.Clear();
-            var vendorItems = VendorsStorage.GetVendorInventory(vendorID);
+            _currentVendor = VendorsStorage.GetVendor(vendorID);
+            var vendorItems = _currentVendor.Items.ToArray();
             InstantiateVendorInventory(vendorItems);
         }
 
