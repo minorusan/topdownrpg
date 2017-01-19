@@ -43,7 +43,7 @@ namespace Core.Inventory
 			{
 				_items.Add(item);
 
-				ShowDialogueForItem(item);
+				//ShowDialogueForItem(item);
 
 				FanfareMessage.ShowWithText(string.Format("{0} added to inventory.", item.Name));
 				Debug.Log(item.ItemID + " was added to inventory.");

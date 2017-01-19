@@ -19,6 +19,7 @@ namespace Core.Characters.Player
         private SpriteRenderer _renderer;
         private static PlayerBehaviour _player;
         private StressAffector _stress;
+        private DeathController _death;
         private bool _moves;
         #endregion
 
@@ -67,6 +68,7 @@ namespace Core.Characters.Player
         {
             _stress = GetComponent<StressAffector>();
             _animator = GetComponent<Animator>();
+            _death = GetComponent<DeathController>();
         }
 
         private void OnEnable()
@@ -83,6 +85,11 @@ namespace Core.Characters.Player
         {
             var player = FindObjectOfType<PlayerBehaviour>();
             player.transform.position = position;
+        }
+
+        public void Kill()
+        {
+            _death.Kill();
         }
     }
 }
