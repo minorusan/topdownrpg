@@ -51,13 +51,14 @@ namespace Core.Inventory
             }
         }
 
-        public AItemBase(string itemId, string itemName, EItemType itemType, int itemValue = 0)
+        public AItemBase(string itemId, string itemName, EItemType itemType, int itemValue = 10)
 		{
 			Debug.Assert(!string.IsNullOrEmpty(itemId), GetType().ToString() + ":: no item ID was assigned");
 			SetAction(DisplayItem());
 			_name = itemName;
 			_itemType = itemType;
 			_itemID = itemId;
+		    _itemValue = itemValue;
 		}
 
 		public void PerformAction()
