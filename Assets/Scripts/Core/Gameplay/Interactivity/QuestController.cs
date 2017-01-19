@@ -49,7 +49,7 @@ namespace Core.Gameplay.Interactivity
 		{
 			var quest = QuestStorage.GetQuestById (id);
 			_instance._activeQuests.Add (quest);
-			FanfareMessage.ShowWithText (string.Format ("Задание принято:{0}", quest.Description));
+			FanfareMessage.ShowWithText (string.Format ("Quest accepted:{0}", quest.Description));
 			AudioSource.PlayClipAtPoint (_instance.QuestAccepted, Vector3.zero, 1f);
 		}
 
@@ -57,7 +57,7 @@ namespace Core.Gameplay.Interactivity
 		{
 			quest.QuestCompleted -= QuestCompleted;
 			_instance._activeQuests.Remove (quest);
-			FanfareMessage.ShowWithText (string.Format ("Задание завершено:{0}", quest.Description));
+			FanfareMessage.ShowWithText (string.Format ("Quest completed:{0}", quest.Description));
 			AudioSource.PlayClipAtPoint (_instance.QuestAccepted, Vector3.zero, 1f);
 		}
 	}

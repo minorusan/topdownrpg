@@ -92,13 +92,13 @@ namespace Core.Gameplay.Interactivity
 
 			InteractiveAction action = (GameObject obj) =>
 			{
-				var dialogue = DialogueStorage.GetDialogueByID ("dialogue.id.thanks");
+				var dialogue = DialogueStorage.GetDialogueByID ("dialogue.id.littleboyquestdone");
 				PlayerInventory.Instance.RemoveItemFromInventory ("genericitem.id.toybear");
 
 				DialogueDisplayer.ShowDialogue (dialogue);
 			};
 
-			var newQuest = new Quest ("quest.id.getmybear", "Принеси медвежонка солдату", req, action);
+			var newQuest = new Quest ("quest.id.findtoy", "Find something that kid can play with", req, action);
 			_quests.Add (newQuest.ID, newQuest);
 		}
 
