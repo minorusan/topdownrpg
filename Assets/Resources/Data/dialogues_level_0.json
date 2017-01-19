@@ -100,6 +100,63 @@
 			]
 		},
 		{
+			"id": "dialogue.id.scholarend",
+			"statements": [
+				{
+					"speakerName": "Scholar",
+					"sentence": "Aha. So, you got the nails."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Let's see what we can do.."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "*mumbling with concentrated face"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Here. Hope that helps."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "You'd better ask around if someone can teach you how to pick locks."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Takes quite a time if you don't know what you are doing."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Thanks!"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "And kiddo..whatch out there. I heard bad rumors about that place.."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Rumors?"
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Yes. Oh-oh! See that girl at the bonfire? She just came here."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "She's been there. Try asking here."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Okay, thanks again for your help. Hope we'll meet again."
+				},
+				{
+					"speakerName": "Scholar",
+					"sentence": "Who knows..take care kid.."
+				}
+			]
+		},
+		{
 			"id": "dialogue.id.scholar",
 			"statements": [
 				{
@@ -112,7 +169,7 @@
 				},
 				{
 					"speakerName": "Scholar",
-					"sentence": "So, what's all the fuss about?" 
+					"sentence": "So, what's all the fuss about?"
 				},
 				{
 					"speakerName": "Player",
@@ -145,7 +202,7 @@
 				{
 					"speakerName": "Scholar",
 					"sentence": "Should not take long in such a garbige place.."
-				},
+				}
 			]
 		},
 		{
@@ -190,63 +247,214 @@
 				}
 			]
 		},
+		{
+			"id": "dialogue.id.kidbusy",
+			"statements": [
 				{
-					"id": "dialogue.id.kidbusy",
-					"statements": [
-						{
-							"speakerName": "Player",
-							"sentence": "Hey there. What are you doing here?"
-						},
-						{
-							"speakerName": "KidBusy",
-							"sentence": "Shhh! I'm playing hide and seek with my friend."
-						},
-						{
-							"speakerName": "KidBusy",
-							"sentence": "He's there, you see him?"
-						},
-						{
-							"speakerName": "KidBusy",
-							"sentence": "*points south"
-						},
-						{
-							"speakerName": "Player",
-							"sentence": "Hmm..yeh.."
-						},
-						{
-							"speakerName": "KidBusy",
-							"sentence": "Oh! He looks here! Get out until he saw me!"
-						},
-						{
-							"speakerName": "Player",
-							"sentence": "Okay, okay.."
-						}
-					]
+					"speakerName": "Player",
+					"sentence": "Hey there. What are you doing here?"
 				},
 				{
-					"id": "dialogue.id.kidend",
-					"statements": [
-						{
-							"speakerName": "Player",
-							"sentence": "Here you are. Hope you like it."
-						},
-						{
-							"speakerName": "Kid",
-							"sentence": "Oh heall yeah! Just look at him! He is almost like new!"
-						},
-						{
-							"speakerName": "Kid",
-							"sentence": "Thanks! I'll tell my friend, that you are not like others."
-						},
-						{
-							"speakerName": "Player",
-							"sentence": "*smiles"
-						},
-						{
-							"speakerName": "Player",
-							"sentence": "Take care."
-						}
-					]
+					"speakerName": "KidBusy",
+					"sentence": "Shhh! I'm playing hide and seek with my friend."
+				},
+				{
+					"speakerName": "KidBusy",
+					"sentence": "He's there, you see him?"
+				},
+				{
+					"speakerName": "KidBusy",
+					"sentence": "*points south"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Hmm..yeh.."
+				},
+				{
+					"speakerName": "KidBusy",
+					"sentence": "Oh! He looks here! Get out until he saw me!"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Okay, okay.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.kidend",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Here you are. Hope you like it."
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Oh heall yeah! Just look at him! He is almost like new!"
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "Thanks! I'll tell my friend, that you are not like others."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "*smiles"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Take care."
+				}
+			]
+		},
+			{
+			"id": "dialogue.id.lockpickstart",
+			"statements": [
+				{
+					"speakerName": "Picker",
+					"sentence": "..and they got that old padlock. Took me seconds to get in theirs.."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "..oh hello there, lady. Spying on us?"
+				},
+				{
+					"speakerName": "PickerFriend",
+					"sentence": "..just look at here face..bet she does not know what that word means."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "How rude of you! Now you kid, stay away. Got it?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Sure.."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Partnership and unity it is.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.lockpickteach",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Hey there. Would you mind helping me?"
+				},
+				{
+					"speakerName": "PickerTeach",
+					"sentence": "Oh, sure, my pleasure to help such a lady."
+				},
+				{
+					"speakerName": "PickerTeach",
+					"sentence": "So, what can I do for you?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Can you please teach me how to pick locks?"
+				},
+				{
+					"speakerName": "PickerTeach",
+					"sentence": "Well..actually, I do not mind."
+				},
+				{
+					"speakerName": "PickerTeach",
+					"sentence": "But I need something with the lock to show you the tricks."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Ok, I'll try to find something suitable."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "I bet Sara has some junk with her.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.lostgirl",
+			"statements": [
+				{
+					"speakerName": "LostGirl",
+					"sentence": "Aand you want to get to the vault, right?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Well..yes..and how you.."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "And that guy over there told you that I might know some.."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "*thinks with eyes closed."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "..rumors? That's how he put it?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Does she read thoughts?",
+					"isthought":true
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "I do. And now listen closely."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "*sigh"
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "There are cultists there. Fanatics. Stay"
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "Away."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "From."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "THEM!"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Okay, okay.."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "I mean it. You don't even know into what you're getting into.."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "Clearly not worthy price for cuople of beef stakes you can PROBABLY find there.."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Sure..thanks for advice.."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Gosh..What a weirdo.."
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "Hey! I heard it!"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Well I'm okay with that!"
 				}
 			]
 		}
+	]
+}

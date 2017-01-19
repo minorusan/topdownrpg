@@ -82,26 +82,31 @@ namespace Core.Gameplay.Interactivity
 
 		private static void InitQuests ()
 		{
-			ActionRequirement req = (GameObject owner) =>
-			{
-				var containsitem = PlayerInventory.Instance.GetItems ().Count (i => i.ItemID == "genericitem.id.toybear") > 0;
-				return containsitem;
-			};
-
-			InteractiveAction action = (GameObject obj) =>
-			{
-				var dialogue = DialogueStorage.GetDialogueByID ("dialogue.id.kidend");
-				PlayerInventory.Instance.RemoveItemFromInventory ("genericitem.id.toybear");
-
-				DialogueDisplayer.ShowDialogue (dialogue);
-			};
-
 			var gettovault = new Quest ("quest.id.gettovault", "Find your way to vault", null, null);
-            var getbear = new Quest("quest.id.getbear", "Find some toy for a kid", req, action);
-            var getNails = new Quest("quest.id.getnails", "Find some toy for a kid", req, action);
+
+            var getbear = new Quest("quest.id.getbear", "Find some toy for a kid", (GameObject owner) =>
+            {
+                return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.toybear") > 0;
+            },
+            (GameObject obj) =>
+            {
+                PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.toybear");
+                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.kidend"));
+            });
+
+            var getnails = new Quest("quest.id.getnails", "Find nails", (GameObject owner) =>
+            {
+                return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.nails") > 0;
+            },
+            (GameObject obj) =>
+            {
+                PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.nails");
+                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.scholarend"));
+            });
 
             _quests.Add (gettovault.ID, gettovault);
             _quests.Add(getbear.ID, getbear);
+            _quests.Add(getnails.ID, getnails);
         }
 
 		public static Quest GetQuestById (string questID)

@@ -13,6 +13,7 @@ namespace Core.Inventory
 
 		private readonly string _itemID;
 		private readonly string _name;
+        private readonly int _itemValue;
 		private readonly EItemType _itemType;
 		private  Action _itemAction;
 
@@ -42,7 +43,15 @@ namespace Core.Inventory
 			}
 		}
 
-		public AItemBase(string itemId, string itemName, EItemType itemType)
+        public int ItemValue
+        {
+            get
+            {
+                return _itemValue;
+            }
+        }
+
+        public AItemBase(string itemId, string itemName, EItemType itemType, int itemValue = 0)
 		{
 			Debug.Assert(!string.IsNullOrEmpty(itemId), GetType().ToString() + ":: no item ID was assigned");
 			SetAction(DisplayItem());
