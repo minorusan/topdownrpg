@@ -41,6 +41,13 @@ namespace Core.Gameplay.Interactivity
 			}
 		}
 
+        public void ForceQuit()
+        {
+            StopAllCoroutines();
+            Ready = true;
+            _currentSpeaker = null;
+        }
+
 		public void ShowMessage(string message, string GOName, bool thought)
 		{
 			Ready = false;

@@ -12,6 +12,8 @@ namespace Core.Gameplay.Interactivity
 {
     public class TradeController : MonoBehaviour
     {
+        private static TradeController _instance;
+
         private Vendor _currentVendor;
 
         private GameObject[] _playerItemBars;
@@ -44,6 +46,8 @@ namespace Core.Gameplay.Interactivity
 
         private void Awake()
         {
+            _instance = this;
+
             _playerItemBars = new GameObject[PlayerItemsContainer.transform.childCount];
             _vendorItemBars = new GameObject[VendorItemsContainer.transform.childCount];
 
@@ -54,11 +58,6 @@ namespace Core.Gameplay.Interactivity
             }
 
             gameObject.SetActive(false);
-        }
-
-        private void OnDisable()
-        {
-            
         }
 
         public void ShowForVendor(string vendorId)
@@ -219,14 +218,21 @@ namespace Core.Gameplay.Interactivity
             foreach (var playerOfferItem in _playerOfferItems)
             {
                 PlayerInventory.Instance.RemoveItemFromInventory(playerOfferItem.ItemID);
+                _currentVendor.AddItem(playerOfferItem.ItemID);
             }
 
             foreach (var vendorOfferItem in _vendorOfferItems)
             {
                 PlayerInventory.Instance.TryAddItemToInventory(vendorOfferItem);
+                _currentVendor.RemoveItem(vendorOfferItem.ItemID);
             }
 
             gameObject.SetActive(false);
+        }
+
+        public static void ShowTradeForVendor(string vendorId)
+        {
+            _instance.ShowForVendor(vendorId);
         }
     }
 }

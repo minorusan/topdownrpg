@@ -5,7 +5,9 @@ using Core.Inventory;
 using Core.Utilities;
 using Core.Characters.Player;
 using Core.Utilities.UI;
-
+using System;
+using UI;
+using Core.Map;
 
 namespace Core.Gameplay.Interactivity
 {
@@ -30,15 +32,44 @@ namespace Core.Gameplay.Interactivity
 			InitOpenDoorAction();
 			InitHideAction();
 			InitDialogueAction();
+            InitVendorAction();
+            InitContainerAction();
 		}
 
-		private static void InitDialogueAction()
-		{
-			ActionRequirement openActionRequirement = (GameObject owner) =>
-			{
-				return true;
-			};
+        private static void InitVendorAction()
+        {
 
+            InteractiveAction action = (GameObject obj) =>
+            {
+                var trigger = obj.GetComponent<VendorTrigger>();
+
+                var vendor = VendorsStorage.GetVendor(trigger.VendorID);
+                TradeController.ShowTradeForVendor(vendor.Vendorid);
+            };
+
+            var tradeAction = new ActionBase("action.id.trade", (GameObject owner)=> { return true; }, action);
+            _actions.Add("action.id.trade", tradeAction);
+        }
+
+        private static void InitContainerAction()
+        {
+
+            InteractiveAction action = (GameObject obj) =>
+            {
+                ProcessBarController.StartProcessWithCompletion(3f, Resources.Load<Sprite>("Sprites/Actions/action.id.container"), () =>
+                                                                 {
+                                                                     var container = obj.GetComponent<Container>();
+                                                                     ContainerUI.ShowForContainer(container);
+                                                                 }, Color.green);
+                
+            };
+
+            var containerAction = new ActionBase("action.id.container", (GameObject owner) => { return true; }, action);
+            _actions.Add("action.id.container", containerAction);
+        }
+
+        private static void InitDialogueAction()
+		{
 			InteractiveAction action = (GameObject obj) =>
 			{
 				var trigger = obj.GetComponent <DialogTrigger>();
@@ -47,7 +78,7 @@ namespace Core.Gameplay.Interactivity
 				DialogueDisplayer.ShowDialogue(dialogue);
 			};
 
-			var dialogueAction = new ActionBase("action.id.dialogue", openActionRequirement, action);
+			var dialogueAction = new ActionBase("action.id.dialogue", (GameObject owner) => { return true; }, action);
 			_actions.Add("action.id.dialogue", dialogueAction);
 		}
 

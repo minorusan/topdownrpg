@@ -7,9 +7,9 @@ namespace Core.Gameplay.Interactivity
     public class Vendor
     {
         private readonly string _vendorid;
-        private readonly string[] _itemIds;
+        private readonly List<string> _itemIds;
         private readonly EItemType _demandedType;
-        private List<AItemBase> _items;
+        private List<AItemBase> _items = new List<AItemBase>();
 
         public string Vendorid
         {
@@ -30,13 +30,15 @@ namespace Core.Gameplay.Interactivity
         public Vendor(string _vendorid, string[] _itemIds, EItemType _demandedType)
         {
             this._vendorid = _vendorid;
-            this._itemIds = _itemIds;
+            this._itemIds = _itemIds.ToList();
             this._demandedType = _demandedType;
+            InitItems();
         }
 
         public void RemoveItem(string id)
         {
-            _items.Remove(_items.Find(item=>item.ItemID == id));
+            _items.Remove(_items.First(item => item.ItemID == id));
+            _items.ToString();
         }
 
         public void AddItem(string id)
@@ -46,13 +48,12 @@ namespace Core.Gameplay.Interactivity
 
         private void InitItems()
         {
+            _items.Clear();
             foreach (var itemId in _itemIds)
             {
                 _items.Add(ItemsData.GetItemById(itemId));
             }
         }
-
-
     }
 
 
@@ -62,8 +63,7 @@ namespace Core.Gameplay.Interactivity
 
         static VendorsStorage()
         {
-            _vendors.Add(new Vendor("vendor.id.sara", new[]{ "genericitem.id.nails", "genericitem.id.nails", "genericitem.id.nails",
-            "genericitem.id.nails", "genericitem.id.nails", "receiptitem.id.diary", "receiptitem.id.diary", "hungeritem.id.banana",
+            _vendors.Add(new Vendor("vendor.id.sara", new[]{ 
             "hungeritem.id.banana","genericitem.id.chain", "genericitem.id.nippers"}, EItemType.Trap));
         }
 

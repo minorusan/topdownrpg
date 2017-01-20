@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Core.Gameplay.Interactivity;
-
+using System;
 
 namespace Core.Utilities.UI
 {
@@ -13,6 +13,8 @@ namespace Core.Utilities.UI
             Idle,
             Showing
         }
+
+        public static event Action<string> StartedDialogue;
 
         private static DialogueDisplayer _current;
         private Dialogue _dialogue;
@@ -55,6 +57,16 @@ namespace Core.Utilities.UI
             }
         }
 
+        public static void ForceCancel()
+        {
+            _current.Bubble.ForceQuit();
+            _current._currentMessage = 0;
+            _current._dialogue = null;
+            _current._state = EDialogueDisplayerState.Idle;
+            const string forceenddialogues = "dialogue.id.forceend{0}";
+            ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
+        }
+
         public static void ShowDialogue(Dialogue dialogue)
         {
             if (dialogue != _current._dialogue && _current._state != EDialogueDisplayerState.Showing)
@@ -62,6 +74,7 @@ namespace Core.Utilities.UI
                 _current._currentMessage = 0;
                 _current._dialogue = dialogue;
                 _current._state = EDialogueDisplayerState.Showing;
+                StartedDialogue(dialogue.Id);
             }
         }
     }

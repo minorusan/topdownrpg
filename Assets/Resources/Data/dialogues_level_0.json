@@ -336,6 +336,47 @@
 			]
 		},
 		{
+			"id": "dialogue.id.genny",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Hey Gen"
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "Yeah, sup?"
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "Do you have something with lock on it?"
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "Hmm..let me see.."
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "*looks for something in her bag"
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "Yeah, I got a pair of old handcuffs. So?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Soo..would you mind giving them to me? Pleeease."
+				},
+				{
+					"speakerName": "GennyTalk",
+					"sentence": "Sure. Give me something for them and we'll have a deal."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Alrighty..take a look."
+				}
+			]
+		},
+		{
 			"id": "dialogue.id.lockpickteach",
 			"statements": [
 				{
@@ -343,11 +384,11 @@
 					"sentence": "Hey there. Would you mind helping me?"
 				},
 				{
-					"speakerName": "PickerTeach",
+					"speakerName": "PickerTeacher",
 					"sentence": "Oh, sure, my pleasure to help such a lady."
 				},
 				{
-					"speakerName": "PickerTeach",
+					"speakerName": "PickerTeacher",
 					"sentence": "So, what can I do for you?"
 				},
 				{
@@ -355,11 +396,11 @@
 					"sentence": "Can you please teach me how to pick locks?"
 				},
 				{
-					"speakerName": "PickerTeach",
+					"speakerName": "PickerTeacher",
 					"sentence": "Well..actually, I do not mind."
 				},
 				{
-					"speakerName": "PickerTeach",
+					"speakerName": "PickerTeacher",
 					"sentence": "But I need something with the lock to show you the tricks."
 				},
 				{
@@ -369,7 +410,7 @@
 				{
 					"speakerName": "Player",
 					"isthought":true,
-					"sentence": "I bet Sara has some junk with her.."
+					"sentence": "I bet Genny has some junk with her.."
 				}
 			]
 		},
@@ -453,6 +494,49 @@
 				{
 					"speakerName": "Player",
 					"sentence": "Well I'm okay with that!"
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.forceend1",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Gonna come back to it later.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.forceend2",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Sorry, I'm in a rush!"
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.forceend3",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Maybe I shouldn't just leave like that?"
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.forceend0",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "I'm sorry but I got to go!"
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Booooring.."
 				}
 			]
 		}

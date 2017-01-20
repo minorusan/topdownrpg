@@ -30,6 +30,17 @@ namespace Core.Gameplay.Interactivity
                 QuestController.StartQuest("quest.id.getnails");
             });
 
+            _actions.Add("dialogue.id.lockpickteach", () =>
+            {
+                SwapNPCPosition("GennyStart", "GennyTalk");
+            });
+
+            _actions.Add("dialogue.id.genny", () =>
+            {
+                SwapNPCPosition("GennyTalk", "GennyTrade");
+                TradeController.ShowTradeForVendor("vendor.id.sara");
+            });
+
             _actions.Add("dialogue.id.kidend", () =>
             {
                 SwapNPCPosition("ScholarMad", "Scholar");
@@ -40,7 +51,7 @@ namespace Core.Gameplay.Interactivity
                 var girlposition = GameObject.Find("GirlPosition");
                 var girl = GameObject.Find("LostGirl");
 
-                SwapNPCPosition("Picker", "PickerTeach");
+                SwapNPCPosition("Picker", "PickerTeacher");
 
                 girl.transform.position = girlposition.transform.position;
             });
@@ -63,7 +74,7 @@ namespace Core.Gameplay.Interactivity
             var npc1 = GameObject.Find(npc);
             var npc2 = GameObject.Find(npcToSwap);
             npc2.transform.position = npc1.transform.position;
-            npc2.SetActive(false);
+            npc1.SetActive(false);
         }
     }
 }

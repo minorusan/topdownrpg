@@ -59,7 +59,7 @@ namespace Core.Gameplay.Interactivity
 
 		public bool IsRequirementSatisfied (GameObject owner)
 		{
-			return _requirement (owner);
+			return _requirement (owner) && QuestController.TrackedQuests.Contains(this);
 		}
 
 		public Quest (string questId, string description, ActionRequirement requirement, InteractiveAction completion)

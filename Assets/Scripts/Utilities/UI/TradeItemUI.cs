@@ -23,7 +23,6 @@ namespace UI
             }
         }
 
-        // Use this for initialization
         private void OnEnable()
         {
             _image = GetComponent<Image>();

@@ -9,6 +9,7 @@ namespace Core.Gameplay.Interactivity
 	public class DialogTrigger : MonoBehaviour
 	{
 		private ActionBase _dialogueAction;
+        private bool _showsDialogue;
 
 		public string DialogueID;
 		public bool AutoStart = false;
@@ -16,9 +17,27 @@ namespace Core.Gameplay.Interactivity
 		void Start()
 		{
 			_dialogueAction = ActionsInitialiser.GetActionByID("action.id.dialogue");
+            DialogueDisplayer.StartedDialogue += OnDialogueStarted;
 		}
 
-		private void OnTriggerEnter2D(Collider2D trigger)
+        private void OnDialogueStarted(string obj)
+        {
+            if (obj==DialogueID)
+            {
+                _showsDialogue = true;
+            }
+        }
+
+        private void Update()
+        {
+            if (_showsDialogue && Vector3.Distance(PlayerBehaviour.CurrentPlayer.transform.position, transform.position) > 10)
+            {
+                _showsDialogue = false;
+                DialogueDisplayer.ForceCancel();
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D trigger)
 		{
 			if(AutoStart)
 			{

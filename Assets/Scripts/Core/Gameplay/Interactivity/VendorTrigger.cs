@@ -1,25 +1,25 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace UI
+using Core.Characters.Player;
+
+namespace Core.Gameplay.Interactivity
 {
     [RequireComponent(typeof(BoxCollider2D))]
     public class VendorTrigger : MonoBehaviour
     {
+        private ActionBase _vendorAction;
+        public string VendorID;
 
-        void Start()
+        private void Start()
         {
-           
+            _vendorAction = ActionsInitialiser.GetActionByID("action.id.trade");
         }
 
         private void OnTriggerEnter2D(Collider2D trigger)
         {
-            
-
             if (trigger.tag == PlayerBehaviour.kPlayerTag && trigger.isTrigger)
             {
-                ActionPerformer.Instance.SetAction(_dialogueAction, gameObject);
+                ActionPerformer.Instance.SetAction(_vendorAction, gameObject);
             }
         }
 

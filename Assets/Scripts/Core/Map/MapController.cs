@@ -232,6 +232,18 @@ namespace Core.Map
 			return _neighbours;
 		}
 
+        public static MapController GetMap(Vector3 postion)
+        {
+            foreach (var item in _maps)
+            {
+                if (item.GetNodeByPosition(postion) != null)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
 		public static MapController[] GetMapsOnScene ()
 		{
 			_maps = FindObjectsOfType<MapController> ();
