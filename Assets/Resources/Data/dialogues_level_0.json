@@ -248,6 +248,36 @@
 			]
 		},
 		{
+			"id": "dialogue.id.scholarcounts",
+			"statements": [
+				{
+					"speakerName": "ScholarCounts",
+					"sentence": "99.."
+				},
+				{
+					"speakerName": "ScholarCounts",
+					"sentence": "98.."
+				},
+				{
+					"speakerName": "ScholarCounts",
+					"sentence": "Wha..what do you want? Can't you see I'm busy?"
+				},
+				{
+					"speakerName": "ScholarCounts",
+					"sentence": "Get out!"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Ehm..sure.."
+				},
+				{
+					"speakerName": "Player",
+					"isthought": true,
+					"sentence": "Weeeirdoo.."
+				}
+			]
+		},
+		{
 			"id": "dialogue.id.kidbusy",
 			"statements": [
 				{

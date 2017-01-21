@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class ContainerItem : MonoBehaviour, IPointerClickHandler, IPointerDownHandler
+    public class ContainerItem : MonoBehaviour, IPointerClickHandler
     {
         public event Action<AItemBase, ContainerItem> OnItemSelected;
         private AItemBase _item;
@@ -30,11 +30,6 @@ namespace UI
         public void OnPointerClick(PointerEventData eventData)
         {
             OnItemSelected(_item, this);
-        }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            gameObject.SetActive(false);
         }
     }
 

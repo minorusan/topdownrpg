@@ -20,7 +20,7 @@ namespace Core.Gameplay.Interactivity
 				return _action;
 			}
 		}
-		// Use this for initialization
+
 		void Start()
 		{
 			_action = ActionsInitialiser.GetActionByID(kHideAction);
@@ -31,7 +31,6 @@ namespace Core.Gameplay.Interactivity
 		{
 			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				Tutorial.ShowForIDIfNeeded(ETutorialId.CanHide);
 				ActionPerformer.Instance.SetAction(_action, gameObject);
 			}
 		}

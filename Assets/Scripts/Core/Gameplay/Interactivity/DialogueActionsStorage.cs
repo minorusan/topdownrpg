@@ -25,6 +25,11 @@ namespace Core.Gameplay.Interactivity
                 QuestController.StartQuest("quest.id.getbear");
             });
 
+            _actions.Add("dialogue.id.kidbusy", () =>
+            {
+                SwapNPCPosition("ScholarCounts", "ScholarMad");
+            });
+
             _actions.Add("dialogue.id.scholar", () =>
             {
                 QuestController.StartQuest("quest.id.getnails");

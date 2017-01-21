@@ -48,7 +48,7 @@ namespace UI
 
         private void Update()
         {
-            if (Vector3.Distance(PlayerBehaviour.CurrentPlayer.transform.position, transform.position) > 10)
+            if (Vector3.Distance(PlayerBehaviour.CurrentPlayer.transform.position, transform.position) > 5)
             {
                 gameObject.SetActive(false);
             }
@@ -61,6 +61,10 @@ namespace UI
             templist.Remove(arg1.ItemID);
             _current.Items = templist.ToArray();
             Destroy(arg2.gameObject);
+            if (_current.Items.Length <= 0)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 
