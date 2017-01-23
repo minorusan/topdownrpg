@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Core.Characters.Player;
+﻿using Core.Characters.Player;
 using UnityEngine;
 
 namespace Core.Gameplay.Interactivity
@@ -9,7 +7,7 @@ namespace Core.Gameplay.Interactivity
     {
         private static RopeDragController _instance;
         private Rigidbody2D _lastJoint;
-        private GameObject _current;
+        private DraggableObject _current;
         private HingeJoint2D _firstJoint2D;
 
         private void Awake()
@@ -22,23 +20,25 @@ namespace Core.Gameplay.Interactivity
 
         public static void Bind(GameObject obj)
         {
-            _instance._current = obj;
-            obj.GetComponent<DraggableObject>().State = EDragState.Dragging;
+            var draggableObject = obj.GetComponent<DraggableObject>();
+            _instance._current = draggableObject;
+            draggableObject.State = EDragState.Dragging;
+
             PlayerBehaviour.CurrentPlayer.GetComponent<Rigidbody2D>().isKinematic = true;
             _instance.transform.position = PlayerBehaviour.CurrentPlayer.transform.position;
             _instance.gameObject.SetActive(true);
             _instance._firstJoint2D.connectedAnchor = Vector2.zero;
-            
-            obj.GetComponent<HingeJoint2D>().connectedBody = _instance._lastJoint;
-            obj.GetComponent<HingeJoint2D>().connectedAnchor = Vector2.zero;
-          _instance.Invoke("UpdateBodies", 0.1f);
+
+            draggableObject.Joint.connectedBody = _instance._lastJoint;
+            draggableObject.Joint.connectedAnchor = Vector2.zero;
+          _instance.Invoke("UpdateBodies", 1f);
             
         }
 
         private void UpdateBodies()
         {
             PlayerBehaviour.CurrentPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
-            _current.GetComponent<Rigidbody2D>().isKinematic = false;
+            _current.SelfRigidbody2D.isKinematic = false;
         }
 
         public static void Unbind(GameObject obj)

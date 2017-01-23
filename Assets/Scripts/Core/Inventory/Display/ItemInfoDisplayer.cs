@@ -7,6 +7,7 @@ using Core.Inventory;
 using System.Linq;
 using Core.Utilities;
 using Core.Characters.Player;
+using UnityEngine.Events;
 
 
 namespace Utils.UI
@@ -17,15 +18,16 @@ namespace Utils.UI
 
 		private const string kItemDisplaySpritesPath = "Sprites/Items/Display/";
 		private Image _displayImage;
-
+	    private Image _actionButtonImage;
 		private AItemBase _currentItem;
 		private Text _descriptionText;
 
 		#endregion
 
-		public Button CreateButton;
-		public Button DeleteButton;
-		public Button SetATrapButton;
+	    public Sprite[] ButtonImages;
+	    public Button ActionButton;
+	    public Button DeleteButton;
+
 		public Text ItemName;
 
 		#region Monobehaviour
@@ -33,15 +35,14 @@ namespace Utils.UI
 		public void Start ()
 		{
 			_displayImage = GetComponentInChildren <Image> ();
-			CreateButton = GetComponentInChildren <Button> ();
 			_descriptionText = GetComponentInChildren <Text> ();
 			_descriptionText.gameObject.SetActive (false);
 
 			ItemName.gameObject.SetActive (false);
-			CreateButton.gameObject.SetActive (false);
+			ActionButton.gameObject.SetActive (false);
 			DeleteButton.gameObject.SetActive (false);
-			SetATrapButton.gameObject.SetActive (false);
 
+		    _actionButtonImage = ActionButton.GetComponent<Image>();
 			_displayImage.gameObject.SetActive (false);
 		}
 
@@ -79,26 +80,28 @@ namespace Utils.UI
 			case EItemType.Receipt:
 				{
 					var receipt = ItemsData.GetReceiptById (itemId);
-					CreateButton.gameObject.SetActive (true);
-					HighlightItems (receipt);
+				    _actionButtonImage.sprite = ButtonImages[0];
+				    ActionButton.onClick.AddListener(delegate { CraftItem(); });
+                        HighlightItems (receipt);
 					for (int i = 0; i < receipt.RequiredItems.Length; i++) {
 						if (Inventrory.GetInventoryItems ().Any (item => item.ItemID == receipt.RequiredItems [i])) {
 							requiredItemsCount++;
 						}
 					}
 
-					CreateButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
+					ActionButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
 					break;
 				}
 			case EItemType.Trap:
 				{
-					SetATrapButton.gameObject.SetActive (true);
-					break;
+                        _actionButtonImage.sprite = ButtonImages[1];
+                        ActionButton.onClick.AddListener(delegate { SetATrap(); });
+                        break;
 				}
 
 			default:
 				{
-					CreateButton.gameObject.SetActive (false);
+					ActionButton.gameObject.SetActive (false);
 					break;
 				}
 			}
@@ -112,8 +115,9 @@ namespace Utils.UI
 			BeginSettingTrapWithCallback ();
 			_displayImage.gameObject.SetActive (false);
 			_descriptionText.gameObject.SetActive (false);
+
+			ActionButton.gameObject.SetActive (false);
 			DeleteButton.gameObject.SetActive (false);
-			SetATrapButton.gameObject.SetActive (false);
 		}
 
 		public void CraftItem ()
@@ -124,7 +128,7 @@ namespace Utils.UI
 			}
 
 			_displayImage.gameObject.SetActive (false);
-			CreateButton.gameObject.SetActive (false);
+			ActionButton.gameObject.SetActive (false);
 			DeleteButton.gameObject.SetActive (false);
 			_descriptionText.gameObject.SetActive (false);
 			BeginCraftingWithCallback ();
@@ -143,7 +147,6 @@ namespace Utils.UI
 
 		private void BeginSettingTrapWithCallback ()
 		{
-			
 			var trap = ItemsData.GetTrapById (_currentItem.ItemID);
 			var sprite = InventoryImagesLoader.GetImageForItem (trap.EItemType, trap.ItemID);
 			ProcessBarController.StartProcessWithCompletion (trap.RequiredTime, sprite, () => {

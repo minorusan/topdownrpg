@@ -62,8 +62,10 @@ namespace Core.Utilities.UI
             _current.Bubble.ForceQuit();
             _current._currentMessage = 0;
             _current._dialogue = null;
+            _current.Bubble.StopAllCoroutines();
             _current._state = EDialogueDisplayerState.Idle;
             const string forceenddialogues = "dialogue.id.forceend{0}";
+
             ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
         }
 

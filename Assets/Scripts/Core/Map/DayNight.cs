@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Core.Map
@@ -28,7 +26,6 @@ namespace Core.Map
             _renderers = FindObjectsOfType<SpriteRenderer>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             switch (State)
@@ -57,7 +54,7 @@ namespace Core.Map
 
             for (int i = 0; i < _renderers.Length; i++)
             {
-                var value = Mathf.Clamp(_time, 0.3f, 1f);
+                var value = Mathf.Clamp(_time, 0.5f, 1f);
                 _renderers[i].color = new Color(value, value, value);
             }
 
