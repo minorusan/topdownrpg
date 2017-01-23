@@ -15,7 +15,7 @@ namespace Core.Input
             _player = GetComponent<PlayerBehaviour>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var cnInputHorizontal = CnInputManager.GetAxis("Horizontal");
             var cnInputVertical = CnInputManager.GetAxis("Vertical");

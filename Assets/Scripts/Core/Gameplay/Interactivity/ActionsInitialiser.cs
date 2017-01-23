@@ -8,6 +8,7 @@ using Core.Utilities.UI;
 using System;
 using UI;
 using Core.Map;
+using Utils;
 
 namespace Core.Gameplay.Interactivity
 {
@@ -34,7 +35,34 @@ namespace Core.Gameplay.Interactivity
 			InitDialogueAction();
             InitVendorAction();
             InitContainerAction();
+            InitDragAction();
 		}
+
+	    private static void InitDragAction()
+	    {
+          
+
+           
+            var undrag = new ActionBase("action.id.undrag", (GameObject obj) => { return true; },
+                (GameObject obj) => { RopeDragController.Unbind(obj); });
+
+            ActionRequirement openActionRequirement = (GameObject owner) =>
+            {
+                return PlayerInventory.Instance.GetItems().Any(i => i.ItemID == "genericitem.id.rope");
+            };
+            InteractiveAction action = (GameObject obj) =>
+            {
+                ProcessBarController.StartProcessWithCompletion(3f * PlayerQuirks.GetSkill(EPlayerSkills.Hiding),undrag.ActionImage , () =>
+                {
+
+                   RopeDragController.Bind(obj);
+                }, Color.yellow);
+            };
+
+            var drag = new ActionBase("action.id.drag", openActionRequirement, action);
+            _actions.Add(drag.ActionID, drag);
+            _actions.Add(undrag.ActionID, undrag);
+        }
 
         private static void InitVendorAction()
         {
@@ -56,7 +84,8 @@ namespace Core.Gameplay.Interactivity
 
             InteractiveAction action = (GameObject obj) =>
             {
-                ProcessBarController.StartProcessWithCompletion(3f, Resources.Load<Sprite>("Sprites/Actions/action.id.container"), () =>
+                ProcessBarController.StartProcessWithCompletion(3f * PlayerQuirks.GetSkill(EPlayerSkills.Scavanging),
+                    Resources.Load<Sprite>("Sprites/Actions/action.id.container"), () =>
                                                                  {
                                                                      var container = obj.GetComponent<Container>();
                                                                      ContainerUI.ShowForContainer(container);
@@ -86,15 +115,16 @@ namespace Core.Gameplay.Interactivity
 		{
 			ActionRequirement openActionRequirement = (GameObject owner) =>
 			{
-				return !PlayerQuirks.Attacked;
+				return !PlayerQuirks.Attacked && PlayerQuirks.GetSkill(EPlayerSkills.Hiding) > 0;
 			};
 
 			InteractiveAction action = (GameObject obj) =>
 			{
 				var doorway = obj.GetComponent <Hideout>();
 
-				ProcessBarController.StartProcessWithCompletion(1f, doorway.Action.ActionImage, () =>
+				ProcessBarController.StartProcessWithCompletion(3f * PlayerQuirks.GetSkill(EPlayerSkills.Hiding), doorway.Action.ActionImage, () =>
 				{
+                    
 					PlayerBehaviour.CurrentPlayer.Renderer.enabled = false;
 					PlayerQuirks.Hidden = true;
 				}, Color.grey);

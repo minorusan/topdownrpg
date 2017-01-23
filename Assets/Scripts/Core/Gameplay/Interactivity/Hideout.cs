@@ -24,7 +24,6 @@ namespace Core.Gameplay.Interactivity
 		void Start()
 		{
 			_action = ActionsInitialiser.GetActionByID(kHideAction);
-
 		}
 
 		private void OnTriggerEnter2D(Collider2D trigger)

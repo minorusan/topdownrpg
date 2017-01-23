@@ -17,6 +17,7 @@ namespace Core.Gameplay.Interactivity
         {
             _actions.Add("dialogue.id.childgroup_one", () =>
             {
+                GameObject.Find("ChildrenPolilogue").GetComponent<DialogTrigger>().AutoStart = false;
                 QuestController.StartQuest("quest.id.gettovault");
             });
 

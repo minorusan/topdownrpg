@@ -20,7 +20,7 @@ namespace Utils
             _player = FindObjectOfType<PlayerBehaviour>();
         }
         
-        private void Update()
+        private void FixedUpdate()
         {
             _destination = new Vector3(_player.transform.position.x,
                                         _player.transform.position.y,
