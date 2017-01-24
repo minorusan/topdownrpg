@@ -161,7 +161,6 @@
 				{
 					"speakerName": "Scholar",
 					"sentence": "She's been there. Try asking her."
-					"sentence": "She's been there. Try asking her."
 				},
 				{
 					"speakerName": "Player",
@@ -332,7 +331,7 @@
 			"statements": [
 				{
 					"speakerName": "Player",
-					"sentence": "Here you are. Hope you like it."
+					"sentence": "Here you are. Do you like it?"
 				},
 				{
 					"speakerName": "Kid",
@@ -340,7 +339,7 @@
 				},
 				{
 					"speakerName": "Kid",
-					"sentence": "Thanks! I'll tell my friend, that you are not like others."
+					"sentence": "Thanks! I'll tell my friend to talk to you."
 				},
 				{
 					"speakerName": "Player",
@@ -379,6 +378,49 @@
 					"speakerName": "Player",
 					"isthought":true,
 					"sentence": "Partnership and unity it is.."
+				}
+			]
+		},
+		{
+			"id": "dialogue.id.pickerdone",
+			"statements": [
+				{
+					"speakerName": "Picker",
+					"sentence": "..and, here is my favorite student! Bonjour!"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "*blushes"
+				},
+				{
+					"speakerName": "PickerFriend",
+					"sentence": "She is already a member of..?"
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "No, no, don't think she might fit yet in our humble family."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "Hey, sweety. If you'll do well in picking locks I bet you'll find some good friends."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "Understood?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Well..yeah, I suppose.."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Awesome. Hang out with gang of thiefs."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "That's what my mama always dreamed for me..."
 				}
 			]
 		},
@@ -429,36 +471,39 @@
 			"statements": [
 				{
 					"speakerName": "Player",
-					"sentence": "Hey there. Would you mind helping me?"
+					"sentence": "Here are some handcuffs. Does that fit?"
 				},
 				{
-					"speakerName": "PickerTeacher",
-					"sentence": "Oh, sure, my pleasure to help such a lady."
+					"speakerName": "Picker",
+					"sentence": "Hmm..yeah, that will do."
 				},
 				{
-					"speakerName": "PickerTeacher",
-					"sentence": "So, what can I do for you?"
+					"speakerName": "Picker",
+					"sentence": "So, insert tension wrench into the bottom of key hole and apply slight pressure"
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "Then, stick pick in the top of the lock"
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "Now, applying slight torque to your wrench.."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "And, while doing that, scrub your pick back and forth in the key hole."
+				},
+				{
+					"speakerName": "Picker",
+					"sentence": "See, it's pretty easy. Repeat unitill all pins set."
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "Can you please teach me how to pick locks?"
+					"sentence": "Thanks! I'go and practice now. Take care."
 				},
 				{
-					"speakerName": "PickerTeacher",
-					"sentence": "Well..actually, I do not mind."
-				},
-				{
-					"speakerName": "PickerTeacher",
-					"sentence": "But I need something with the lock to show you the tricks."
-				},
-				{
-					"speakerName": "Player",
-					"sentence": "Ok, I'll try to find something suitable."
-				},
-				{
-					"speakerName": "Player",
-					"isthought":true,
-					"sentence": "I bet Genny has some junk with her.."
+					"speakerName": "Picker",
+					"sentence": "That's a joy to help such a lady. See ya."
 				}
 			]
 		},

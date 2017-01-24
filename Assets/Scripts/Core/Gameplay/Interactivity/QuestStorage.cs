@@ -104,7 +104,7 @@ namespace Core.Gameplay.Interactivity
                 DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.scholarend"));
             });
 
-            var getlockpick = new Quest("quest.id.getlock", "Get something with lock", (GameObject owner) =>
+            var getlock = new Quest("quest.id.getlock", "Get something with lock", (GameObject owner) =>
             {
                 return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.handcuffs") > 0;
             },
@@ -115,6 +115,7 @@ namespace Core.Gameplay.Interactivity
           });
 
             _quests.Add (gettovault.ID, gettovault);
+            _quests.Add(getlock.ID, getlock);
             _quests.Add(getbear.ID, getbear);
             _quests.Add(getnails.ID, getnails);
         }

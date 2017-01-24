@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Characters.Player;
+using Core.Inventory;
 using UnityEngine;
 
 namespace Core.Gameplay.Interactivity
@@ -15,10 +17,17 @@ namespace Core.Gameplay.Interactivity
 
         private static void InitDialogueActions()
         {
+            
             _actions.Add("dialogue.id.childgroup_one", () =>
             {
                 GameObject.Find("ChildrenPolilogue").GetComponent<DialogTrigger>().AutoStart = false;
                 QuestController.StartQuest("quest.id.gettovault");
+            });
+
+            _actions.Add("dialogue.id.genny", () =>
+            {
+                SwapNPCPosition("GennyTalk", "GennyTrade");
+                TradeController.ShowTradeForVendor("vendor.id.sara");
             });
 
             _actions.Add("dialogue.id.kidstart", () =>
@@ -31,6 +40,11 @@ namespace Core.Gameplay.Interactivity
                 SwapNPCPosition("ScholarCounts", "ScholarMad");
             });
 
+            _actions.Add("dialogue.id.kidend", () =>
+            {
+                SwapNPCPosition("ScholarMad", "Scholar");
+            });
+
             _actions.Add("dialogue.id.scholar", () =>
             {
                 QuestController.StartQuest("quest.id.getnails");
@@ -41,19 +55,9 @@ namespace Core.Gameplay.Interactivity
                 SwapNPCPosition("GennyStart", "GennyTalk");
             });
 
-            _actions.Add("dialogue.id.genny", () =>
-            {
-                SwapNPCPosition("GennyTalk", "GennyTrade");
-                TradeController.ShowTradeForVendor("vendor.id.sara");
-            });
-
-            _actions.Add("dialogue.id.kidend", () =>
-            {
-                SwapNPCPosition("ScholarMad", "Scholar");
-            });
-
             _actions.Add("dialogue.id.scholarend", () =>
             {
+                PlayerInventory.Instance.TryAddItemToInventory(ItemsData.GetItemById("genericitem.id.lockpick"));
                 var girlposition = GameObject.Find("GirlPosition");
                 var girl = GameObject.Find("LostGirl");
 
@@ -65,6 +69,12 @@ namespace Core.Gameplay.Interactivity
             _actions.Add("dialogue.id.madscholar", () =>
             {
                 SwapNPCPosition("KidBusy", "Kid");
+            });
+
+            _actions.Add("dialogue.id.lockpicktought", () =>
+            {
+                PlayerQuirks.ModifySkill(EPlayerSkills.Lockpicking, 20);
+                SwapNPCPosition("PickerTeacher", "PickerDone");
             });
         }
 
