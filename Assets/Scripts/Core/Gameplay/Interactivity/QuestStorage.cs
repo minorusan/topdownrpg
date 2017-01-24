@@ -104,6 +104,16 @@ namespace Core.Gameplay.Interactivity
                 DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.scholarend"));
             });
 
+            var getlockpick = new Quest("quest.id.getlock", "Get something with lock", (GameObject owner) =>
+            {
+                return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.handcuffs") > 0;
+            },
+          (GameObject obj) =>
+          {
+              PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.handcuffs");
+              DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.lockpicktought"));
+          });
+
             _quests.Add (gettovault.ID, gettovault);
             _quests.Add(getbear.ID, getbear);
             _quests.Add(getnails.ID, getnails);

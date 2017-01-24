@@ -5,55 +5,71 @@
 			"statements": [
 				{
 					"speakerName": "Joe",
-					"sentence": "Gosh, I'm so hungry"
+					"sentence": "..and I did not see her since that moment."
 				},
 				{
 					"speakerName": "Joe",
-					"sentence": "Something to eat? Anyone?"
+					"sentence": "You think those junkies did something to her?"
 				},
 				{
 					"speakerName": "Tim",
-					"sentence": "Nope"
+					"sentence": "Did not think they're aggressive at anykind.."
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "David had something, but he wont share."
+					"sentence": "I heard that guy in glasses talking to his kid."
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "'cause he is a.."
+					"sentence": "He told him to stay out from that vault."
 				},
 				{
 					"speakerName": "Tim",
-					"sentence": "Jerk! Haha."
+					"sentence": "In any case, this is a supply vault. It cannot be empty"
 				},
 				{
 					"speakerName": "Joe",
-					"sentence": "Does not help my hunger thou. Hey, maybe you gat something?"
+					"sentence": "Yeah. But is it reasonable to go there? "
+				},
+				{
+					"speakerName": "Joe",
+					"sentence": "You saw that girl..poor thing..doubt she's happy about..well..anything"
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "Me?"
+					"sentence": "I think I might get a shot."
 				},
 				{
 					"speakerName": "Tim",
-					"sentence": "Yup. Where've you been lately? Maybe you found something?"
+					"sentence": "Whoa. You serious?"
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "Ah, she wouldn't share. She's much like David.."
+					"sentence": "Hey! That's her decision. Listen, passage there is blocked"
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "No, I'm not!"
+					"sentence": "Any options 'bout that?"
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "Yes you do, yes you do, yes you do ahahah.."
+					"sentence": "Hmm..Lock looks realy solid. You wont brake it.."
+				},
+				{
+					"speakerName": "Tim",
+					"sentence": "That guy with the kid! Maybe he knows some workarounds."
+				},
+				{
+					"speakerName": "Genny",
+					"sentence": "Sure..He doesn't look like a thug, but I bet he can be useful"
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "Imbicils..",
+					"sentence": "Okay, I'm gonna check him out"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "So guy with the kiddo..okay",
 					"isthought": true
 				}
 			]
@@ -144,7 +160,8 @@
 				},
 				{
 					"speakerName": "Scholar",
-					"sentence": "She's been there. Try asking here."
+					"sentence": "She's been there. Try asking her."
+					"sentence": "She's been there. Try asking her."
 				},
 				{
 					"speakerName": "Player",
@@ -230,7 +247,7 @@
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "I want to be friends with him. Can you help me with that."
+					"sentence": "I want to be friends with him. Can you help me with that?"
 				},
 				{
 					"speakerName": "Kid",
@@ -377,7 +394,7 @@
 					"sentence": "Yeah, sup?"
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Player",
 					"sentence": "Do you have something with lock on it?"
 				},
 				{
@@ -403,6 +420,45 @@
 				{
 					"speakerName": "Player",
 					"sentence": "Alrighty..take a look."
+				}
+			]
+		},
+		
+		{
+			"id": "dialogue.id.lockpicktought",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"sentence": "Hey there. Would you mind helping me?"
+				},
+				{
+					"speakerName": "PickerTeacher",
+					"sentence": "Oh, sure, my pleasure to help such a lady."
+				},
+				{
+					"speakerName": "PickerTeacher",
+					"sentence": "So, what can I do for you?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Can you please teach me how to pick locks?"
+				},
+				{
+					"speakerName": "PickerTeacher",
+					"sentence": "Well..actually, I do not mind."
+				},
+				{
+					"speakerName": "PickerTeacher",
+					"sentence": "But I need something with the lock to show you the tricks."
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Ok, I'll try to find something suitable."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "I bet Genny has some junk with her.."
 				}
 			]
 		},

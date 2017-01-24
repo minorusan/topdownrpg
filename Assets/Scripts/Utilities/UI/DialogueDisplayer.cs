@@ -59,14 +59,17 @@ namespace Core.Utilities.UI
 
         public static void ForceCancel()
         {
-            _current.Bubble.ForceQuit();
-            _current._currentMessage = 0;
-            _current._dialogue = null;
-            _current.Bubble.StopAllCoroutines();
-            _current._state = EDialogueDisplayerState.Idle;
-            const string forceenddialogues = "dialogue.id.forceend{0}";
+            if (_current._dialogue != null)
+            {
+                _current.Bubble.ForceQuit();
+                _current._currentMessage = 0;
+                _current._dialogue = null;
+                _current.Bubble.StopAllCoroutines();
+                _current._state = EDialogueDisplayerState.Idle;
+                const string forceenddialogues = "dialogue.id.forceend{0}";
 
-            ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
+                ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
+            }
         }
 
         public static void ShowDialogue(Dialogue dialogue)
