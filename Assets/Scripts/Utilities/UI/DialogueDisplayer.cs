@@ -45,7 +45,7 @@ namespace Core.Utilities.UI
 
         private void EndDialog()
         {
-            if ( _currentMessage >= _dialogue.Statements.Length)
+            if ( _dialogue != null && _currentMessage >= _dialogue.Statements.Length)
             {
                 if (_dialogue.Completion != null)
                 {
@@ -61,18 +61,24 @@ namespace Core.Utilities.UI
         {
             if (_current._dialogue != null)
             {
-                _current.Bubble.ForceQuit();
-                _current._currentMessage = 0;
-                _current._dialogue = null;
-                _current.Bubble.StopAllCoroutines();
-                _current._state = EDialogueDisplayerState.Idle;
+                QuitDialog();
                 const string forceenddialogues = "dialogue.id.forceend{0}";
 
-                ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
+               // ShowDialogue(DialogueStorage.GetDialogueByID(string.Format(forceenddialogues, UnityEngine.Random.Range(0, 3))));
             }
         }
 
-        public static void ShowDialogue(Dialogue dialogue)
+        private static void QuitDialog()
+        {
+            _current.Bubble.ForceQuit();
+            _current._currentMessage = 0;
+            _current._dialogue = null;
+            _current.Bubble.StopAllCoroutines();
+            _current.Bubble.gameObject.SetActive(false);
+            _current._state = EDialogueDisplayerState.Idle;
+        }
+
+        public static void ShowDialogue(Dialogue dialogue, bool forced = false)
         {
             if (dialogue != _current._dialogue && _current._state != EDialogueDisplayerState.Showing)
             {

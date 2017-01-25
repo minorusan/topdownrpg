@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 namespace Core.Gameplay.Interactivity
 {
-	[RequireComponent (typeof(DialogTrigger))]
 	public class QuestNPC : MonoBehaviour
 	{
 		private Quest _quest;
@@ -25,7 +24,12 @@ namespace Core.Gameplay.Interactivity
 				var satisfied = _quest.IsRequirementSatisfied (gameObject);
 				if (!_quest.Completed && satisfied)
 				{
-					GetComponent<DialogTrigger> ().enabled = false;
+                    var dialog = GetComponent<DialogTrigger>();
+                    if (dialog != null)
+                    {
+                        Destroy(dialog);
+                    }
+                   
 					_quest.PerformAction (gameObject);
 					_quest.Completed = true;
 				}

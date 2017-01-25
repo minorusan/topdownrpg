@@ -52,7 +52,7 @@ namespace Core.Gameplay.Interactivity
             };
             InteractiveAction action = (GameObject obj) =>
             {
-                ProcessBarController.StartProcessWithCompletion(3f * PlayerQuirks.GetSkill(EPlayerSkills.Hiding),undrag.ActionImage , () =>
+                ProcessBarController.StartProcessWithCompletion(3f * PlayerQuirks.GetSkill(EPlayerSkills.Hiding), Resources.Load<Sprite>("Sprites/Actions/action.id.drag"), () =>
                 {
 
                    RopeDragController.Bind(obj);
@@ -152,7 +152,9 @@ namespace Core.Gameplay.Interactivity
 				var doorway = obj.GetComponent <LockedDoorway>();
 				PlayerInventory.Instance.RemoveItemFromInventory(doorway.ItemToUnlock);
 				ProcessBarController.StartProcessWithCompletion(3f, doorway.Action.ActionImage, () =>
-				                                                 doorway.gameObject.SetActive(false), Color.yellow);
+				{
+				    doorway.gameObject.SetActive(false);
+				},Color.yellow);
 			};
 
 			var openDoorAction = new ActionBase(LockedDoorway.kOpenDoorActionId, openActionRequirement, action);

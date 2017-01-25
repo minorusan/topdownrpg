@@ -45,7 +45,7 @@
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "Hey! That's her decision. Listen, passage there is blocked"
+					"sentence": "Hey! That's her decision. Listen, passage there is blocked."
 				},
 				{
 					"speakerName": "Player",
@@ -57,11 +57,11 @@
 				},
 				{
 					"speakerName": "Tim",
-					"sentence": "That guy with the kid! Maybe he knows some workarounds."
+					"sentence": "That guy with the kid! Maybe he knows some workarounds?"
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "Sure..He doesn't look like a thug, but I bet he can be useful"
+					"sentence": "Guess so..he looks like craftsman of some kind.."
 				},
 				{
 					"speakerName": "Player",
@@ -69,7 +69,7 @@
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "So guy with the kiddo..okay",
+					"sentence": "So that guy in glasses..okay",
 					"isthought": true
 				}
 			]
@@ -91,7 +91,7 @@
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "Well I don't care! None of you, brat, are worth of attention"
+					"sentence": "Shh..shh..stop. Not. Interested."
 				},
 				{
 					"speakerName": "ScholarMad",
@@ -99,7 +99,7 @@
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "Get outta here. Stay away from me and  that kid"
+					"sentence": "Get outta here. Stay away from me and my kid."
 				},
 				{
 					"speakerName": "ScholarMad",
@@ -246,11 +246,23 @@
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "I want to be friends with him. Can you help me with that?"
+					"sentence": "I really need to talk to him. Can you help me with that?"
 				},
 				{
 					"speakerName": "Kid",
-					"sentence": "Weeeell, I could do that. By whom I gonna play with then?"
+					"sentence": "Weeeell, I could do that. But you gonna help me too. Deal?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Sure. What's up?"
+				},
+				{
+					"speakerName": "Kid",
+					"sentence": "I've lost all my toys..can you find at least one for me?"
+				},
+				{
+					"speakerName": "Player",
+					"sentence": "Yeah, sure."
 				},
 				{
 					"speakerName": "Player",
@@ -263,6 +275,7 @@
 				}
 			]
 		},
+
 		{
 			"id": "dialogue.id.scholarcounts",
 			"statements": [
@@ -368,16 +381,11 @@
 				},
 				{
 					"speakerName": "Picker",
-					"sentence": "How rude of you! Now you kid, stay away. Got it?"
+					"sentence": "How rude of you! Now you kid, take a walk out of here. Got it?"
 				},
 				{
 					"speakerName": "Player",
 					"sentence": "Sure.."
-				},
-				{
-					"speakerName": "Player",
-					"isthought":true,
-					"sentence": "Partnership and unity it is.."
 				}
 			]
 		},
@@ -575,7 +583,11 @@
 				},
 				{
 					"speakerName": "LostGirl",
-					"sentence": "I do. And now listen closely."
+					"sentence": "*smiles sadly"
+				},
+				{
+					"speakerName": "LostGirl",
+					"sentence": "Liisten closely."
 				},
 				{
 					"speakerName": "LostGirl",
@@ -583,19 +595,11 @@
 				},
 				{
 					"speakerName": "LostGirl",
-					"sentence": "There are cultists there. Fanatics. Stay"
+					"sentence": "There are cultists there. Fanatics. Just.."
 				},
 				{
 					"speakerName": "LostGirl",
-					"sentence": "Away."
-				},
-				{
-					"speakerName": "LostGirl",
-					"sentence": "From."
-				},
-				{
-					"speakerName": "LostGirl",
-					"sentence": "THEM!"
+					"sentence": "Just try no to mess with them, okay?"
 				},
 				{
 					"speakerName": "Player",
@@ -603,7 +607,7 @@
 				},
 				{
 					"speakerName": "LostGirl",
-					"sentence": "I mean it. You don't even know into what you're getting into.."
+					"sentence": "I mean it. You don't even know into what you might get into.."
 				},
 				{
 					"speakerName": "LostGirl",
@@ -616,15 +620,7 @@
 				{
 					"speakerName": "Player",
 					"isthought":true,
-					"sentence": "Gosh..What a weirdo.."
-				},
-				{
-					"speakerName": "LostGirl",
-					"sentence": "Hey! I heard it!"
-				},
-				{
-					"speakerName": "Player",
-					"sentence": "Well I'm okay with that!"
+					"sentence": "Gosh.."
 				}
 			]
 		},
@@ -670,6 +666,21 @@
 					"sentence": "Booooring.."
 				}
 			]
-		}
+		},
+		{
+			"id": "dialogue.id.vault",
+			"statements": [
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Okay, I'm in."
+				},
+				{
+					"speakerName": "Player",
+					"isthought":true,
+					"sentence": "Guess I may go past that fellow, so he doesn't see me."
+				}
+			]
+		},
 	]
 }

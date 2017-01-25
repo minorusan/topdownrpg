@@ -82,7 +82,7 @@ namespace Core.Gameplay.Interactivity
 
 		private static void InitQuests ()
 		{
-			var gettovault = new Quest ("quest.id.gettovault", "Find your way to vault", null, null);
+			var gettovault = new Quest ("quest.id.gettovault", "Find your way to vault", (GameObject owner) => { return true; }, (GameObject owner) => { DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.vault")); });
 
             var getbear = new Quest("quest.id.getbear", "Find some toy for a kid", (GameObject owner) =>
             {
@@ -91,7 +91,7 @@ namespace Core.Gameplay.Interactivity
             (GameObject obj) =>
             {
                 PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.toybear");
-                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.kidend"));
+                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.kidend"), true);
             });
 
             var getnails = new Quest("quest.id.getnails", "Find nails", (GameObject owner) =>
@@ -101,17 +101,19 @@ namespace Core.Gameplay.Interactivity
             (GameObject obj) =>
             {
                 PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.nails");
+               
                 DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.scholarend"));
             });
 
             var getlock = new Quest("quest.id.getlock", "Get something with lock", (GameObject owner) =>
             {
-                return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.handcuffs") > 0;
+                return PlayerInventory.Instance.GetItems().Count(i => i.ItemID == "genericitem.id.chain") > 0;
             },
           (GameObject obj) =>
           {
-              PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.handcuffs");
-              DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.lockpicktought"));
+              PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.chain");
+ 
+              DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.lockpicktought"), true);
           });
 
             _quests.Add (gettovault.ID, gettovault);

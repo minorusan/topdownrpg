@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 using UnityEngine.UI;
 
 
@@ -37,20 +36,16 @@ namespace Core.Gameplay.Interactivity
 			_button.image.sprite = null;
 		}
 
-		public void SetAction (ActionBase action, GameObject setter = null)
+		public void SetAction (ActionBase action, GameObject setter = null, Sprite image = null)
 		{
 			if (action != null)
 			{
 				_currentAction = action;
 				_button.enabled = true;
-				_button.image.sprite = action.ActionImage;
+				_button.image.sprite = image == null? action.ActionImage : image;
 				_button.image.color = Color.white;
 				_currentActionSetter = setter;
-				_button.interactable = false;
-				if (action.IsRequirementSatisfied (setter))
-				{
-					_button.interactable = true;
-				}
+				_button.interactable = action.IsRequirementSatisfied (setter);
 			}
 			else
 			{

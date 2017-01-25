@@ -53,6 +53,7 @@ namespace Core.Gameplay.Interactivity
             _actions.Add("dialogue.id.lockpickteach", () =>
             {
                 SwapNPCPosition("GennyStart", "GennyTalk");
+                QuestController.StartQuest("quest.id.getlock");
             });
 
             _actions.Add("dialogue.id.scholarend", () =>

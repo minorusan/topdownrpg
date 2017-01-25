@@ -68,6 +68,7 @@ namespace Core.Gameplay.Interactivity
 
 		private IEnumerator DisplayMessage(string message)
 		{
+		    string[] words = message.Split(new[] {' ', '.'});
 			for(int i = 0; i <= message.Length; i++)
 			{
 				Text.text = message.Substring(0, i);

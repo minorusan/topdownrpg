@@ -4,6 +4,7 @@ using System;
 using Core.Characters.Player;
 using Core.Utilities.UI;
 using Core.Interactivity;
+using Core.Inventory;
 
 
 namespace Core.Gameplay.Interactivity
@@ -33,12 +34,7 @@ namespace Core.Gameplay.Interactivity
 		{
 			if(trigger.tag == PlayerBehaviour.kPlayerTag)
 			{
-				ActionPerformer.Instance.SetAction(_action, gameObject);
-			}
-
-			if(!_action.IsRequirementSatisfied(gameObject))
-			{
-				Tutorial.ShowForIDIfNeeded(ETutorialId.LockedDoor);
+				ActionPerformer.Instance.SetAction(_action, gameObject, InventoryImagesLoader.GetImageForItem(ItemsData.GetItemById(ItemToUnlock).EItemType, ItemToUnlock));
 			}
 		}
 

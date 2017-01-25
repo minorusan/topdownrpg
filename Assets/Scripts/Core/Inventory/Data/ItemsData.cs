@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System;
 using Core.Map;
 using Core.Characters.AI;
-
+using JetBrains.Annotations;
 
 namespace Core.Inventory
 {
@@ -27,9 +27,10 @@ namespace Core.Inventory
 
 			var hungerConsumablesList = new List<AConsumableBase>() { 
 				new HungerDecreaser("hungeritem.id.meat", "Meat", AConsumableBase.EDemand.Hunger, 20),
-				new HungerDecreaser("hungeritem.id.banana", "Banana", AConsumableBase.EDemand.Hunger, 20),
-				new HungerDecreaser("hungeritem.id.icecream", "Ice creame", AConsumableBase.EDemand.Hunger, 20),
-			};
+				new HungerDecreaser("hungeritem.id.banana", "Banana", AConsumableBase.EDemand.Hunger, 8),
+				new HungerDecreaser("hungeritem.id.icecream", "Ice creame", AConsumableBase.EDemand.Hunger, 30),
+                new HungerDecreaser("hungeritem.id.berries", "Berries", AConsumableBase.EDemand.Hunger, 5),
+            };
 
 			var stressConsumablesList = new List<AConsumableBase>() { 
 				new StressDecreaser("stressitem.id.vodka", "Vodka", AConsumableBase.EDemand.Stress, -20),
@@ -53,12 +54,14 @@ namespace Core.Inventory
 			}
 
 			_allItems.Add(new AItemBase("genericitem.id.rope", "Rope", EItemType.Generic));
+            _allItems.Add(new AItemBase("genericitem.id.emptybottle", "Empty bottle", EItemType.Generic));
             _allItems.Add(new AItemBase("genericitem.id.lockpick", "Lockpick", EItemType.Generic));
             _allItems.Add(new AItemBase("genericitem.id.book", "Old book", EItemType.Generic));
 			_allItems.Add(new AItemBase("genericitem.id.toybear", "Mangled teddy-bear", EItemType.Generic));
 			_allItems.Add(new AItemBase("genericitem.id.nails", "Rusty nails pile", EItemType.Generic));
 			_allItems.Add(new AItemBase("genericitem.id.chain", "Old handcuffs", EItemType.Generic));
 			_allItems.Add(new AItemBase("genericitem.id.nippers", "Nippers", EItemType.Generic));
+
 			InitialiseTraps();
 		}
 
