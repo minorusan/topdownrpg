@@ -23,7 +23,7 @@ namespace Utils
         private void FixedUpdate()
         {
             _destination = new Vector3(_player.transform.position.x,
-                                        _player.transform.position.y,
+                                        _player.transform.position.y - 9f,
                                         -10);
 
 
