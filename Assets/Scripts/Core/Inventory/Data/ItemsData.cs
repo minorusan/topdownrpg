@@ -54,12 +54,12 @@ namespace Core.Inventory
 			}
 
 			_allItems.Add(new AItemBase("genericitem.id.rope", "Rope", EItemType.Generic));
-            _allItems.Add(new AItemBase("genericitem.id.emptybottle", "Empty bottle", EItemType.Generic));
+            _allItems.Add(new AItemBase("genericitem.id.emptybottle", "Empty bottle", EItemType.Generic, 5));
             _allItems.Add(new AItemBase("genericitem.id.lockpick", "Lockpick", EItemType.Generic));
             _allItems.Add(new AItemBase("genericitem.id.book", "Old book", EItemType.Generic));
 			_allItems.Add(new AItemBase("genericitem.id.toybear", "Mangled teddy-bear", EItemType.Generic));
-			_allItems.Add(new AItemBase("genericitem.id.nails", "Rusty nails pile", EItemType.Generic));
-			_allItems.Add(new AItemBase("genericitem.id.chain", "Old handcuffs", EItemType.Generic));
+			_allItems.Add(new AItemBase("genericitem.id.nails", "Rusty nails pile", EItemType.Generic, 5));
+			_allItems.Add(new AItemBase("genericitem.id.chain", "Old handcuffs", EItemType.Generic, 50));
 			_allItems.Add(new AItemBase("genericitem.id.nippers", "Nippers", EItemType.Generic));
 
 			InitialiseTraps();

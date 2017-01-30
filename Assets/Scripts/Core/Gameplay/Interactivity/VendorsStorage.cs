@@ -64,7 +64,7 @@ namespace Core.Gameplay.Interactivity
         static VendorsStorage()
         {
             _vendors.Add(new Vendor("vendor.id.sara", new[]{ 
-            "hungeritem.id.banana","genericitem.id.chain", "genericitem.id.nippers"}, EItemType.Trap));
+            "hungeritem.id.banana","genericitem.id.chain","genericitem.id.book","genericitem.id.nails","genericitem.id.lockpick"}, EItemType.Trap));
         }
 
         public static Vendor GetVendor(string vendorId)

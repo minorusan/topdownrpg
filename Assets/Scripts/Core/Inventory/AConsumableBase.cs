@@ -32,6 +32,7 @@ namespace Core.Inventory
 					InitAffector();
 				}
 				_affector.DemandState += value;
+			    _affector.AnimateEffect();
 				_affector.DemandTickTime = DemandAffector.DefaultTickTime;
 			};
 		}

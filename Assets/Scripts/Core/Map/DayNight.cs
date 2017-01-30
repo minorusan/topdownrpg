@@ -17,6 +17,9 @@ namespace Core.Map
         public float TimeRate;
         public EDayTime State = EDayTime.Night;
 
+        public Material Sprites;
+        public Light SunShine;
+
         public Image Sun;
         public Image Moon;
 
@@ -34,7 +37,7 @@ namespace Core.Map
                     {
                         _time += TimeRate;
                       
-                        if (_time >= 1.0f)
+                        if (_time >= 2.0f)
                         {
                             State = EDayTime.Night;
                         }
@@ -51,13 +54,9 @@ namespace Core.Map
                         break;
                     }
             }
-
-            for (int i = 0; i < _renderers.Length; i++)
-            {
-                var value = Mathf.Clamp(_time, 0.5f, 1f);
-                _renderers[i].color = new Color(value, value, value);
-            }
-
+            var value = Mathf.Clamp(_time, 0.3f, 1f);
+            Sprites.SetColor("_Color", new Color(value, value, value));
+            SunShine.intensity = _time;
             Moon.color = new Color(1f, 1f, 1f, 1f - _time);
             Sun.color = new Color(1f, 1f, 1f, _time);
         }

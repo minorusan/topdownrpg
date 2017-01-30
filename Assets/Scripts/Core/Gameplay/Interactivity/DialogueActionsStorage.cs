@@ -22,22 +22,17 @@ namespace Core.Gameplay.Interactivity
             {
                 GameObject.Find("ChildrenPolilogue").GetComponent<DialogTrigger>().AutoStart = false;
                 QuestController.StartQuest("quest.id.gettovault");
+                SwapNPCPosition("ChildrenPolilogue", "ChildrenPolilogueFinished");
             });
 
             _actions.Add("dialogue.id.genny", () =>
             {
                 SwapNPCPosition("GennyTalk", "GennyTrade");
-                TradeController.ShowTradeForVendor("vendor.id.sara");
             });
 
             _actions.Add("dialogue.id.kidstart", () =>
             {
                 QuestController.StartQuest("quest.id.getbear");
-            });
-
-            _actions.Add("dialogue.id.kidbusy", () =>
-            {
-                SwapNPCPosition("ScholarCounts", "ScholarMad");
             });
 
             _actions.Add("dialogue.id.kidend", () =>
@@ -75,7 +70,7 @@ namespace Core.Gameplay.Interactivity
             _actions.Add("dialogue.id.lockpicktought", () =>
             {
                 PlayerQuirks.ModifySkill(EPlayerSkills.Lockpicking, 20);
-                SwapNPCPosition("PickerTeacher", "PickerDone");
+                
             });
         }
 

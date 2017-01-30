@@ -45,11 +45,11 @@
 				},
 				{
 					"speakerName": "Genny",
-					"sentence": "Hey! That's her decision. Listen, passage there is blocked."
+					"sentence": "Whoa..but passage there is blocked."
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "Any options 'bout that?"
+					"sentence": "Any options 'bout that, Genny?"
 				},
 				{
 					"speakerName": "Genny",
@@ -83,11 +83,11 @@
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "Wha..who..who are you?"
+					"sentence": "Wha..what? I'm busy here."
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "Ehm, hi, I was just wondering if.."
+					"sentence": "I was just wondering if.."
 				},
 				{
 					"speakerName": "ScholarMad",
@@ -95,24 +95,21 @@
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "*spits"
+					"sentence": "I'm trying to find some toys for my kid"
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "Get outta here. Stay away from me and my kid."
+					"sentence": "And unless you cannot help me, why would I?"
 				},
 				{
-					"speakerName": "ScholarMad",
-					"sentence": "*shows north"
+					 "speakerName": "Player",
+          "sentence": "Oh, ehmm..okay, sorry.."
 				},
-				{
-					"speakerName": "ScholarMad",
-					"sentence": " or I'll make your life even worse."
-				},
-				{
-					"speakerName": "Player",
-					"sentence": "Oh, ehmm..okay, sorry.."
-				}
+        {
+          "speakerName": "Player",
+          "sentence": "Guess I should talk to kid first.",
+          "isthought":true
+        }
 			]
 		},
 		{
@@ -146,29 +143,17 @@
 					"speakerName": "Player",
 					"sentence": "Thanks!"
 				},
-				{
-					"speakerName": "Scholar",
-					"sentence": "And kiddo..whatch out there. I heard bad rumors about that place.."
-				},
-				{
+        {
+          "speakerName": "Scholar",
+          "sentence": "And kiddo..whatch out there. I heard bad rumors about that place.."
+        },
+        {
+          "speakerName": "Scholar",
+          "sentence": "See that girl at the campfire? She's been there. Check her out."
+        },
+        	{
 					"speakerName": "Player",
-					"sentence": "Rumors?"
-				},
-				{
-					"speakerName": "Scholar",
-					"sentence": "Yes. Oh-oh! See that girl at the bonfire? She just came here."
-				},
-				{
-					"speakerName": "Scholar",
-					"sentence": "She's been there. Try asking her."
-				},
-				{
-					"speakerName": "Player",
-					"sentence": "Okay, thanks again for your help. Hope we'll meet again."
-				},
-				{
-					"speakerName": "Scholar",
-					"sentence": "Who knows..take care kid.."
+					"sentence": "I will, thanks!"
 				}
 			]
 		},
@@ -177,7 +162,7 @@
 			"statements": [
 				{
 					"speakerName": "Scholar",
-					"sentence": "So, looks like you have some light within."
+					"sentence": "I head you helped my kid. Thanks."
 				},
 				{
 					"speakerName": "Scholar",
@@ -226,7 +211,7 @@
 			"statements": [
 				{
 					"speakerName": "Player",
-					"sentence": "Still playing?"
+					"sentence": "Hey. Playing around?"
 				},
 				{
 					"speakerName": "Kid",
@@ -234,7 +219,7 @@
 				},
 				{
 					"speakerName": "Player",
-					"sentence": "That friend of yours.. He's kinda..angry?"
+					"sentence": "That friend of yours.. He's kinda..meany?"
 				},
 				{
 					"speakerName": "Kid",
@@ -440,7 +425,7 @@
 					"sentence": "Hey Gen"
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Genny",
 					"sentence": "Yeah, sup?"
 				},
 				{
@@ -448,15 +433,15 @@
 					"sentence": "Do you have something with lock on it?"
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Genny",
 					"sentence": "Hmm..let me see.."
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Genny",
 					"sentence": "*looks for something in her bag"
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Genny",
 					"sentence": "Yeah, I got a pair of old handcuffs. So?"
 				},
 				{
@@ -464,7 +449,7 @@
 					"sentence": "Soo..would you mind giving them to me? Pleeease."
 				},
 				{
-					"speakerName": "GennyTalk",
+					"speakerName": "Genny",
 					"sentence": "Sure. Give me something for them and we'll have a deal."
 				},
 				{
@@ -482,27 +467,27 @@
 					"sentence": "Here are some handcuffs. Does that fit?"
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "Hmm..yeah, that will do."
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "So, insert tension wrench into the bottom of key hole and apply slight pressure"
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "Then, stick pick in the top of the lock"
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "Now, applying slight torque to your wrench.."
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "And, while doing that, scrub your pick back and forth in the key hole."
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "PickerTeacher",
 					"sentence": "See, it's pretty easy. Repeat unitill all pins set."
 				},
 				{
@@ -510,7 +495,7 @@
 					"sentence": "Thanks! I'go and practice now. Take care."
 				},
 				{
-					"speakerName": "Picker",
+					"speakerName": "LockPicker",
 					"sentence": "That's a joy to help such a lady. See ya."
 				}
 			]

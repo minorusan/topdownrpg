@@ -17,6 +17,7 @@ namespace Core.Inventory
 		public const int kMaxInventoryCapacity = 27;
 		private List<AItemBase> _items;
 		private static PlayerInventory _instance;
+	    private AudioClip _sound;
 
 		public event Action InventoryChanged;
 
@@ -35,6 +36,7 @@ namespace Core.Inventory
 		private PlayerInventory()
 		{
 			_items = new List<AItemBase>();
+		    _sound = Resources.Load<AudioClip>("Sounds/item");
 		}
 
 		public bool TryAddItemToInventory(AItemBase item)
@@ -43,9 +45,9 @@ namespace Core.Inventory
 			{
 				_items.Add(item);
 
-				//ShowDialogueForItem(item);
-
-				FanfareMessage.ShowWithText(string.Format("{0} added to inventory.", item.Name));
+                //ShowDialogueForItem(item);
+                AudioSource.PlayClipAtPoint(_sound, Camera.main.transform.position, 0.2f);
+                FanfareMessage.ShowWithText(string.Format("{0} added to inventory.", item.Name));
 				Debug.Log(item.ItemID + " was added to inventory.");
 				InventoryChanged();
 				return true;

@@ -88,13 +88,14 @@ namespace Utils.UI
 							requiredItemsCount++;
 						}
 					}
-
-					ActionButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
+                        ActionButton.gameObject.SetActive(true);
+                        ActionButton.interactable = receipt.RequiredItems.Length <= requiredItemsCount;
 					break;
 				}
 			case EItemType.Trap:
 				{
                         _actionButtonImage.sprite = ButtonImages[1];
+                        ActionButton.gameObject.SetActive(true);
                         ActionButton.onClick.AddListener(delegate { SetATrap(); });
                         break;
 				}

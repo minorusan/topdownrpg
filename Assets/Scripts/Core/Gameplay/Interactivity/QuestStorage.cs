@@ -91,7 +91,7 @@ namespace Core.Gameplay.Interactivity
             (GameObject obj) =>
             {
                 PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.toybear");
-                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.kidend"), true);
+                DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.kidend"));
             });
 
             var getnails = new Quest("quest.id.getnails", "Find nails", (GameObject owner) =>
@@ -113,7 +113,7 @@ namespace Core.Gameplay.Interactivity
           {
               PlayerInventory.Instance.RemoveItemFromInventory("genericitem.id.chain");
  
-              DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.lockpicktought"), true);
+              DialogueDisplayer.ShowDialogue(DialogueStorage.GetDialogueByID("dialogue.id.lockpicktought"));
           });
 
             _quests.Add (gettovault.ID, gettovault);

@@ -80,7 +80,7 @@ namespace Core.Characters.AI
 			var noise = _player.Noise;
 
 			_suspention += noise;
-			_effect.ChangeOpacity(_suspention);
+			//_effect.ChangeOpacity(_suspention);
 			_suspentionBar.fillAmount = _suspention;
 		}
 

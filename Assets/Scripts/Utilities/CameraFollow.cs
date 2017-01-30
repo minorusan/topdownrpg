@@ -14,6 +14,7 @@ namespace Utils
         #endregion
 
         public float TransitionSpeed;
+        public bool ModifiesZ = true;
 
         private void OnEnable()
         {
@@ -24,7 +25,7 @@ namespace Utils
         {
             _destination = new Vector3(_player.transform.position.x,
                                         _player.transform.position.y,
-                                        -10);
+                                        ModifiesZ ? -10 : 0);
 
 
             transform.position = Vector3.MoveTowards(transform.position, _destination, TransitionSpeed * Time.deltaTime);

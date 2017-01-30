@@ -39,16 +39,15 @@ namespace Core.Gameplay.Interactivity
 		}
 
 	    private static void InitDragAction()
-	    {
-          
-
-           
+	    {           
             var undrag = new ActionBase("action.id.undrag", (GameObject obj) => { return true; },
-                (GameObject obj) => { RopeDragController.Unbind(obj); });
+                (GameObject obj) => { RopeDragController.Unbind(obj);
+                    PlayerQuirks.Drags = false;
+                });
 
             ActionRequirement openActionRequirement = (GameObject owner) =>
             {
-                return PlayerInventory.Instance.GetItems().Any(i => i.ItemID == "genericitem.id.rope");
+                return PlayerInventory.Instance.GetItems().Any(i => i.ItemID == "genericitem.id.rope") && !PlayerQuirks.Drags;
             };
             InteractiveAction action = (GameObject obj) =>
             {
@@ -74,6 +73,7 @@ namespace Core.Gameplay.Interactivity
                 var vendor = VendorsStorage.GetVendor(trigger.VendorID);
                 TradeController.ShowTradeForVendor(vendor.Vendorid);
             };
+            
 
             var tradeAction = new ActionBase("action.id.trade", (GameObject owner)=> { return true; }, action);
             _actions.Add("action.id.trade", tradeAction);

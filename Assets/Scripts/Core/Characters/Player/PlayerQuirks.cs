@@ -73,7 +73,7 @@ namespace Core.Characters.Player
 			set;
 		}
 
-
+	    public static bool Drags { get; set; }
 	}
 }
 

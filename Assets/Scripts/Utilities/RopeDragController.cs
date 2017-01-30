@@ -31,12 +31,13 @@ namespace Core.Gameplay.Interactivity
 
             draggableObject.Joint.connectedBody = _instance._lastJoint;
             draggableObject.Joint.connectedAnchor = Vector2.zero;
-          _instance.Invoke("UpdateBodies", 1f);
+          _instance.Invoke("UpdateBodies", 2f);
             
         }
 
         private void UpdateBodies()
         {
+            PlayerQuirks.Drags = true;
             PlayerBehaviour.CurrentPlayer.GetComponent<Rigidbody2D>().isKinematic = false;
             _current.SelfRigidbody2D.isKinematic = false;
         }

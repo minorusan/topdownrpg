@@ -47,10 +47,6 @@ namespace Core.Utilities.UI
         {
             if ( _dialogue != null && _currentMessage >= _dialogue.Statements.Length)
             {
-                if (_dialogue.Completion != null)
-                {
-                    _dialogue.Completion();
-                }
               
                 _state = EDialogueDisplayerState.Idle;
                 _dialogue = null;
@@ -78,13 +74,19 @@ namespace Core.Utilities.UI
             _current._state = EDialogueDisplayerState.Idle;
         }
 
-        public static void ShowDialogue(Dialogue dialogue, bool forced = false)
+        public static void ShowDialogue(Dialogue dialogue)
         {
-            if (dialogue != _current._dialogue && _current._state != EDialogueDisplayerState.Showing)
+            if (dialogue != _current._dialogue)
             {
                 _current._currentMessage = 0;
                 _current._dialogue = dialogue;
                 _current._state = EDialogueDisplayerState.Showing;
+
+                if (dialogue.Completion != null)
+                {
+                    dialogue.Completion();
+                }
+
                 StartedDialogue(dialogue.Id);
             }
         }

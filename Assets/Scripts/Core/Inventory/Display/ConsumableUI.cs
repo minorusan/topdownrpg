@@ -44,7 +44,7 @@ namespace  Core.Inventory.Display
 
 		public void OnPointerClick (PointerEventData eventData)
 		{
-			AudioSource.PlayClipAtPoint (_pickup, transform.position);
+			AudioSource.PlayClipAtPoint (_pickup, Camera.main.transform.position);
 			_selectedConsumable.PerformAction ();
 			PlayerInventory.Instance.RemoveItemFromInventory (_selectedConsumable.ItemID);
 		}

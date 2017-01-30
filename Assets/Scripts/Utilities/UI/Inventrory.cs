@@ -30,7 +30,6 @@ namespace Utilities.UI
 			InitRows ();
 			OnPlayerInventoryChanged ();
 		}
-
 		private void OnDestroy ()
 		{
 			PlayerInventory.Instance.InventoryChanged -= OnPlayerInventoryChanged;
