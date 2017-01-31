@@ -10,7 +10,7 @@ namespace Core.Gameplay.Interactivity
     }
 
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class DraggableObject : MonoBehaviour
     {
         #region PRIVATE

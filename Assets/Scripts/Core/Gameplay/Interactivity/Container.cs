@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.Gameplay.Interactivity
 {
-    [RequireComponent(typeof(BoxCollider2D))]
+    [RequireComponent(typeof(Collider2D))]
     public class Container : MonoBehaviour
     {
         public string[] Items;

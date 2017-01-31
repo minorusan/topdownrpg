@@ -5,7 +5,7 @@ using Core.Utilities.UI;
 
 namespace Core.Gameplay.Interactivity
 {
-	[RequireComponent(typeof(BoxCollider2D))]
+	[RequireComponent(typeof(Collider2D))]
 	public class DialogTrigger : MonoBehaviour
 	{
 		private ActionBase _dialogueAction;

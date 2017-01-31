@@ -7,7 +7,7 @@ using Core.Interactivity;
 
 namespace Core.Gameplay.Interactivity
 {
-	[RequireComponent(typeof(BoxCollider2D))]
+	[RequireComponent(typeof(Collider2D))]
 	public class Hideout : MonoBehaviour
 	{
 		public const string kHideAction = "action.id.hide";

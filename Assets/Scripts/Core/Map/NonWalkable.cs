@@ -5,7 +5,7 @@ using System;
 
 namespace Core.Map
 {
-	[RequireComponent(typeof(BoxCollider2D))]
+	[RequireComponent(typeof(Collider2D))]
 	public class NonWalkable : MonoBehaviour
 	{
 		public bool Active = true;
@@ -16,7 +16,7 @@ namespace Core.Map
 		{
 			get
 			{
-				return GetComponent<BoxCollider2D>().bounds;
+				return GetComponent<Collider2D>().bounds;
 			}
 		}
 

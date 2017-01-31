@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Core.Characters.AI;
 using Core.Characters.Player;
+using DynamicLight2D;
 
 
 namespace Core.Interactivity.AI
@@ -11,6 +12,8 @@ namespace Core.Interactivity.AI
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class GuardBrains:ArtificialIntelligence
 	{
+	    private DynamicLight light2d;
+        public event Action Spotted;
 		public float SearchDistance = 6f;
 		public float AlertTime = 5f;
 		public Image SuspentionBar;
@@ -60,6 +63,12 @@ namespace Core.Interactivity.AI
 
 		protected override void InitStates()
 		{
+		    light2d = GetComponentInChildren<DynamicLight>();
+		    if (light2d != null)
+		    {
+                light2d.OnEnterFieldOfView += OnSpotted;
+            }
+		    
 			_availiableStates.Add(EAIState.Wandering, new AIStateWandering(this, SearchDistance, WanderingPointsRoot, SuspentionBar));
 			_availiableStates.Add(EAIState.Alert, new AIStateAlert(this, SearchDistance * 2, AlertTime));
 			_availiableStates.Add(EAIState.Attack, new AIStateAttack(this));
@@ -80,6 +89,15 @@ namespace Core.Interactivity.AI
 		{
 			base.Update();
 		}
+
+	    public void OnSpotted(GameObject go, DynamicLight Light)
+	    {
+	        if (go.tag == "Player")
+	        {
+	            Spotted();
+                
+	        }
+	    }
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 using Core.Map;
 using Core.Characters.Player;
 using Core.Interactivity.AI;
+using DynamicLight2D;
 using Utils;
+using Random = UnityEngine.Random;
 
 
 namespace Core.Characters.AI
@@ -21,6 +24,7 @@ namespace Core.Characters.AI
 		private AudioClip _whispering;
 		private AudioClip _bellCreepy;
 		private SequentialMovement _movementController;
+	  
 
 
 		public AIStateWandering(ArtificialIntelligence brains, float searchDistance, Transform pathRoot, Image suspentionBar) : base(brains)
@@ -37,9 +41,16 @@ namespace Core.Characters.AI
 			_player = GameObject.FindObjectOfType<PlayerBehaviour>();
 			_suspentionBar = suspentionBar;
 		    _guardBrains = (GuardBrains) brains;
+            _guardBrains.Spotted += GuardBrainsOnSpotted;
 		}
 
-		public override void OnEnter()
+	    private void GuardBrainsOnSpotted()
+	    {
+            _currentCondition = AIStateCondition.Done;
+            _pendingState = EAIState.Attack;
+        }
+
+	    public override void OnEnter()
 		{
 			base.OnEnter();
 			if(_player != null && _player.isActiveAndEnabled)
@@ -89,8 +100,8 @@ namespace Core.Characters.AI
 			var playerNode = _masterBrain.MovableObject.Map.GetNodeByPosition(_player.transform.position);
 			if(CanAttackPlayer(playerNode))
 			{
-				_currentCondition = AIStateCondition.Done;
-				_pendingState = EAIState.Attack;
+				//_currentCondition = AIStateCondition.Done;
+				//_pendingState = EAIState.Attack;
 			}
 
 			if(_suspention > 1f)
