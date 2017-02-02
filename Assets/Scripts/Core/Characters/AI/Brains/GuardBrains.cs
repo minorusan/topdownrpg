@@ -95,7 +95,6 @@ namespace Core.Interactivity.AI
 	        if (go.tag == "Player")
 	        {
 	            Spotted();
-                
 	        }
 	    }
 

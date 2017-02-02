@@ -27,23 +27,18 @@ namespace Utils.UI
 	    public Sprite[] ButtonImages;
 	    public Button ActionButton;
 	    public Button DeleteButton;
-
+	    public Image DisplayImage;
 		public Text ItemName;
 
 		#region Monobehaviour
 
 		public void Start ()
 		{
-			_displayImage = GetComponentInChildren <Image> ();
+		    _displayImage = DisplayImage;
 			_descriptionText = GetComponentInChildren <Text> ();
-			_descriptionText.gameObject.SetActive (false);
-
-			ItemName.gameObject.SetActive (false);
-			ActionButton.gameObject.SetActive (false);
-			DeleteButton.gameObject.SetActive (false);
 
 		    _actionButtonImage = ActionButton.GetComponent<Image>();
-			_displayImage.gameObject.SetActive (false);
+			//gameObject.SetActive(false);
 		}
 
 		public void Reset ()

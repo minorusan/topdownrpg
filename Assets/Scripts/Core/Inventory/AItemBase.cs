@@ -76,7 +76,7 @@ namespace Core.Inventory
 		{
 			return () =>
 			{
-				var displayer = FindObjectOfType<ItemInfoDisplayer>();
+			    var displayer = FindObjectOfType<ItemInfoDisplayer>();
 				if(displayer != null)
 				{
 					displayer.DisplayReceiptForItem(ItemID);

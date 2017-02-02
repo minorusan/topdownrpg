@@ -12,7 +12,7 @@ namespace Utilities.UI
 	{
 		#region Private
 
-		private int maxItemsPerRow;
+		private int maxItemsPerRow = 5;
 		private Transform[] _rows;
 		private static List<IInventoryUIItem> _uiitems = new List<IInventoryUIItem> ();
 		private List<GameObject> _instantiatedObjects = new List<GameObject> ();
@@ -135,7 +135,7 @@ namespace Utilities.UI
 			{
 				_rows [i] = transform.GetChild (i);
 			}
-			maxItemsPerRow = PlayerInventory.kMaxInventoryCapacity / _rows.GetLength (0);
+			
 			PlayerInventory.Instance.InventoryChanged += OnPlayerInventoryChanged;
 			transform.parent.gameObject.SetActive (false);
 		}
