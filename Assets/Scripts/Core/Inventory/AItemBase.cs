@@ -9,6 +9,8 @@ namespace Core.Inventory
 	[Serializable]
 	public class AItemBase:UnityEngine.Object
 	{
+        public static ItemInfoDisplayer Displayer;
+
 		#region Private
 
 		private readonly string _itemID;
@@ -76,9 +78,10 @@ namespace Core.Inventory
 		{
 			return () =>
 			{
-			    var displayer = FindObjectOfType<ItemInfoDisplayer>();
+                var displayer = Displayer;
 				if(displayer != null)
 				{
+                    displayer.gameObject.SetActive(true);
 					displayer.DisplayReceiptForItem(ItemID);
 				}
 				else

@@ -38,7 +38,8 @@ namespace Utils.UI
 			_descriptionText = GetComponentInChildren <Text> ();
 
 		    _actionButtonImage = ActionButton.GetComponent<Image>();
-			//gameObject.SetActive(false);
+            AItemBase.Displayer = this;
+			gameObject.SetActive(false);
 		}
 
 		public void Reset ()
