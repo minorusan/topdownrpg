@@ -54,8 +54,10 @@ namespace Core.Map
                         break;
                     }
             }
+
             var value = Mathf.Clamp(_time, 0.3f, 1f);
-            Sprites.SetColor("_Color", new Color(value, value, value));
+            Sprites.SetInt("_HueShift", 100 - (int)Mathf.Clamp(_time * 100f, 0, 100));
+            Sprites.SetFloat("Value", (int)(_time * 100f));
             SunShine.intensity = _time;
             Moon.color = new Color(1f, 1f, 1f, 1f - _time);
             Sun.color = new Color(1f, 1f, 1f, _time);
