@@ -48,7 +48,7 @@ namespace Core.Characters.AI
 			var effect = GameObject.FindObjectOfType<NoiseEffect> ();
 			if (effect != null)
 			{
-				effect.ChangeOpacity (0f);
+				//effect.ChangeOpacity (0f);
 			}
 			_currentState.OnEnter ();
 		}

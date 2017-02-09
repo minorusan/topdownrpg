@@ -91,7 +91,7 @@
 				},
 				{
 					"speakerName": "ScholarMad",
-					"sentence": "Shh..shh..stop. Not. Interested."
+					"sentence": "Shh..shh..stop."
 				},
 				{
 					"speakerName": "ScholarMad",
@@ -107,7 +107,7 @@
 				},
         {
           "speakerName": "Player",
-          "sentence": "Guess I should talk to kid first.",
+          "sentence": "Guess I should checkout kid.",
           "isthought":true
         }
 			]

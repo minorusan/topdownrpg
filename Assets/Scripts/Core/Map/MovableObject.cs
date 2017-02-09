@@ -60,7 +60,7 @@ namespace Core.Map
 		}
 
 	
-		private void Update ()
+		private void LateUpdate ()
 		{
 			if (!_currentPath.Empty)
 			{

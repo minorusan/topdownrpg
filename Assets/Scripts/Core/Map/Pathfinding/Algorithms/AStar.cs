@@ -43,7 +43,7 @@ namespace Core.Pathfinding.Algorithms
 			{
 				if(iterator > 30)
 				{
-					return FindPathToDestination(currentNodeIndex, closedSet.Last().GridPosition, mapGenerator);
+				//	return FindPathToDestination(currentNodeIndex, closedSet.Last().GridPosition, mapGenerator);
 				}
 
 				Node node = openSet[0];

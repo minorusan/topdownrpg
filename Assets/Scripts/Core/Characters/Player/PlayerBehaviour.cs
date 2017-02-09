@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Core.Characters.Player.Demand;
+using DynamicLight2D;
 
 
 namespace Core.Characters.Player
@@ -12,7 +13,7 @@ namespace Core.Characters.Player
         public static string kPlayerTag = "Player";
         public static float BaseMovementSpeed = 10f;
         public AudioClip StepSound;
-
+        private DynamicLight _light;
         #region Private
 
         private Animator _animator;
@@ -59,6 +60,8 @@ namespace Core.Characters.Player
 
         private void Awake()
         {
+            _light = GetComponentInChildren<DynamicLight>();
+            TurnOnLight(false);
             BaseMovementSpeed = MovementSpeed;
             Debug.LogWarning("Tutorial::Removing player prefs!");
             PlayerPrefs.DeleteAll();
@@ -90,6 +93,11 @@ namespace Core.Characters.Player
         public void Kill()
         {
             _death.Kill();
+        }
+
+        public void TurnOnLight(bool b)
+        {
+            _light.gameObject.SetActive(b);
         }
     }
 }

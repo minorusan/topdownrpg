@@ -1,27 +1,40 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
+
 
 namespace Core.Map
 {
     public enum EDayTime
     {
+        Morning,
         Day,
-        Night
+        Evening,
+        Night,
     }
 
+    [ExecuteInEditMode]
     public class DayNight : MonoBehaviour
     {
+        public event Action<EDayTime> DayStateChanged;
         private SpriteRenderer[] _renderers;
-        private float _time = 1;
+        
+        private float _time;
 
-        public float TimeRate;
-        public EDayTime State = EDayTime.Night;
+        public EDayTime State;
+        
 
-        public Material Sprites;
-        public Light SunShine;
+        [Header("Time periods")]
+        public float DayLenght;
+        public float MorningLength;
+        public float EveningLength;
+        public float NightLength;
+        public float TimeRate = 0.001f;
 
-        public Image Sun;
-        public Image Moon;
+        [Header("Symbols")]
+        public Image SunImage;
+        public Image MoonImage;
+       
 
         // Use this for initialization
         void Start()
@@ -29,38 +42,64 @@ namespace Core.Map
             _renderers = FindObjectsOfType<SpriteRenderer>();
         }
 
-        void Update()
+        private void OnValidate()
+        {
+            if (DayStateChanged != null)
+            {
+                DayStateChanged(State);
+            }
+        }
+
+        private void Update()
+        {
+            _time -= TimeRate;
+            if (_time <= 0f)
+            {
+                ChangeDayState();
+            }
+        }
+
+        public void ToggleLights(bool value)
+        {
+            if (!value)
+            {
+                State = EDayTime.Night;
+            }
+        }
+
+        private void ChangeDayState()
         {
             switch (State)
             {
+                case EDayTime.Morning:
+                    {
+                        _time = DayLenght;
+                        State = EDayTime.Day;
+                        break;
+                   }
                 case EDayTime.Day:
                     {
-                        _time += TimeRate;
-                      
-                        if (_time >= 2.0f)
-                        {
-                            State = EDayTime.Night;
-                        }
+                        _time = EveningLength;
+                        State = EDayTime.Evening;
+                        break;
+                    }
+                case EDayTime.Evening:
+                    {
+                        _time = NightLength;
+                        State = EDayTime.Night;
                         break;
                     }
                 case EDayTime.Night:
                     {
-                        _time -= TimeRate;
-
-                        if (_time <= 0.0f)
-                        {
-                            State = EDayTime.Day;
-                        }
+                        _time = MorningLength;
+                        State = EDayTime.Morning;
                         break;
                     }
             }
-
-            var value = Mathf.Clamp(_time, 0.3f, 1f);
-            Sprites.SetInt("_HueShift", 100 - (int)Mathf.Clamp(_time * 100f, 0, 100));
-            Sprites.SetFloat("Value", (int)(_time * 100f));
-            SunShine.intensity = _time;
-            Moon.color = new Color(1f, 1f, 1f, 1f - _time);
-            Sun.color = new Color(1f, 1f, 1f, _time);
+            if (DayStateChanged != null)
+            {
+                DayStateChanged(State);
+            }
         }
     }
 }

@@ -26,7 +26,8 @@ namespace Core.Characters.AI
 
 		public override void OnLeave()
 		{
-			if(PlayerBehaviour.CurrentPlayer != null)
+            _masterBrain.MovableObject.MovementSpeed *= 0.5f;
+            if (PlayerBehaviour.CurrentPlayer != null)
 			{
 				PlayerQuirks.Attacked = false;
 			}
@@ -41,6 +42,7 @@ namespace Core.Characters.AI
             _sound = ((GuardBrains)_masterBrain).AngerSound;
 			AudioSource.PlayClipAtPoint(_sound, _masterBrain.transform.position, 1f);
 			_player = PlayerBehaviour.CurrentPlayer;
+		    _masterBrain.MovableObject.MovementSpeed *= 2f;
 			_player.GetComponent<StressAffector>().DemandTickTime *= 0.8f;
 		}
 

@@ -1,24 +1,43 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.UI;
-
 
 namespace Utils
 {
-	[RequireComponent (typeof(Image))]
+	[RequireComponent (typeof(Collider2D))]
 	public class NoiseEffect : MonoBehaviour
 	{
-		private Image _image;
+	    private _2dxFX_Blur[] _blurredObjects;
+	    private Renderer _renderer;
 
-		public void ChangeOpacity (float opacity)
-		{
-		    if (_image == null)
-		    {
-                _image = GetComponent<Image>();
+	    private void Start()
+	    {
+	        _renderer = GetComponent<Renderer>();
+	        _blurredObjects = GetComponentsInChildren<_2dxFX_Blur>();
+	    }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.tag == "Player")
+            {
+                _renderer.enabled = false;
+                foreach (var blur in _blurredObjects)
+                {
+                    blur.enabled = false;
+                }
             }
-			_image.color = new Color (1f, 1f, 1f, opacity);
-		}
-	}
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.tag == "Player")
+            {
+                _renderer.enabled = true;
+                foreach (var blur in _blurredObjects)
+                {
+                    blur.enabled = true;
+                }
+            }
+        }
+    }
 }
 

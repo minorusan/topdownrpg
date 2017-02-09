@@ -59,7 +59,7 @@ namespace Core.Characters.AI
 				_suspention = _suspention > 0f && playerNode != null ? 0.9f : 0f;
 				if(_effect != null)
 				{
-					_effect.ChangeOpacity(_suspention);
+					//_effect.ChangeOpacity(_suspention);
 				}
 
 				_masterBrain.StatusText.text = _guardBrains.WanderingStrings[Random.Range(0, _guardBrains.WanderingStrings.Length)];
@@ -118,7 +118,7 @@ namespace Core.Characters.AI
 			{
 				if(_suspention > 0f)
 				{
-					_effect.ChangeOpacity(0f);
+					//_effect.ChangeOpacity(0f);
 				}
 			}
 
