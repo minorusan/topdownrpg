@@ -19,7 +19,7 @@ public class DuplicateSprite : MonoBehaviour
 	    if (Parent != null)
 	    {
             _selfRenderer.sprite = Parent.sprite;
-	        _selfRenderer.sortingOrder = Parent.sortingOrder;
+	        //_selfRenderer.sortingOrder = Parent.sortingOrder;
 	    }
 	    else
 	    {

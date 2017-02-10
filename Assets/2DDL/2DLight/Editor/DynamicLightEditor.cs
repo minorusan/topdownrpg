@@ -332,10 +332,10 @@ public class DynamicLightEditor : Editor {
 		
 		
 		serializedObject.ApplyModifiedProperties();
-
-
-
-	    DrawDefaultInspector();
+		
+		
+		
+		
 	}
 	
 	

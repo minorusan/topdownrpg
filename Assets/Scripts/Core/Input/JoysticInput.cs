@@ -24,7 +24,7 @@ namespace Core.Input
             {
                 var destination = new Vector3(_player.transform.position.x + cnInputHorizontal,
                                       _player.transform.position.y + cnInputVertical,
-                                      0f);
+                                      _player.transform.position.z);
 
                 _player.transform.position = Vector3.MoveTowards(_player.transform.position, destination, _player.MovementSpeed * Time.deltaTime);
                 _player.Moves = true;

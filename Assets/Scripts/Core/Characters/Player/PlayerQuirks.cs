@@ -74,6 +74,8 @@ namespace Core.Characters.Player
 		}
 
 	    public static bool Drags { get; set; }
-	}
+	    public static bool Shadowed { get; set; }
+        public static bool Moves { get; set; }
+    }
 }
 

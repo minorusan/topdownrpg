@@ -8,6 +8,13 @@ using UnityEngine;
 public class DayNightColorShift : MonoBehaviour
 {
     public Material Material;
+    private float _prevHUE;
+    private float _prevValue;
+    private float _prevSat;
+
+    private float _goalHUE;
+    private float _goalValue;
+    private float _goalSat;
 
     [Header("Day values")]
     public float[] DayValues;
@@ -18,36 +25,39 @@ public class DayNightColorShift : MonoBehaviour
     [Header("Morning values")]
     public float[] MorningValues;
 
-
     // Use this for initialization
     void Awake()
     {
-        FindObjectOfType<DayNight>().DayStateChanged += OnDayStateChanged; ;
+        DayNight.DayStateChanged += OnDayStateChanged;
+        OnDayStateChanged(FindObjectOfType<DayNight>().State);
     }
 
     private void OnDayStateChanged(EDayTime obj)
     {
+        _prevValue = _goalValue;
+        _prevHUE = _goalHUE;
+        _prevSat = _goalSat;
         switch (obj)
         {
             case EDayTime.Morning:
-                Material.SetInt("_HueShift", Convert.ToInt32(MorningValues[0]));
-                Material.SetFloat("_Sat", MorningValues[1]);
-                Material.SetFloat("Val", MorningValues[1]);
+                _goalHUE = Convert.ToInt32(DayValues[0]);
+                _goalSat = DayValues[1];
+                _goalValue = DayValues[2];
                 break;
             case EDayTime.Day:
-                Material.SetInt("_HueShift", Convert.ToInt32(DayValues[0]));
-                Material.SetFloat("_Sat", DayValues[1]);
-                Material.SetFloat("Val", DayValues[1]);
+                _goalHUE = Convert.ToInt32(EveningValues[0]);
+                _goalSat = EveningValues[1];
+                _goalValue = EveningValues[2];
                 break;
             case EDayTime.Evening:
-                Material.SetInt("_HueShift", Convert.ToInt32(EveningValues[0]));
-                Material.SetFloat("_Sat", EveningValues[1]);
-                Material.SetFloat("Val", EveningValues[1]);
+                _goalHUE = Convert.ToInt32(NightValues[0]);
+                _goalSat = NightValues[1];
+                _goalValue = NightValues[2];
                 break;
             case EDayTime.Night:
-                Material.SetInt("_HueShift", Convert.ToInt32(NightValues[0]));
-                Material.SetFloat("_Sat", NightValues[1]);
-                Material.SetFloat("Val", NightValues[1]);
+                _goalHUE = Convert.ToInt32(MorningValues[0]);
+                _goalSat = MorningValues[1];
+                _goalValue = MorningValues[2];
                 break;
             default:
                 throw new ArgumentOutOfRangeException("obj", obj, null);
@@ -57,6 +67,8 @@ public class DayNightColorShift : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Material.SetInt("_HueShift", (int)Mathf.Lerp(_prevHUE, _goalHUE, 1f - DayNight.StaticTimeLeft));
+        Material.SetFloat("_Sat", Mathf.Lerp(_prevSat, _goalSat, 1f - DayNight.StaticTimeLeft));
+        Material.SetFloat("Val", Mathf.Lerp(_prevValue, _goalValue, 1f - DayNight.StaticTimeLeft));
     }
 }

@@ -39,7 +39,6 @@ namespace Core.Gameplay.Interactivity
 
         private void OnTriggerEnter2D(Collider2D trigger)
 		{
-            
 			if(AutoStart)
 			{
 			    AutoStart = false;

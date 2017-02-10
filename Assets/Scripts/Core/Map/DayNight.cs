@@ -16,14 +16,17 @@ namespace Core.Map
     [ExecuteInEditMode]
     public class DayNight : MonoBehaviour
     {
-        public event Action<EDayTime> DayStateChanged;
+        public static event Action<EDayTime> DayStateChanged;
+        public static float StaticTimeLeft;
         private SpriteRenderer[] _renderers;
-        
+        private bool _blocked;
+
         private float _time;
+        private float _currentDuration;
 
         public EDayTime State;
+        public float TimeLeft;
         
-
         [Header("Time periods")]
         public float DayLenght;
         public float MorningLength;
@@ -52,19 +55,29 @@ namespace Core.Map
 
         private void Update()
         {
-            _time -= TimeRate;
-            if (_time <= 0f)
+            if (!_blocked)
             {
-                ChangeDayState();
+                _time -= TimeRate;
+                TimeLeft = _time / _currentDuration;
+                StaticTimeLeft = TimeLeft;
+
+                if (_time <= 0f)
+                {
+                    ChangeDayState();
+                }
             }
         }
 
-        public void ToggleLights(bool value)
+        public void Block(bool val)
         {
-            if (!value)
+            if (_blocked != val && val)
             {
-                State = EDayTime.Night;
+                State = EDayTime.Evening;
+                StaticTimeLeft = 0f;
+                TimeLeft = 0f;
+                ChangeDayState();
             }
+            _blocked = val;
         }
 
         private void ChangeDayState()
@@ -73,7 +86,7 @@ namespace Core.Map
             {
                 case EDayTime.Morning:
                     {
-                        _time = DayLenght;
+                        _time = DayLenght;                        
                         State = EDayTime.Day;
                         break;
                    }
@@ -96,6 +109,7 @@ namespace Core.Map
                         break;
                     }
             }
+            _currentDuration = _time;
             if (DayStateChanged != null)
             {
                 DayStateChanged(State);

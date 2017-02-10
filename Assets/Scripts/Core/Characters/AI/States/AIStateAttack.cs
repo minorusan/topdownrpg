@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Linq;
+using UnityEngine;
 
 using Core.Map;
 using Core.Characters.Player;
 using Core.Map.Pathfinding;
 using Core.Characters.Player.Demand;
 using Core.Interactivity.AI;
+using Random = UnityEngine.Random;
 
 
 namespace Core.Characters.AI
@@ -14,6 +17,7 @@ namespace Core.Characters.AI
 		private Node _currentDestination;
 		private Node _previousDestination;
 		private Core.Characters.Player.PlayerBehaviour _player;
+	    private GuardBrains _guardBrains;
 		private bool _attacks;
 		private AudioClip _sound;
 
@@ -21,10 +25,17 @@ namespace Core.Characters.AI
 		public AIStateAttack(ArtificialIntelligence brains) : base(brains)
 		{
 			State = EAIState.Attack;
-
+		    _guardBrains = (GuardBrains) brains;
+            _guardBrains.RanAway += GuardBrainsOnRanAway;
 		}
 
-		public override void OnLeave()
+	    private void GuardBrainsOnRanAway()
+	    {
+	        _pendingState = EAIState.Alert;
+	        _currentCondition = AIStateCondition.Done;
+	    }
+
+	    public override void OnLeave()
 		{
             _masterBrain.MovableObject.MovementSpeed *= 0.5f;
             if (PlayerBehaviour.CurrentPlayer != null)
@@ -64,7 +75,12 @@ namespace Core.Characters.AI
 
 		private void MoveToPlayer()
 		{
-			var suitableAttackPosition = _map.GetNodeByPosition(_player.transform.position); 
+			var suitableAttackPosition = _map.GetNodeByPosition(_player.transform.position);
+		    if (suitableAttackPosition.CurrentCellType == ECellType.Blocked)
+		    {
+		        suitableAttackPosition =
+		            _map.GetNeighbours(suitableAttackPosition).First(i => i.CurrentCellType == ECellType.Walkable);
+		    } 
 			_masterBrain.MovableObject.BeginMovementByPath(Pathfinder.FindPathToDestination(
 				_map,
 				_masterBrain.MovableObject.CurrentNode.GridPosition,

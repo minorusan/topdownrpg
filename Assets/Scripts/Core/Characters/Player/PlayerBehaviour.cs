@@ -48,6 +48,7 @@ namespace Core.Characters.Player
             {
                 if (_moves == value) return;
                 _moves = value;
+                
                 _animator.SetBool("Walk", _moves);
             }
         }
@@ -61,7 +62,7 @@ namespace Core.Characters.Player
         private void Awake()
         {
             _light = GetComponentInChildren<DynamicLight>();
-            TurnOnLight(false);
+           // TurnOnLight(false);
             BaseMovementSpeed = MovementSpeed;
             Debug.LogWarning("Tutorial::Removing player prefs!");
             PlayerPrefs.DeleteAll();

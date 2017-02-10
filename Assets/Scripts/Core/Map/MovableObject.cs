@@ -91,9 +91,14 @@ namespace Core.Map
 			_animator.enabled = false;
 		}
 
-		#endregion
+        private void OnEnable()
+        {
+            _animator.enabled = true;
+        }
 
-		public void BeginMovementByPath (Path path)
+        #endregion
+
+        public void BeginMovementByPath (Path path)
 		{
 			_currentPath.Nodes.Clear ();
             SelfAnimator.SetFloat("AnimSpeed", MovementSpeed * 100);

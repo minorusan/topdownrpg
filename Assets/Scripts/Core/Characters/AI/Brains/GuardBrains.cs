@@ -12,9 +12,11 @@ namespace Core.Interactivity.AI
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class GuardBrains:ArtificialIntelligence
 	{
+	    private bool _inLineOfSight = false;
 	    private DynamicLight light2d;
         public event Action Spotted;
-		public float SearchDistance = 6f;
+        public event Action RanAway;
+        public float SearchDistance = 6f;
 		public float AlertTime = 5f;
 		public Image SuspentionBar;
 		public Transform WanderingPointsRoot;
@@ -66,7 +68,7 @@ namespace Core.Interactivity.AI
 		    light2d = GetComponentInChildren<DynamicLight>();
 		    if (light2d != null)
 		    {
-                light2d.OnEnterFieldOfView += OnSpotted;
+
             }
 		    
 			_availiableStates.Add(EAIState.Wandering, new AIStateWandering(this, SearchDistance, WanderingPointsRoot, SuspentionBar));
@@ -90,11 +92,29 @@ namespace Core.Interactivity.AI
 			base.Update();
 		}
 
-	    public void OnSpotted(GameObject go, DynamicLight Light)
+	    public void OnSpotted(GameObject go)
 	    {
-	        if (go.tag == "Player")
+	        if (go.tag == "Player" && !PlayerQuirks.Shadowed)
 	        {
+	            _inLineOfSight = true;
 	            Spotted();
+	        }
+	    }
+
+        public void OnExit(GameObject go)
+        {
+            if (go.tag == "Player")
+            {
+                _inLineOfSight = false;
+                Invoke("ChangeState",AlertTime*0.5f);
+            }
+        }
+
+	    private void ChangeState()
+	    {
+	        if (!_inLineOfSight)
+	        {
+	            RanAway();
 	        }
 	    }
 
